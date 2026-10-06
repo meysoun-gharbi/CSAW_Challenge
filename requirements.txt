@@ -1,0 +1,23 @@
+# Dependances du harnais ESC 2026.
+# Le COEUR (mode mock) ne depend que de la stdlib : rien a installer pour `python run.py`.
+# Les versions ">=" indiquent le minimum ; entre parentheses, la version TESTEE par l'equipe.
+
+# --- Parler a la carte (obligatoire pour le challenge reel) ---
+pyserial>=3.4          # UART serie (port Windows COMx ou Linux /dev/ttyUSBx). Teste: 3.5 / 3.4
+
+# --- Backend Gemini ---
+google-genai>=1.0.0    # Teste: 2.28.0
+
+# --- Backend Claude (optionnel) ---
+anthropic>=0.40.0      # Teste: 1.11.0
+
+# --- Interfaces pour les challenges suivants (BLE / UI web) ---
+bleak>=0.22            # BLE/GATT (challenges a venir)
+requests>=2.31         # UI web http://192.168.4.1
+
+# --- Analyse / figures pour le rapport (optionnel) ---
+matplotlib>=3.8
+
+# Python 3.10+ recommande. Teste sous Python 3.14 (Windows) et 3.8 (Linux).
+# Scan Wi-Fi: Windows via powershell/netsh (inclus); Linux via nmcli
+# (paquet NetworkManager, hors pip).

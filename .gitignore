@@ -1,0 +1,13 @@
+# Caches Python
+__pycache__/
+*.pyc
+
+# Secrets / environnement
+.env
+
+# Sorties generees par run.py / bench.py (regenerables).
+# On garde le dossier (.gitkeep) et les artefacts du VRAI run du challenge 1 (preuves rapport).
+runs/*
+!runs/.gitkeep
+!runs/challenge1.jsonl
+!runs/challenge1_transcript.txt
