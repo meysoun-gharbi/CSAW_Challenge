@@ -36,12 +36,15 @@ def build_llm(backend: str, model: str):
     if backend == "claude":
         from esc_agent.llm.claude import ClaudeClient
         return ClaudeClient(model=model)
+    if backend == "ollama":
+        from esc_agent.llm.ollama import OllamaClient
+        return OllamaClient(model=model)
     raise SystemExit(f"backend inconnu: {backend}")
 
 
 def main() -> None:
     ap = argparse.ArgumentParser()
-    ap.add_argument("--backend", default="mock", choices=["mock", "gemini", "claude"])
+    ap.add_argument("--backend", default="mock", choices=["mock", "gemini", "claude", "ollama"])
     ap.add_argument("--model", default="gemini-3-pro")
     ap.add_argument("--log", default="runs/run.jsonl")
     ap.add_argument("--max-steps", type=int, default=12)

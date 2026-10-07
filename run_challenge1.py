@@ -25,7 +25,7 @@ from run import build_llm
 def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--port", default="COM4", help="port serie (COM4, /dev/ttyUSB0...)")
-    ap.add_argument("--backend", default="gemini", choices=["gemini", "mock", "claude"])
+    ap.add_argument("--backend", default="gemini", choices=["gemini", "mock", "claude", "ollama"])
     ap.add_argument("--model", default="gemini-flash-latest")
     ap.add_argument("--log", default="runs/challenge1.jsonl")
     ap.add_argument("--max-steps", type=int, default=400)

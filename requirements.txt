@@ -11,6 +11,10 @@ google-genai>=1.0.0    # Teste: 2.28.0
 # --- Backend Claude (optionnel) ---
 anthropic>=0.40.0      # Teste: 1.11.0
 
+# --- Backend Ollama (modele local, optionnel) ---
+# necessite un serveur Ollama lance (`ollama serve`) + un modele pull
+# (`ollama pull <nom>`). Pas de cle API. requests est deja requis plus bas.
+
 # --- Interfaces pour les challenges suivants (BLE / UI web) ---
 bleak>=0.22            # BLE/GATT (challenges a venir)
 requests>=2.31         # UI web http://192.168.4.1
