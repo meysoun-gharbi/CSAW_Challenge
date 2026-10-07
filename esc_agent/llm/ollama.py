@@ -57,13 +57,27 @@ class OllamaClient(LLMClient):
                 f"Serveur Ollama injoignable sur {self._host} "
                 "(verifie `ollama serve` / `systemctl status ollama`)."
             ) from exc
-        names = {m.get("name") for m in resp.json().get("models", [])}
-        # tolere les suffixes de tag manquants (ex: "qwen2.5" vs "qwen2.5:latest")
-        if self.model not in names and not any(n.startswith(self.model + ":") for n in names if n):
+        names = {m.get("name") for m in resp.json().get("models", []) if m.get("name")}
+
+        def _matches(installed: str) -> bool:
+            if installed == self.model or installed.startswith(self.model + ":"):
+                return True
+            # tolere un nom court sans le namespace "org/" (ex: "qwen3-...-abliterated"
+            # pour "richardyoung/qwen3-...-abliterated:latest")
+            short = installed.split("/")[-1].split(":")[0]
+            return short == self.model
+
+        if not any(_matches(n) for n in names):
             raise RuntimeError(
                 f"Modele '{self.model}' absent d'Ollama. Modeles installes: "
-                f"{sorted(n for n in names if n)}. Lance `ollama pull {self.model}` d'abord."
+                f"{sorted(names)}. Lance `ollama pull {self.model}` d'abord "
+                "(ou utilise le nom complet avec son namespace)."
             )
+        # resout vers le nom complet installe pour que /api/chat le trouve
+        for n in names:
+            if _matches(n):
+                self.model = n
+                break
 
     # --- traduction de nos types vers le format Ollama (OpenAI-like) ----------
 
