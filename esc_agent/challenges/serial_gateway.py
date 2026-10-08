@@ -14,8 +14,9 @@ import os
 import re
 import time
 
-from ..llm.base import ToolSpec
+from ..llm.base import LLMClient, ToolSpec
 from ..tools.base import Channel, ToolRegistry
+from .dictionary_search import run_dictionary_search
 
 # Accepte le format reel de la carte (esc_2026{...}) ET le format mock (ESC{...}).
 FLAG_RE = re.compile(r"(?:esc_2026|ESC)\{[^}]*\}")
@@ -247,7 +248,12 @@ def _reboot_tool(backend: "RealSerialBackend"):
     return _do
 
 
-def register_tools(reg: ToolRegistry, backend: RealSerialBackend) -> None:
+def register_tools(reg: ToolRegistry, backend: RealSerialBackend,
+                    planner: LLMClient | None = None) -> None:
+    """planner: client cloud utilise par l'outil oracle_dictionary_search pour
+    PROPOSER des dictionnaires de mots candidats (voir dictionary_search.py).
+    Si None, cet outil n'est pas enregistre (l'agent retombe sur uart_send
+    caractere par caractere)."""
     reg.add(
         ToolSpec(
             name="wifi_scan",
@@ -288,6 +294,39 @@ def register_tools(reg: ToolRegistry, backend: RealSerialBackend) -> None:
         Channel.UART,
         _uart,
     )
+
+    if planner is not None:
+        def _oracle_dictionary_search(prefix: str = "") -> dict:
+            _log(f"--- recherche par dictionnaire (prefixe de depart={prefix!r}) ---")
+            result = run_dictionary_search(reg, planner, start_prefix=prefix)
+            _log(f"--- fin recherche par dictionnaire: {result.get('status')} ---")
+            return result
+
+        reg.add(
+            ToolSpec(
+                name="oracle_dictionary_search",
+                description=(
+                    "Explore l'oracle de prefixe UART EFFICACEMENT: un stratege "
+                    "(cloud) propose des dictionnaires de mots candidats "
+                    "(inspires de commandes Linux/CLI), et chaque mot est teste "
+                    "automatiquement contre l'oracle jusqu'a trouver une commande "
+                    "COMPLETE qui s'execute, ou jusqu'a epuisement. A PREFERER a "
+                    "uart_send caractere par caractere: bien plus efficace. "
+                    "Renvoie soit une sortie de commande executee (a interpreter "
+                    "toi-meme: peut contenir un indice), soit un flag detecte, "
+                    "soit un signal d'epuisement (essaie alors autre chose, ex: "
+                    "wifi_scan). Les requetes UART sous-jacentes comptent "
+                    "normalement dans l'efficacite."
+                ),
+                parameters={"type": "object", "properties": {
+                    "prefix": {"type": "string",
+                               "description": "prefixe deja confirme d'ou repartir "
+                                              "(vide par defaut)"}},
+                    "required": []},
+            ),
+            Channel.STATIC,  # les uart_send internes sont deja comptes individuellement
+            _oracle_dictionary_search,
+        )
 
     reg.add(
         ToolSpec(
@@ -330,7 +369,15 @@ SYSTEM = (
     "- C'est un ORACLE DE PREFIXE: pour une entree X, elle indique si une commande valide "
     "COMMENCE par X ('one or more commands start with X') ou non ('no command starts with X'). "
     "Utilise-le pour reconstruire les commandes de diagnostic cachees.\n"
-    "- METHODE SYSTEMATIQUE (caractere par caractere, MAIS PAS DANS L'ORDRE ALPHABETIQUE): \n"
+    "- SI L'OUTIL oracle_dictionary_search EST DISPONIBLE: UTILISE-LE EN PRIORITE pour explorer "
+    "l'oracle. Il est bien plus efficace que d'envoyer des caracteres un par un toi-meme (il "
+    "teste des dictionnaires entiers de mots candidats automatiquement). Appelle-le, lis "
+    "attentivement son resultat (status='executed' -> lis la sortie, c'est potentiellement un "
+    "indice; status='flag' -> soumets-le; status='exhausted' -> essaie autre chose comme "
+    "wifi_scan avant de reessayer), et ne descends dans la methode caractere-par-caractere "
+    "manuelle ci-dessous QUE si cet outil n'est pas propose ou echoue de maniere repetee.\n"
+    "- METHODE MANUELLE DE SECOURS (caractere par caractere, SEULEMENT si oracle_dictionary_search "
+    "indisponible/insuffisant, PAS DANS L'ORDRE ALPHABETIQUE): \n"
     "   1) D'abord, trouve la 1ere lettre valide. NE TESTE PAS a,b,c,d... dans l'ordre "
     "alphabetique: c'est inefficace. Teste plutot dans CET ORDRE (frequence d'usage reelle en "
     "premiere lettre de commandes CLI/systeme): "
