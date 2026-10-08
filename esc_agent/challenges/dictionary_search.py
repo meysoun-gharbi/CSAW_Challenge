@@ -145,6 +145,24 @@ def propose_dictionary(
     return [], "le cloud n'a pas appele propose_dictionary"
 
 
+def probe_extensions(reg, candidate: str) -> dict:
+    """Teste structurellement si une commande COMPLETE accepte une sous-commande
+    ou une option, selon la grammaire usuelle 'cmd <sous-commande> <--option>'.
+
+    AUCUN appel LLM: ce ne sont pas des mots a deviner (contenu), juste la
+    syntaxe generique (espace -> sous-commande, '-'/'--' -> option) que toute
+    CLI respecte. Cout: jusqu'a 3 requetes UART de plus par commande trouvee.
+    """
+    extensions: dict[str, dict] = {}
+    for ext, label in ((" ", "subcommand"), (" -", "short_option"), (" --", "long_option")):
+        candidate_ext = candidate + ext
+        result = reg.execute("uart_send", {"command": candidate_ext})
+        resp_text = result.get("response", "") if isinstance(result, dict) else ""
+        kind = classify_oracle_response(resp_text)
+        extensions[label] = {"prefix": candidate_ext, "available": kind == "valid"}
+    return extensions
+
+
 def run_dictionary_search(
     reg,  # ToolRegistry (import circulaire si type-hinte depuis tools.base)
     cloud: LLMClient,
@@ -208,12 +226,25 @@ def run_dictionary_search(
                 log(f"PREFIXE CONFIRME -> {prefix!r}")
                 break  # nouveau dictionnaire pour ce prefixe plus profond
             elif kind == "executed":
+                extensions = probe_extensions(reg, candidate)
+                available = [v["prefix"] for v in extensions.values() if v["available"]]
+                note = ("Commande COMPLETE executee: lis cette sortie attentivement, "
+                        "elle peut contenir un indice ou la suite a suivre.")
+                if available:
+                    note += (" ATTENTION: cette commande accepte AUSSI une suite "
+                             f"(sous-commande/option) -- grammaire 'cmd <sous-commande> "
+                             f"<--option>' -- prefixes detectes comme valides: "
+                             f"{available!r}. Rappelle oracle_dictionary_search avec "
+                             f"prefix=l'un de ces prefixes pour explorer plus loin "
+                             f"AVANT de considerer cette commande comme terminale.")
+                else:
+                    note += (" Aucune sous-commande/option detectee juste apres "
+                             "(espace/-/-- testes): cette commande semble terminale.")
+                log(f"extensions testees pour {candidate!r}: {extensions}")
                 return {
                     "ok": True, "status": "executed",
                     "command": candidate, "output": resp_text,
-                    "note": "Commande COMPLETE executee: lis cette sortie "
-                            "attentivement, elle peut contenir un indice ou "
-                            "la suite a suivre.",
+                    "extensions": extensions, "note": note,
                 }
             # 'invalid' -> on continue avec le mot suivant du dictionnaire
 

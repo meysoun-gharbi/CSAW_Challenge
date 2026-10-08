@@ -315,8 +315,13 @@ def register_tools(reg: ToolRegistry, backend: RealSerialBackend,
                     "Renvoie soit une sortie de commande executee (a interpreter "
                     "toi-meme: peut contenir un indice), soit un flag detecte, "
                     "soit un signal d'epuisement (essaie alors autre chose, ex: "
-                    "wifi_scan). Les requetes UART sous-jacentes comptent "
-                    "normalement dans l'efficacite."
+                    "wifi_scan). GRAMMAIRE 'cmd <sous-commande> <--option>': quand "
+                    "une commande s'execute, l'outil teste AUSSI automatiquement si "
+                    "elle accepte une suite (espace -> sous-commande, -/-- -> "
+                    "option) et te le signale dans le champ 'extensions'/'note'; si "
+                    "oui, RAPPELLE cet outil avec prefix=ce prefixe etendu avant de "
+                    "considerer la commande comme terminale. Les requetes UART "
+                    "sous-jacentes comptent normalement dans l'efficacite."
                 ),
                 parameters={"type": "object", "properties": {
                     "prefix": {"type": "string",
