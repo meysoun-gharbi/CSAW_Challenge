@@ -32,11 +32,14 @@ def main() -> None:
                      help="(mode hybrid) backend cloud de secours")
     ap.add_argument("--fallback-model", default=None,
                      help="(mode hybrid) modele cloud de secours (ex: gemini-flash-latest)")
+    ap.add_argument("--local-timeout", type=float, default=20.0,
+                     help="(mode hybrid) secondes max avant d'abandonner le local et escalader")
     ap.add_argument("--log", default="runs/challenge1.jsonl")
     ap.add_argument("--max-steps", type=int, default=400)
     args = ap.parse_args()
 
-    llm = build_llm(args.backend, args.model, args.fallback_backend, args.fallback_model)
+    llm = build_llm(args.backend, args.model, args.fallback_backend, args.fallback_model,
+                     args.local_timeout)
     rid = new_run_id()
     print(f"Challenge 1 — Serial Gateway | port={args.port} | modele={llm.model}")
     print("L'agent decouvre tout seul: recon Wi-Fi, oracle UART, puis le flag.\n")

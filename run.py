@@ -27,7 +27,7 @@ SYSTEM = (
 
 
 def build_llm(backend: str, model: str, fallback_backend: str | None = None,
-              fallback_model: str | None = None):
+              fallback_model: str | None = None, local_timeout: float = 20.0):
     if backend == "mock":
         from esc_agent.llm.mock import MockClient
         return MockClient()
@@ -42,12 +42,17 @@ def build_llm(backend: str, model: str, fallback_backend: str | None = None,
         return OllamaClient(model=model)
     if backend == "hybrid":
         from esc_agent.llm.hybrid import HybridClient
+        from esc_agent.llm.ollama import OllamaClient
         if not fallback_backend or not fallback_model:
             raise SystemExit(
                 "--backend hybrid necessite --fallback-backend et --fallback-model "
                 "(ex: --fallback-backend gemini --fallback-model gemini-flash-latest)"
             )
-        local = build_llm("ollama", model)
+        # timeout COURT cote local: si le local traine (vu jusqu'a 80s+ en CPU sur
+        # un pas difficile), on abandonne vite et on escalade au cloud plutot que
+        # de laisser le run entier s'enliser. Le local garde son timeout normal
+        # (120s) quand on l'utilise seul via --backend ollama.
+        local = OllamaClient(model=model, timeout=local_timeout)
         cloud_factory = lambda: build_llm(fallback_backend, fallback_model)  # noqa: E731
         return HybridClient(local, cloud_factory)
     raise SystemExit(f"backend inconnu: {backend}")
@@ -62,11 +67,14 @@ def main() -> None:
                      help="(mode hybrid) backend cloud de secours")
     ap.add_argument("--fallback-model", default=None,
                      help="(mode hybrid) modele cloud de secours (ex: gemini-flash-latest)")
+    ap.add_argument("--local-timeout", type=float, default=20.0,
+                     help="(mode hybrid) secondes max avant d'abandonner le local et escalader")
     ap.add_argument("--log", default="runs/run.jsonl")
     ap.add_argument("--max-steps", type=int, default=12)
     args = ap.parse_args()
 
-    llm = build_llm(args.backend, args.model, args.fallback_backend, args.fallback_model)
+    llm = build_llm(args.backend, args.model, args.fallback_backend, args.fallback_model,
+                     args.local_timeout)
     rid = new_run_id()
     with EventLogger(args.log) as logger:
         backend = MockBackend()
