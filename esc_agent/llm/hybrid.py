@@ -18,6 +18,16 @@ reflete le backend REELLEMENT utilise a chaque pas (local ou cloud), donc
 `grep '"type": "llm_call"'` + comptage par `model` donne le ratio local/cloud
 d'un run.
 
+Le cloud "dicte" au local (sans appel supplementaire dedie): agent.py
+partage UN SEUL historique entre les deux backends. Quand le cloud
+escalade, son raisonnement ET son appel d'outil rejoignent cet
+historique commun; au pas suivant, le local VOIT ce que le cloud vient
+de decider et pourquoi, et n'a qu'a continuer dans cette direction
+plutot que de re-deduire seul. On rend ce mecanisme explicite en
+demandant au cloud, uniquement quand il escalade, de laisser une note
+de suite courte a l'attention du modele plus faible qui reprend la
+main.
+
 ISOLE A DESSEIN: ce fichier ne fait QUE de l'orchestration entre deux
 LLMClient deja construits; aucune logique specifique a un fournisseur ici.
 """
@@ -26,6 +36,18 @@ from __future__ import annotations
 from typing import Callable
 
 from .base import LLMClient, LLMResponse, Message, ToolSpec
+
+# Ajoute au system prompt UNIQUEMENT pour l'appel cloud d'escalade. Le but:
+# le cloud ne doit pas juste "faire le travail et repartir" -- il doit laisser
+# une trace de raisonnement exploitable, car un modele local plus faible
+# reprendra la main au pas suivant via l'historique partage (voir agent.py).
+_HANDOFF_SUFFIX = (
+    "\n\n[Mode hybride] Tu interviens car un modele local plus simple a echoue "
+    "sur ce pas. En plus d'appeler l'outil necessaire, explique en 1-2 phrases "
+    "COURTES ton raisonnement et ce qu'il faut tenter ensuite: un modele plus "
+    "faible reprendra la main au pas suivant et doit pouvoir suivre ton plan "
+    "sans re-deduire seul."
+)
 
 
 class HybridClient(LLMClient):
@@ -102,6 +124,6 @@ class HybridClient(LLMClient):
             self._log("escalade ce pas vers le cloud")
 
         cloud = self._get_cloud()
-        resp = cloud.step(system, history, tools)
+        resp = cloud.step(system + _HANDOFF_SUFFIX, history, tools)
         self.cloud_steps += 1
         return resp
