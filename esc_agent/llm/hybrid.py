@@ -105,6 +105,12 @@ class HybridClient(LLMClient):
             # d'appeler un outil -> on prefere escalader plutot que de gaspiller
             # un pas de max_steps sur une reponse inexploitable.
             self._consecutive_failures += 1
+            # on montre ce que le local a REELLEMENT ecrit avant d'etre ecarte:
+            # sans ca, cette tentative est invisible (agent.py n'affiche que la
+            # reponse finalement retenue, ici celle du cloud qui va suivre).
+            if self._verbose and resp.text and resp.text.strip():
+                snippet = resp.text.strip().replace("\n", " ")[:300]
+                self._log(f"[local, ecarte] {snippet!r}")
             self._log(f"local sans appel d'outil (reponse faible); "
                       f"echecs consecutifs={self._consecutive_failures}/{self._max_fail}")
             if self._consecutive_failures >= self._max_fail:

@@ -64,9 +64,9 @@ class Agent:
             # affichage en direct du raisonnement + des decisions d'outil
             if self.verbose:
                 if resp.text and resp.text.strip():
-                    print(f"\n[pensee du modele] {resp.text.strip()}", flush=True)
+                    print(f"\n[pensee du modele | {resp.model}] {resp.text.strip()}", flush=True)
                 for tc in resp.tool_calls:
-                    print(f"[decision -> {tc.name}] {tc.arguments}", flush=True)
+                    print(f"[decision -> {tc.name} | {resp.model}] {tc.arguments}", flush=True)
 
             if not resp.tool_calls:
                 no_tool_streak += 1
