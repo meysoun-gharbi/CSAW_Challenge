@@ -21,6 +21,7 @@ Pre-requis:
 from __future__ import annotations
 
 import json
+import os
 import time
 import uuid
 
@@ -38,11 +39,17 @@ class OllamaClient(LLMClient):
         host: str = "http://localhost:11434",
         temperature: float = 0.0,
         timeout: float = 120.0,
+        num_thread: int | None = None,
     ):
         self.model = model
         self._host = host.rstrip("/")
         self._temperature = temperature
         self._timeout = timeout
+        # Ollama/llama.cpp sous-estime parfois le nombre de threads a utiliser sur
+        # les CPU hybrides (P-cores + E-cores, ex: Intel Meteor Lake): observe 6/22
+        # threads sur cette machine. On force explicitement (laisse 2 coeurs de
+        # marge pour le reste du systeme), sauf si l'appelant impose une valeur.
+        self._num_thread = num_thread if num_thread is not None else max(1, (os.cpu_count() or 4) - 2)
         self._check_available()
 
     # --- sante / garde-fous ----------------------------------------------------
@@ -139,7 +146,7 @@ class OllamaClient(LLMClient):
             "messages": self._build_messages(system, history),
             "tools": self._build_tools(tools),
             "stream": False,
-            "options": {"temperature": self._temperature},
+            "options": {"temperature": self._temperature, "num_thread": self._num_thread},
         }
         t0 = time.perf_counter()
         resp = requests.post(f"{self._host}/api/chat", json=payload, timeout=self._timeout)
