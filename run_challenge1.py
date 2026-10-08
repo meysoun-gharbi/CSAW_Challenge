@@ -25,13 +25,18 @@ from run import build_llm
 def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--port", default="COM4", help="port serie (COM4, /dev/ttyUSB0...)")
-    ap.add_argument("--backend", default="gemini", choices=["gemini", "mock", "claude", "ollama"])
+    ap.add_argument("--backend", default="gemini",
+                     choices=["gemini", "mock", "claude", "ollama", "hybrid"])
     ap.add_argument("--model", default="gemini-flash-latest")
+    ap.add_argument("--fallback-backend", default=None, choices=["gemini", "claude"],
+                     help="(mode hybrid) backend cloud de secours")
+    ap.add_argument("--fallback-model", default=None,
+                     help="(mode hybrid) modele cloud de secours (ex: gemini-flash-latest)")
     ap.add_argument("--log", default="runs/challenge1.jsonl")
     ap.add_argument("--max-steps", type=int, default=400)
     args = ap.parse_args()
 
-    llm = build_llm(args.backend, args.model)
+    llm = build_llm(args.backend, args.model, args.fallback_backend, args.fallback_model)
     rid = new_run_id()
     print(f"Challenge 1 — Serial Gateway | port={args.port} | modele={llm.model}")
     print("L'agent decouvre tout seul: recon Wi-Fi, oracle UART, puis le flag.\n")
@@ -56,6 +61,8 @@ def main() -> None:
     print(f"  tokens totaux : {summary.total_tokens}")
     print(f"  temps mur     : {summary.wall_ms/1000:.1f} s")
     print("\n" + format_table(aggregate([summary])))
+    if hasattr(llm, "local_steps"):  # mode hybrid: repartition local vs cloud
+        print(f"  repartition   : local={llm.local_steps}  cloud={llm.cloud_steps}")
     print(f"\nJournal detaille: {args.log}")
 
 
