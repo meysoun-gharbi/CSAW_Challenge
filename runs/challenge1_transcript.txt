@@ -1730,3 +1730,1442 @@ Supported characters: lowercase letters (a-z), spaces ( ), and special character
 >>> 'claim_flag_uart_s1'
 <<< esc_2026{Challenge_1_UART_cli_4909cc5dda95299f}
 [133165] FLAG CAPTURED by competitor
+>>> 'help'
+<<< one or more commands start with help
+This help menu is outdated. System commands have been reorganized.
+Supported characters: lowercase letters (a-z), spaces ( ), and special characters (!, @, -, _).
+>>> 's'
+<<< no command starts with s
+[RATE-LIMIT] Failed attempt (1). Penalty delay: 10 ms.
+>>> 'g'
+<<< no command starts with g
+[RATE-LIMIT] Failed attempt (2). Penalty delay: 20 ms.
+>>> 'c'
+<<< no command starts with c
+[RATE-LIMIT] Failed attempt (3). Penalty delay: 40 ms.
+>>> 'i'
+<<< no command starts with i
+[RATE-LIMIT] Failed attempt (4). Penalty delay: 80 ms.
+>>> 'r'
+<<< no command starts with r
+[RATE-LIMIT] Failed attempt (5). Penalty delay: 160 ms.
+>>> 'p'
+<<< no command starts with p
+[RATE-LIMIT] Failed attempt (6). Penalty delay: 320 ms.
+--- reboot (penalite remise a zero) ---
+>>> 'a'
+<<< no command starts with a
+[RATE-LIMIT] Failed attempt (1). Penalty delay: 10 ms.
+>>> 'd'
+<<< no command starts with d
+[RATE-LIMIT] Failed attempt (2). Penalty delay: 20 ms.
+>>> 'e'
+<<< no command starts with e
+[RATE-LIMIT] Failed attempt (3). Penalty delay: 40 ms.
+>>> 'l'
+<<< no command starts with l
+[RATE-LIMIT] Failed attempt (4). Penalty delay: 80 ms.
+>>> 'm'
+<<< one or more commands start with m
+>>> 'u'
+<<< no command starts with u
+[RATE-LIMIT] Failed attempt (5). Penalty delay: 160 ms.
+>>> 'w'
+<<< no command starts with w
+[RATE-LIMIT] Failed attempt (6). Penalty delay: 320 ms.
+--- reboot (penalite remise a zero) ---
+>>> 'ma'
+<<< no command starts with ma
+[RATE-LIMIT] Failed attempt (1). Penalty delay: 10 ms.
+>>> 'me'
+<<< no command starts with me
+[RATE-LIMIT] Failed attempt (2). Penalty delay: 20 ms.
+>>> 'mo'
+<<< one or more commands start with mo
+>>> 'mq'
+<<< no command starts with mq
+[RATE-LIMIT] Failed attempt (3). Penalty delay: 40 ms.
+--- reboot (penalite remise a zero) ---
+>>> 'mod'
+<<< one or more commands start with mod
+>>> 'mou'
+<<< no command starts with mou
+[RATE-LIMIT] Failed attempt (1). Penalty delay: 10 ms.
+>>> 'mon'
+<<< no command starts with mon
+[RATE-LIMIT] Failed attempt (2). Penalty delay: 20 ms.
+>>> 'mode'
+<<< one or more commands start with mode
+>>> 'mode '
+<<< one or more commands start with mode
+--- reboot (penalite remise a zero) ---
+>>> 'mode -'
+<<< no command starts with mode -
+[RATE-LIMIT] Failed attempt (1). Penalty delay: 10 ms.
+>>> 'mode a'
+<<< no command starts with mode a
+[RATE-LIMIT] Failed attempt (2). Penalty delay: 20 ms.
+>>> 'mode b'
+<<< no command starts with mode b
+[RATE-LIMIT] Failed attempt (3). Penalty delay: 40 ms.
+>>> 'mode c'
+<<< no command starts with mode c
+[RATE-LIMIT] Failed attempt (4). Penalty delay: 80 ms.
+>>> 'mode d'
+<<< one or more commands start with mode d
+>>> 'mode e'
+<<< no command starts with mode e
+[RATE-LIMIT] Failed attempt (5). Penalty delay: 160 ms.
+>>> 'mode f'
+<<< no command starts with mode f
+[RATE-LIMIT] Failed attempt (6). Penalty delay: 320 ms.
+>>> 'mode g'
+<<< no command starts with mode g
+[RATE-LIMIT] Failed attempt (7). Penalty delay: 640 ms.
+>>> 'mode h'
+<<< no command starts with mode h
+[RATE-LIMIT] Failed attempt (8). Penalty delay: 1280 ms.
+>>> 'mode i'
+<<< no command starts with mode i
+[RATE-LIMIT] Failed attempt (9). Penalty delay: 2000 ms.
+>>> 'mode j'
+<<< no command starts with mode j
+[RATE-LIMIT] Failed attempt (10). Penalty delay: 2000 ms.
+>>> 'mode k'
+<<< no command starts with mode k
+[RATE-LIMIT] Failed attempt (11). Penalty delay: 2000 ms.
+>>> 'mode l'
+<<< no command starts with mode l
+[RATE-LIMIT] Failed attempt (12). Penalty delay: 2000 ms.
+>>> 'mode m'
+<<< no command starts with mode m
+[RATE-LIMIT] Failed attempt (13). Penalty delay: 2000 ms.
+>>> 'mode n'
+<<< no command starts with mode n
+[RATE-LIMIT] Failed attempt (14). Penalty delay: 2000 ms.
+>>> 'mode o'
+<<< no command starts with mode o
+[RATE-LIMIT] Failed attempt (15). Penalty delay: 2000 ms.
+>>> 'mode p'
+<<< no command starts with mode p
+[RATE-LIMIT] Failed attempt (16). Penalty delay: 2000 ms.
+>>> 'mode q'
+<<< no command starts with mode q
+[RATE-LIMIT] Failed attempt (17). Penalty delay: 2000 ms.
+>>> 'mode r'
+<<< no command starts with mode r
+[RATE-LIMIT] Failed attempt (18). Penalty delay: 2000 ms.
+>>> 'mode s'
+<<< no command starts with mode s
+[RATE-LIMIT] Failed attempt (19). Penalty delay: 2000 ms.
+>>> 'mode t'
+<<< no command starts with mode t
+[RATE-LIMIT] Failed attempt (20). Penalty delay: 2000 ms.
+>>> 'mode u'
+<<< no command starts with mode u
+[RATE-LIMIT] Failed attempt (21). Penalty delay: 2000 ms.
+>>> 'mode v'
+<<< no command starts with mode v
+[RATE-LIMIT] Failed attempt (22). Penalty delay: 2000 ms.
+>>> 'mode w'
+<<< no command starts with mode w
+[RATE-LIMIT] Failed attempt (23). Penalty delay: 2000 ms.
+>>> 'mode x'
+<<< no command starts with mode x
+[RATE-LIMIT] Failed attempt (24). Penalty delay: 2000 ms.
+>>> 'mode y'
+<<< no command starts with mode y
+[RATE-LIMIT] Failed attempt (25). Penalty delay: 2000 ms.
+>>> 'mode z'
+<<< no command starts with mode z
+[RATE-LIMIT] Failed attempt (26). Penalty delay: 2000 ms.
+--- reboot (penalite remise a zero) ---
+>>> 'mode de'
+<<< one or more commands start with mode de
+>>> 'mode debug'
+<<< no command starts with mode debug
+[RATE-LIMIT] Failed attempt (1). Penalty delay: 10 ms.
+>>> 'mode dev'
+<<< one or more commands start with mode dev
+>>> 'mode def'
+<<< no command starts with mode def
+[RATE-LIMIT] Failed attempt (2). Penalty delay: 20 ms.
+>>> 'mode deve'
+<<< one or more commands start with mode deve
+>>> 'mode devi'
+<<< no command starts with mode devi
+[RATE-LIMIT] Failed attempt (3). Penalty delay: 40 ms.
+>>> 'mode developer'
+<<< one or more commands start with mode developer
+>>> 'mode developer '
+<<< one or more commands start with mode developer
+--- reboot (penalite remise a zero) ---
+>>> 'mode developer o'
+<<< no command starts with mode developer o
+[RATE-LIMIT] Failed attempt (1). Penalty delay: 10 ms.
+>>> 'mode developer e'
+<<< no command starts with mode developer e
+[RATE-LIMIT] Failed attempt (2). Penalty delay: 20 ms.
+>>> 'mode developer t'
+<<< no command starts with mode developer t
+[RATE-LIMIT] Failed attempt (3). Penalty delay: 40 ms.
+>>> 'mode developer -'
+<<< one or more commands start with mode developer -
+>>> 'mode developer --'
+<<< one or more commands start with mode developer --
+>>> 'mode developer --e'
+<<< no command starts with mode developer --e
+[RATE-LIMIT] Failed attempt (4). Penalty delay: 80 ms.
+>>> 'mode developer --o'
+<<< no command starts with mode developer --o
+[RATE-LIMIT] Failed attempt (5). Penalty delay: 160 ms.
+--- reboot (penalite remise a zero) ---
+>>> 'mode developer --u'
+<<< no command starts with mode developer --u
+[RATE-LIMIT] Failed attempt (1). Penalty delay: 10 ms.
+>>> 'mode developer --a'
+<<< no command starts with mode developer --a
+[RATE-LIMIT] Failed attempt (2). Penalty delay: 20 ms.
+>>> 'mode developer --l'
+<<< no command starts with mode developer --l
+[RATE-LIMIT] Failed attempt (3). Penalty delay: 40 ms.
+>>> 'mode developer --s'
+<<< no command starts with mode developer --s
+[RATE-LIMIT] Failed attempt (4). Penalty delay: 80 ms.
+--- reboot (penalite remise a zero) ---
+>>> 'mode developer --c'
+<<< no command starts with mode developer --c
+[RATE-LIMIT] Failed attempt (1). Penalty delay: 10 ms.
+>>> 'mode developer --f'
+<<< no command starts with mode developer --f
+[RATE-LIMIT] Failed attempt (2). Penalty delay: 20 ms.
+>>> 'mode developer --p'
+<<< no command starts with mode developer --p
+[RATE-LIMIT] Failed attempt (3). Penalty delay: 40 ms.
+>>> 'mode developer --t'
+<<< no command starts with mode developer --t
+[RATE-LIMIT] Failed attempt (4). Penalty delay: 80 ms.
+>>> 'mode developer --v'
+<<< no command starts with mode developer --v
+[RATE-LIMIT] Failed attempt (5). Penalty delay: 160 ms.
+--- reboot (penalite remise a zero) ---
+>>> 'mode developer --b'
+<<< no command starts with mode developer --b
+[RATE-LIMIT] Failed attempt (1). Penalty delay: 10 ms.
+>>> 'mode developer --d'
+<<< no command starts with mode developer --d
+[RATE-LIMIT] Failed attempt (2). Penalty delay: 20 ms.
+>>> 'mode developer --g'
+<<< no command starts with mode developer --g
+[RATE-LIMIT] Failed attempt (3). Penalty delay: 40 ms.
+>>> 'mode developer --h'
+<<< one or more commands start with mode developer --h
+>>> 'mode developer --i'
+<<< no command starts with mode developer --i
+[RATE-LIMIT] Failed attempt (4). Penalty delay: 80 ms.
+>>> 'mode developer --m'
+<<< no command starts with mode developer --m
+[RATE-LIMIT] Failed attempt (5). Penalty delay: 160 ms.
+>>> 'mode developer --n'
+<<< no command starts with mode developer --n
+[RATE-LIMIT] Failed attempt (6). Penalty delay: 320 ms.
+>>> 'mode developer --r'
+<<< no command starts with mode developer --r
+[RATE-LIMIT] Failed attempt (7). Penalty delay: 640 ms.
+--- reboot (penalite remise a zero) ---
+>>> 'mode developer --help'
+<<< [AUTH REQUIRED] Developer mode requires device verification.
+Enter MAC suffix (6 hex digits, e.g. A4C138):
+>>> '769469'
+<<< [AUTH ERROR] Invalid MAC verification passkey.
+[RATE-LIMIT] Failed attempt (1). Penalty delay: 10 ms.
+>>> '769468'
+<<< no command starts with 769468
+[RATE-LIMIT] Failed attempt (2). Penalty delay: 20 ms.
+--- reboot (penalite remise a zero) ---
+>>> 'mode developer --help'
+<<< [AUTH REQUIRED] Developer mode requires device verification.
+Enter MAC suffix (6 hex digits, e.g. A4C138):
+>>> '769468'
+<<< Developer mode unlocked successfully.
+Available log commands:
+  log1
+  log2
+  log3
+  log4
+  log5
+  log6
+  log7
+  log8
+  log9
+  log10
+  log11
+  log12
+  log13
+  log14
+  log15
+  log16
+  log17
+  log18
+  log19
+  log20
+  log21
+  log22
+  log23
+  log24
+  log25
+  log26
+  log27
+  log28
+  log29
+  log30
+  log31
+  log32
+  log33
+  log34
+  log35
+  log36
+  log37
+  log38
+  log39
+  log40
+  log41
+  log42
+  log43
+  log44
+  log45
+  log46
+  log47
+  log48
+  log49
+  log50
+  log51
+  log52
+  log53
+  log54
+  log55
+  log56
+  log57
+  log58
+  log59
+  log60
+  log61
+  log62
+  log63
+  log64
+  log65
+  log66
+  log67
+  log68
+  log69
+  log70
+  log71
+  log72
+  log73
+  log74
+  log75
+  log76
+  log77
+  log78
+  log79
+  log80
+  log81
+  log82
+  log83
+  log84
+  log85
+  log86
+  log87
+  log88
+  log89
+  log90
+  log91
+  log92
+  log93
+  log94
+  log95
+  log96
+  log97
+  log98
+  log99
+  log100
+[3397] Developer mode unlocked via UART oracle & MAC auth
+>>> 'log'
+<<< one or more commands start with log
+--- reboot (penalite remise a zero) ---
+>>> 'log a'
+<<< no command starts with log a
+[RATE-LIMIT] Failed attempt (1). Penalty delay: 10 ms.
+>>> 'log b'
+<<< no command starts with log b
+[RATE-LIMIT] Failed attempt (2). Penalty delay: 20 ms.
+>>> 'log c'
+<<< no command starts with log c
+[RATE-LIMIT] Failed attempt (3). Penalty delay: 40 ms.
+>>> 'log d'
+<<< no command starts with log d
+[RATE-LIMIT] Failed attempt (4). Penalty delay: 80 ms.
+>>> 'log e'
+<<< no command starts with log e
+[RATE-LIMIT] Failed attempt (5). Penalty delay: 160 ms.
+>>> 'log f'
+<<< no command starts with log f
+[RATE-LIMIT] Failed attempt (6). Penalty delay: 320 ms.
+>>> 'log g'
+<<< no command starts with log g
+[RATE-LIMIT] Failed attempt (7). Penalty delay: 640 ms.
+>>> 'log h'
+<<< no command starts with log h
+[RATE-LIMIT] Failed attempt (8). Penalty delay: 1280 ms.
+>>> 'log i'
+<<< no command starts with log i
+[RATE-LIMIT] Failed attempt (9). Penalty delay: 2000 ms.
+>>> 'log j'
+<<< no command starts with log j
+[RATE-LIMIT] Failed attempt (10). Penalty delay: 2000 ms.
+>>> 'log k'
+<<< no command starts with log k
+[RATE-LIMIT] Failed attempt (11). Penalty delay: 2000 ms.
+>>> 'log l'
+<<< no command starts with log l
+[RATE-LIMIT] Failed attempt (12). Penalty delay: 2000 ms.
+>>> 'log m'
+<<< no command starts with log m
+[RATE-LIMIT] Failed attempt (13). Penalty delay: 2000 ms.
+>>> 'log n'
+<<< no command starts with log n
+[RATE-LIMIT] Failed attempt (14). Penalty delay: 2000 ms.
+>>> 'log o'
+<<< no command starts with log o
+[RATE-LIMIT] Failed attempt (15). Penalty delay: 2000 ms.
+>>> 'log p'
+<<< no command starts with log p
+[RATE-LIMIT] Failed attempt (16). Penalty delay: 2000 ms.
+>>> 'log q'
+<<< no command starts with log q
+[RATE-LIMIT] Failed attempt (17). Penalty delay: 2000 ms.
+>>> 'log r'
+<<< no command starts with log r
+[RATE-LIMIT] Failed attempt (18). Penalty delay: 2000 ms.
+>>> 'log s'
+<<< no command starts with log s
+[RATE-LIMIT] Failed attempt (19). Penalty delay: 2000 ms.
+>>> 'log t'
+<<< no command starts with log t
+[RATE-LIMIT] Failed attempt (20). Penalty delay: 2000 ms.
+>>> 'log u'
+<<< no command starts with log u
+[RATE-LIMIT] Failed attempt (21). Penalty delay: 2000 ms.
+>>> 'log v'
+<<< no command starts with log v
+[RATE-LIMIT] Failed attempt (22). Penalty delay: 2000 ms.
+>>> 'log w'
+<<< no command starts with log w
+[RATE-LIMIT] Failed attempt (23). Penalty delay: 2000 ms.
+>>> 'log x'
+<<< no command starts with log x
+[RATE-LIMIT] Failed attempt (24). Penalty delay: 2000 ms.
+>>> 'log y'
+<<< no command starts with log y
+[RATE-LIMIT] Failed attempt (25). Penalty delay: 2000 ms.
+>>> 'log z'
+<<< no command starts with log z
+[RATE-LIMIT] Failed attempt (26). Penalty delay: 2000 ms.
+>>> 'log -'
+<<< no command starts with log -
+[RATE-LIMIT] Failed attempt (27). Penalty delay: 2000 ms.
+>>> 'log _'
+<<< no command starts with log _
+[RATE-LIMIT] Failed attempt (28). Penalty delay: 2000 ms.
+>>> 'log @'
+<<< no command starts with log @
+[RATE-LIMIT] Failed attempt (29). Penalty delay: 2000 ms.
+>>> 'log !'
+<<< no command starts with log !
+[RATE-LIMIT] Failed attempt (30). Penalty delay: 2000 ms.
+>>> 'log1'
+<<< no command starts with log1
+[RATE-LIMIT] Failed attempt (31). Penalty delay: 2000 ms.
+--- reboot (penalite remise a zero) ---
+>>> 'log '
+<<< no command starts with log 
+[RATE-LIMIT] Failed attempt (1). Penalty delay: 10 ms.
+>>> 'log'
+<<< no command starts with log
+[RATE-LIMIT] Failed attempt (2). Penalty delay: 20 ms.
+>>> 'mode developer --help'
+<<< [AUTH REQUIRED] Developer mode requires device verification.
+Enter MAC suffix (6 hex digits, e.g. A4C138):
+>>> '769468'
+<<< Developer mode unlocked successfully.
+Available log commands:
+  log1
+  log2
+  log3
+  log4
+  log5
+  log6
+  log7
+  log8
+  log9
+  log10
+  log11
+  log12
+  log13
+  log14
+  log15
+  log16
+  log17
+  log18
+  log19
+  log20
+  log21
+  log22
+  log23
+  log24
+  log25
+  log26
+  log27
+  log28
+  log29
+  log30
+  log31
+  log32
+  log33
+  log34
+  log35
+  log36
+  log37
+  log38
+  log39
+  log40
+  log41
+  log42
+  log43
+  log44
+  log45
+  log46
+  log47
+  log48
+  log49
+  log50
+  log51
+  log52
+  log53
+  log54
+  log55
+  log56
+  log57
+  log58
+  log59
+  log60
+  log61
+  log62
+  log63
+  log64
+  log65
+  log66
+  log67
+  log68
+  log69
+  log70
+  log71
+  log72
+  log73
+  log74
+  log75
+  log76
+  log77
+  log78
+  log79
+  log80
+  log81
+  log82
+  log83
+  log84
+  log85
+  log86
+  log87
+  log88
+  log89
+  log90
+  log91
+  log92
+  log93
+  log94
+  log95
+  log96
+  log97
+  log98
+  log99
+  log100
+[20107] Developer mode unlocked via UART oracle & MAC auth
+>>> 'log1'
+<<< System log 1: OK: Peripheral check passed. Uptime: 26728 ms.
+>>> 'log all'
+<<< no command starts with log all
+[RATE-LIMIT] Failed attempt (3). Penalty delay: 40 ms.
+>>> 'log -a'
+<<< no command starts with log -a
+[RATE-LIMIT] Failed attempt (4). Penalty delay: 80 ms.
+>>> 'log --all'
+<<< no command starts with log --all
+[RATE-LIMIT] Failed attempt (5). Penalty delay: 160 ms.
+>>> 'log42'
+<<< System log 42: OK: Peripheral check passed. Uptime: 53150 ms.
+>>> 'log69'
+<<< System log 69: OK: Peripheral check passed. Uptime: 54550 ms.
+>>> 'log99'
+<<< System log 99: OK: Peripheral check passed. Uptime: 55950 ms.
+>>> 'log100'
+<<< System log 100: OK: Peripheral check passed. Uptime: 57351 ms.
+>>> 'log7'
+<<< System log 7: OK: Peripheral check passed. Uptime: 58770 ms.
+>>> 'log13'
+<<< System log 13: OK: Peripheral check passed. Uptime: 60170 ms.
+>>> 'log2'
+<<< System log 2: OK: Peripheral check passed. Uptime: 69130 ms.
+>>> 'log3'
+<<< System log 3: OK: Peripheral check passed. Uptime: 70530 ms.
+>>> 'log4'
+<<< System log 4: OK: Peripheral check passed. Uptime: 71930 ms.
+>>> 'log5'
+<<< System log 5: OK: Peripheral check passed. Uptime: 73350 ms.
+>>> 'log6'
+<<< System log 6: OK: Peripheral check passed. Uptime: 74750 ms.
+>>> 'log8'
+<<< System log 8: OK: Peripheral check passed. Uptime: 76150 ms.
+>>> 'log9'
+<<< System log 9: OK: Peripheral check passed. Uptime: 77550 ms.
+>>> 'log10'
+<<< System log 10: OK: Peripheral check passed. Uptime: 78950 ms.
+>>> 'log11'
+<<< System log 11: OK: Peripheral check passed. Uptime: 80370 ms.
+>>> 'log12'
+<<< System log 12: OK: Peripheral check passed. Uptime: 81770 ms.
+>>> 'log14'
+<<< System log 14: OK: Peripheral check passed. Uptime: 83170 ms.
+>>> 'log15'
+<<< System log 15: OK: Peripheral check passed. Uptime: 84570 ms.
+>>> 'log16'
+<<< System log 16: OK: Peripheral check passed. Uptime: 85990 ms.
+>>> 'log17'
+<<< System log 17: OK: Peripheral check passed. Uptime: 87390 ms.
+>>> 'log18'
+<<< System log 18: OK: Peripheral check passed. Uptime: 88790 ms.
+>>> 'log19'
+<<< System log 19: OK: Peripheral check passed. Uptime: 90190 ms.
+>>> 'log20'
+<<< System log 20: OK: Peripheral check passed. Uptime: 91610 ms.
+>>> 'log21'
+<<< System log 21: OK: Peripheral check passed. Uptime: 103630 ms.
+>>> 'log22'
+<<< System log 22: OK: Peripheral check passed. Uptime: 105030 ms.
+>>> 'log23'
+<<< System log 23: OK: Peripheral check passed. Uptime: 106430 ms.
+>>> 'log24'
+<<< System log 24: OK: Peripheral check passed. Uptime: 107830 ms.
+>>> 'log25'
+<<< System log 25: OK: Peripheral check passed. Uptime: 109250 ms.
+>>> 'log26'
+<<< System log 26: OK: Peripheral check passed. Uptime: 110650 ms.
+>>> 'log27'
+<<< System log 27: OK: Peripheral check passed. Uptime: 112050 ms.
+>>> 'log28'
+<<< System log 28: OK: Peripheral check passed. Uptime: 113450 ms.
+>>> 'log29'
+<<< System log 29: OK: Peripheral check passed. Uptime: 114870 ms.
+>>> 'log30'
+<<< System log 30: OK: Peripheral check passed. Uptime: 116270 ms.
+>>> 'log31'
+<<< System log 31: OK: Peripheral check passed. Uptime: 117670 ms.
+>>> 'log32'
+<<< System log 32: OK: Peripheral check passed. Uptime: 119070 ms.
+>>> 'log33'
+<<< System log 33: OK: Peripheral check passed. Uptime: 120470 ms.
+>>> 'log34'
+<<< System log 34: OK: Peripheral check passed. Uptime: 121890 ms.
+>>> 'log35'
+<<< System log 35: OK: Peripheral check passed. Uptime: 123290 ms.
+>>> 'log36'
+<<< System log 36: OK: Peripheral check passed. Uptime: 124690 ms.
+>>> 'log37'
+<<< System log 37: Info: Critical diagnostic mode activated. Run command 'claim_flag_uart_s1' to dump flag.
+>>> 'log38'
+<<< System log 38: OK: Peripheral check passed. Uptime: 127510 ms.
+>>> 'log39'
+<<< System log 39: OK: Peripheral check passed. Uptime: 128910 ms.
+>>> 'log40'
+<<< System log 40: OK: Peripheral check passed. Uptime: 130310 ms.
+>>> 'claim_flag_uart_s1'
+<<< esc_2026{Challenge_1_UART_cli_f158c966f71db6b4}
+[137611] FLAG CAPTURED by competitor
+>>> 'help'
+<<< one or more commands start with help
+This help menu is outdated. System commands have been reorganized.
+Supported characters: lowercase letters (a-z), spaces ( ), and special characters (!, @, -, _).
+>>> 'a'
+<<< no command starts with a
+[RATE-LIMIT] Failed attempt (1). Penalty delay: 10 ms.
+>>> 'b'
+<<< no command starts with b
+[RATE-LIMIT] Failed attempt (2). Penalty delay: 20 ms.
+>>> 'c'
+<<< no command starts with c
+[RATE-LIMIT] Failed attempt (3). Penalty delay: 40 ms.
+>>> 'd'
+<<< no command starts with d
+[RATE-LIMIT] Failed attempt (4). Penalty delay: 80 ms.
+--- reboot (penalite remise a zero) ---
+--- reboot (penalite remise a zero) ---
+--- reboot (penalite remise a zero) ---
+--- reboot (penalite remise a zero) ---
+--- reboot (penalite remise a zero) ---
+--- reboot (penalite remise a zero) ---
+>>> 'help'
+<<< one or more commands start with help
+This help menu is outdated. System commands have been reorganized.
+Supported characters: lowercase letters (a-z), spaces ( ), and special characters (!, @, -, _).
+>>> 'a'
+<<< no command starts with a
+[RATE-LIMIT] Failed attempt (1). Penalty delay: 10 ms.
+>>> 'b'
+<<< no command starts with b
+[RATE-LIMIT] Failed attempt (2). Penalty delay: 20 ms.
+>>> 'c'
+<<< no command starts with c
+[RATE-LIMIT] Failed attempt (3). Penalty delay: 40 ms.
+>>> 'd'
+<<< no command starts with d
+[RATE-LIMIT] Failed attempt (4). Penalty delay: 80 ms.
+>>> 'e'
+<<< no command starts with e
+[RATE-LIMIT] Failed attempt (5). Penalty delay: 160 ms.
+>>> 'f'
+<<< no command starts with f
+[RATE-LIMIT] Failed attempt (6). Penalty delay: 320 ms.
+>>> 'g'
+<<< no command starts with g
+[RATE-LIMIT] Failed attempt (7). Penalty delay: 640 ms.
+>>> 'h'
+<<< one or more commands start with h
+>>> 'ha'
+<<< no command starts with ha
+[RATE-LIMIT] Failed attempt (8). Penalty delay: 1280 ms.
+>>> 'hb'
+<<< no command starts with hb
+[RATE-LIMIT] Failed attempt (9). Penalty delay: 2000 ms.
+>>> 'hc'
+<<< no command starts with hc
+[RATE-LIMIT] Failed attempt (10). Penalty delay: 2000 ms.
+>>> 'hd'
+<<< no command starts with hd
+[RATE-LIMIT] Failed attempt (11). Penalty delay: 2000 ms.
+>>> 'he'
+<<< one or more commands start with he
+>>> 'help'
+<<< one or more commands start with help
+This help menu is outdated. System commands have been reorganized.
+Supported characters: lowercase letters (a-z), spaces ( ), and special characters (!, @, -, _).
+>>> 'heal'
+<<< no command starts with heal
+[RATE-LIMIT] Failed attempt (12). Penalty delay: 2000 ms.
+>>> 'health'
+<<< no command starts with health
+[RATE-LIMIT] Failed attempt (13). Penalty delay: 2000 ms.
+>>> 'he-'
+<<< no command starts with he-
+[RATE-LIMIT] Failed attempt (14). Penalty delay: 2000 ms.
+>>> 'he!'
+<<< no command starts with he!
+[RATE-LIMIT] Failed attempt (15). Penalty delay: 2000 ms.
+>>> 'a'
+<<< {"event":"error","reason":"unknown_command"}
+>>> 'b'
+<<< {"event":"error","reason":"unknown_command"}
+>>> 'c'
+<<< {"event":"error","reason":"unknown_command"}
+>>> 'd'
+<<< {"event":"error","reason":"unknown_command"}
+>>> 'e'
+<<< {"event":"error","reason":"unknown_command"}
+>>> 'f'
+<<< {"event":"error","reason":"unknown_command"}
+>>> 'g'
+<<< {"event":"error","reason":"unknown_command"}
+>>> 'h'
+<<< {"event":"error","reason":"unknown_command"}
+>>> 'i'
+<<< {"event":"error","reason":"unknown_command"}
+>>> 'j'
+<<< {"event":"error","reason":"unknown_command"}
+>>> 'k'
+<<< {"event":"error","reason":"unknown_command"}
+>>> 'l'
+<<< {"event":"error","reason":"unknown_command"}
+>>> 'm'
+<<< {"event":"error","reason":"unknown_command"}
+>>> 'n'
+<<< {"event":"error","reason":"unknown_command"}
+>>> 'o'
+<<< {"event":"error","reason":"unknown_command"}
+>>> 'p'
+<<< {"event":"error","reason":"unknown_command"}
+>>> 'q'
+<<< {"event":"error","reason":"unknown_command"}
+>>> 'r'
+<<< {"event":"error","reason":"unknown_command"}
+>>> 's'
+<<< {"event":"error","reason":"unknown_command"}
+>>> 't'
+<<< {"event":"error","reason":"unknown_command"}
+>>> 'u'
+<<< {"event":"error","reason":"unknown_command"}
+>>> 'v'
+<<< {"event":"error","reason":"unknown_command"}
+>>> 'w'
+<<< {"event":"error","reason":"unknown_command"}
+>>> 'x'
+<<< {"event":"error","reason":"unknown_command"}
+>>> 'y'
+<<< {"event":"error","reason":"unknown_command"}
+>>> 'z'
+<<< {"event":"error","reason":"unknown_command"}
+>>> ' '
+<<< 
+>>> '!'
+<<< {"event":"error","reason":"unknown_command"}
+>>> '@'
+<<< {"event":"error","reason":"unknown_command"}
+>>> '-'
+<<< {"event":"error","reason":"unknown_command"}
+>>> '_'
+<<< {"event":"error","reason":"unknown_command"}
+>>> 'a'
+<<< {"event":"error","reason":"unknown_command"}
+>>> 'b'
+<<< {"event":"error","reason":"unknown_command"}
+>>> 'c'
+<<< {"event":"error","reason":"unknown_command"}
+>>> 'd'
+<<< {"event":"error","reason":"unknown_command"}
+>>> 'e'
+<<< {"event":"error","reason":"unknown_command"}
+>>> 'f'
+<<< {"event":"error","reason":"unknown_command"}
+>>> 'g'
+<<< {"event":"error","reason":"unknown_command"}
+>>> 'h'
+<<< {"event":"error","reason":"unknown_command"}
+>>> 'i'
+<<< {"event":"error","reason":"unknown_command"}
+>>> 'j'
+<<< {"event":"error","reason":"unknown_command"}
+>>> 'k'
+<<< {"event":"error","reason":"unknown_command"}
+>>> 'l'
+<<< {"event":"error","reason":"unknown_command"}
+>>> 'm'
+<<< {"event":"error","reason":"unknown_command"}
+>>> 'n'
+<<< {"event":"error","reason":"unknown_command"}
+>>> 'o'
+<<< {"event":"error","reason":"unknown_command"}
+>>> 'p'
+<<< {"event":"error","reason":"unknown_command"}
+>>> 'q'
+<<< {"event":"error","reason":"unknown_command"}
+>>> 'r'
+<<< {"event":"error","reason":"unknown_command"}
+>>> 's'
+<<< {"event":"error","reason":"unknown_command"}
+>>> 't'
+<<< {"event":"error","reason":"unknown_command"}
+>>> 'u'
+<<< {"event":"error","reason":"unknown_command"}
+>>> 'v'
+<<< {"event":"error","reason":"unknown_command"}
+>>> 'w'
+<<< {"event":"error","reason":"unknown_command"}
+>>> 'x'
+<<< {"event":"error","reason":"unknown_command"}
+>>> 'y'
+<<< {"event":"error","reason":"unknown_command"}
+>>> 'z'
+<<< {"event":"error","reason":"unknown_command"}
+>>> ' '
+<<< 
+>>> '!'
+<<< {"event":"error","reason":"unknown_command"}
+>>> '@'
+<<< {"event":"error","reason":"unknown_command"}
+>>> '-'
+<<< {"event":"error","reason":"unknown_command"}
+>>> '_'
+<<< {"event":"error","reason":"unknown_command"}
+>>> 'a'
+<<< {"event":"error","reason":"unknown_command"}
+>>> 'b'
+<<< {"event":"error","reason":"unknown_command"}
+>>> 'c'
+<<< {"event":"error","reason":"unknown_command"}
+>>> 'd'
+<<< {"event":"error","reason":"unknown_command"}
+>>> 'e'
+<<< {"event":"error","reason":"unknown_command"}
+>>> 'f'
+<<< {"event":"error","reason":"unknown_command"}
+>>> 'g'
+<<< {"event":"error","reason":"unknown_command"}
+>>> 'h'
+<<< {"event":"error","reason":"unknown_command"}
+>>> 'i'
+<<< {"event":"error","reason":"unknown_command"}
+>>> 'j'
+<<< {"event":"error","reason":"unknown_command"}
+>>> 'k'
+<<< {"event":"error","reason":"unknown_command"}
+>>> 'l'
+<<< {"event":"error","reason":"unknown_command"}
+>>> 'm'
+<<< {"event":"error","reason":"unknown_command"}
+>>> 'n'
+<<< {"event":"error","reason":"unknown_command"}
+>>> 'o'
+<<< {"event":"error","reason":"unknown_command"}
+>>> 'p'
+<<< {"event":"error","reason":"unknown_command"}
+>>> 'q'
+<<< {"event":"error","reason":"unknown_command"}
+>>> 'r'
+<<< {"event":"error","reason":"unknown_command"}
+>>> 'a'
+<<< {"event":"error","reason":"unknown_command"}
+>>> 'b'
+<<< {"event":"error","reason":"unknown_command"}
+>>> 'c'
+<<< {"event":"error","reason":"unknown_command"}
+>>> 'd'
+<<< {"event":"error","reason":"unknown_command"}
+>>> 'a'
+<<< {"event":"error","reason":"unknown_command"}
+>>> 'b'
+<<< {"event":"error","reason":"unknown_command"}
+>>> 'c'
+<<< {"event":"error","reason":"unknown_command"}
+>>> 'd'
+<<< {"event":"error","reason":"unknown_command"}
+>>> 'e'
+<<< {"event":"error","reason":"unknown_command"}
+>>> 'f'
+<<< {"event":"error","reason":"unknown_command"}
+>>> 'g'
+<<< {"event":"error","reason":"unknown_command"}
+>>> 'h'
+<<< {"event":"error","reason":"unknown_command"}
+>>> 'i'
+<<< {"event":"error","reason":"unknown_command"}
+>>> 'j'
+<<< {"event":"error","reason":"unknown_command"}
+>>> 'k'
+<<< {"event":"error","reason":"unknown_command"}
+>>> 'a'
+<<< {"event":"error","reason":"unknown_command"}
+>>> 'b'
+<<< {"event":"error","reason":"unknown_command"}
+>>> 'c'
+<<< {"event":"error","reason":"unknown_command"}
+>>> 'd'
+<<< {"event":"error","reason":"unknown_command"}
+>>> 'e'
+<<< {"event":"error","reason":"unknown_command"}
+>>> 'f'
+<<< {"event":"error","reason":"unknown_command"}
+>>> 'h'
+<<< {"event":"error","reason":"unknown_command"}
+>>> 'he'
+<<< {"event":"error","reason":"unknown_command"}
+>>> 'hel'
+<<< {"event":"error","reason":"unknown_command"}
+>>> 'help'
+<<< ==============================================================
+                CHALLENGE 2 UART CLI HELP MENU                
+==============================================================
+SYSTEM COMMANDS:
+  help / menu / ?             - Display this menu
+  dump_eeprom                 - Dump config database (protected by an exclusive key repeating over identity)
+  get_mac                     - Output ESP32 eFuse hardware MAC address
+
+CARD DATA COMMANDS (requires physical tap within 15 seconds):
+  read_block [block]          - Read 16-byte block from card (e.g. read_block 4)
+  write_block [block] [data]  - Write 16-byte block (hex characters)
+                                Note: Inputs shorter than 32 hex chars
+                                are automatically padded with zeroes.
+                                Example: write_block 2 112233
+  dump_card                   - Dump all blocks from card
+  clear_card                  - Zero out all writable card data blocks
+  provision_user_status       - Reset card session logs and roaming history without wiping entire card
+==============================================================
+>>> 'dump_eeprom'
+<<< --- EEPROM HEX DUMP ---
+0010: FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF 
+0020: FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF 
+0030: FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF 
+0040: FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF 
+0050: FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF 
+0060: FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF 
+0070: FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF 
+0080: FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF 
+0090: FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF 
+00A0: FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF 
+00B0: FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF 
+00C0: FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF 
+00D0: FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF 
+00E0: FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF 
+00F0: FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF 
+-----------------------
+>>> 'get_mac'
+<<< MAC: EC:C9:FF:76:94:68
+>>> 'h'
+<<< one or more commands start with h
+>>> 'help'
+<<< one or more commands start with help
+This help menu is outdated. System commands have been reorganized.
+Supported characters: lowercase letters (a-z), spaces ( ), and special characters (!, @, -, _).
+>>> 'host'
+<<< no command starts with host
+[RATE-LIMIT] Failed attempt (1). Penalty delay: 10 ms.
+>>> 'hint'
+<<< no command starts with hint
+[RATE-LIMIT] Failed attempt (2). Penalty delay: 20 ms.
+>>> 'list'
+<<< no command starts with list
+[RATE-LIMIT] Failed attempt (3). Penalty delay: 40 ms.
+>>> 'log'
+<<< no command starts with log
+[RATE-LIMIT] Failed attempt (4). Penalty delay: 80 ms.
+>>> 'login'
+<<< no command starts with login
+[RATE-LIMIT] Failed attempt (5). Penalty delay: 160 ms.
+>>> 'lock'
+<<< no command starts with lock
+[RATE-LIMIT] Failed attempt (6). Penalty delay: 320 ms.
+>>> 'mode'
+<<< one or more commands start with mode
+>>> 'modeh'
+<<< no command starts with modeh
+[RATE-LIMIT] Failed attempt (7). Penalty delay: 640 ms.
+>>> 'mode '
+<<< one or more commands start with mode
+>>> 'mode h'
+<<< no command starts with mode h
+[RATE-LIMIT] Failed attempt (8). Penalty delay: 1280 ms.
+>>> 'mode l'
+<<< no command starts with mode l
+[RATE-LIMIT] Failed attempt (9). Penalty delay: 2000 ms.
+>>> 'mode s'
+<<< no command starts with mode s
+[RATE-LIMIT] Failed attempt (10). Penalty delay: 2000 ms.
+>>> 'mode m'
+<<< no command starts with mode m
+[RATE-LIMIT] Failed attempt (11). Penalty delay: 2000 ms.
+>>> 'mode c'
+<<< no command starts with mode c
+[RATE-LIMIT] Failed attempt (12). Penalty delay: 2000 ms.
+>>> 'mode r'
+<<< no command starts with mode r
+[RATE-LIMIT] Failed attempt (13). Penalty delay: 2000 ms.
+>>> 'mode d'
+<<< one or more commands start with mode d
+>>> 'mode dh'
+<<< no command starts with mode dh
+[RATE-LIMIT] Failed attempt (14). Penalty delay: 2000 ms.
+>>> 'mode d '
+<<< no command starts with mode d 
+[RATE-LIMIT] Failed attempt (15). Penalty delay: 2000 ms.
+>>> 'mode di'
+<<< no command starts with mode di
+[RATE-LIMIT] Failed attempt (16). Penalty delay: 2000 ms.
+>>> 'mode de'
+<<< one or more commands start with mode de
+>>> 'mode deh'
+<<< no command starts with mode deh
+[RATE-LIMIT] Failed attempt (17). Penalty delay: 2000 ms.
+>>> 'mode de '
+<<< no command starts with mode de 
+[RATE-LIMIT] Failed attempt (18). Penalty delay: 2000 ms.
+>>> 'mode det'
+<<< no command starts with mode det
+[RATE-LIMIT] Failed attempt (19). Penalty delay: 2000 ms.
+>>> 'mode des'
+<<< no command starts with mode des
+[RATE-LIMIT] Failed attempt (20). Penalty delay: 2000 ms.
+>>> 'mode dev'
+<<< one or more commands start with mode dev
+>>> 'mode devh'
+<<< no command starts with mode devh
+[RATE-LIMIT] Failed attempt (21). Penalty delay: 2000 ms.
+>>> 'mode dev '
+<<< no command starts with mode dev 
+[RATE-LIMIT] Failed attempt (22). Penalty delay: 2000 ms.
+>>> 'mode devi'
+<<< no command starts with mode devi
+[RATE-LIMIT] Failed attempt (23). Penalty delay: 2000 ms.
+>>> 'mode devo'
+<<< no command starts with mode devo
+[RATE-LIMIT] Failed attempt (24). Penalty delay: 2000 ms.
+>>> 'mode devu'
+<<< no command starts with mode devu
+[RATE-LIMIT] Failed attempt (25). Penalty delay: 2000 ms.
+>>> 'mode devt'
+<<< no command starts with mode devt
+[RATE-LIMIT] Failed attempt (26). Penalty delay: 2000 ms.
+>>> 'mode deva'
+<<< no command starts with mode deva
+[RATE-LIMIT] Failed attempt (27). Penalty delay: 2000 ms.
+>>> 'mode devb'
+<<< no command starts with mode devb
+[RATE-LIMIT] Failed attempt (28). Penalty delay: 2000 ms.
+>>> 'mode devc'
+<<< no command starts with mode devc
+[RATE-LIMIT] Failed attempt (29). Penalty delay: 2000 ms.
+>>> 'mode devd'
+<<< no command starts with mode devd
+[RATE-LIMIT] Failed attempt (30). Penalty delay: 2000 ms.
+>>> 'mode deve'
+<<< one or more commands start with mode deve
+>>> 'help'
+<<< one or more commands start with help
+This help menu is outdated. System commands have been reorganized.
+Supported characters: lowercase letters (a-z), spaces ( ), and special characters (!, @, -, _).
+--- recherche par dictionnaire (prefixe de depart='') ---
+>>> 'help'
+<<< one or more commands start with help
+This help menu is outdated. System commands have been reorganized.
+Supported characters: lowercase letters (a-z), spaces ( ), and special characters (!, @, -, _).
+>>> 'help-'
+<<< no command starts with help-
+[RATE-LIMIT] Failed attempt (1). Penalty delay: 10 ms.
+>>> 'help--'
+<<< no command starts with help--
+[RATE-LIMIT] Failed attempt (2). Penalty delay: 20 ms.
+>>> 'helper'
+<<< no command starts with helper
+[RATE-LIMIT] Failed attempt (3). Penalty delay: 40 ms.
+>>> 'helpers'
+<<< no command starts with helpers
+[RATE-LIMIT] Failed attempt (4). Penalty delay: 80 ms.
+>>> 'helpful'
+<<< no command starts with helpful
+[RATE-LIMIT] Failed attempt (5). Penalty delay: 160 ms.
+>>> 'helpme'
+<<< no command starts with helpme
+[RATE-LIMIT] Failed attempt (6). Penalty delay: 320 ms.
+>>> 'helpdesk'
+<<< no command starts with helpdesk
+[RATE-LIMIT] Failed attempt (7). Penalty delay: 640 ms.
+>>> 'helpline'
+<<< no command starts with helpline
+[RATE-LIMIT] Failed attempt (8). Penalty delay: 1280 ms.
+>>> 'help_cmd'
+<<< no command starts with help_cmd
+[RATE-LIMIT] Failed attempt (9). Penalty delay: 2000 ms.
+>>> 'help0'
+<<< no command starts with help0
+[RATE-LIMIT] Failed attempt (10). Penalty delay: 2000 ms.
+>>> 'helps'
+<<< no command starts with helps
+[RATE-LIMIT] Failed attempt (11). Penalty delay: 2000 ms.
+>>> 'help?'
+<<< no command starts with help?
+[RATE-LIMIT] Failed attempt (12). Penalty delay: 2000 ms.
+>>> 'help.'
+<<< no command starts with help.
+[RATE-LIMIT] Failed attempt (13). Penalty delay: 2000 ms.
+>>> 'helpmenu'
+<<< no command starts with helpmenu
+[RATE-LIMIT] Failed attempt (14). Penalty delay: 2000 ms.
+>>> 'helpa'
+<<< no command starts with helpa
+[RATE-LIMIT] Failed attempt (15). Penalty delay: 2000 ms.
+>>> 'helpb'
+<<< no command starts with helpb
+[RATE-LIMIT] Failed attempt (16). Penalty delay: 2000 ms.
+>>> 'helpc'
+<<< no command starts with helpc
+[RATE-LIMIT] Failed attempt (17). Penalty delay: 2000 ms.
+>>> 'helpd'
+<<< no command starts with helpd
+[RATE-LIMIT] Failed attempt (18). Penalty delay: 2000 ms.
+>>> 'helpf'
+<<< no command starts with helpf
+[RATE-LIMIT] Failed attempt (19). Penalty delay: 2000 ms.
+>>> 'helph'
+<<< no command starts with helph
+[RATE-LIMIT] Failed attempt (20). Penalty delay: 2000 ms.
+>>> 'helpi'
+<<< no command starts with helpi
+[RATE-LIMIT] Failed attempt (21). Penalty delay: 2000 ms.
+>>> 'helpn'
+<<< no command starts with helpn
+[RATE-LIMIT] Failed attempt (22). Penalty delay: 2000 ms.
+>>> 'helpo'
+<<< no command starts with helpo
+[RATE-LIMIT] Failed attempt (23). Penalty delay: 2000 ms.
+>>> 'helpp'
+<<< no command starts with helpp
+[RATE-LIMIT] Failed attempt (24). Penalty delay: 2000 ms.
+>>> 'helpt'
+<<< no command starts with helpt
+[RATE-LIMIT] Failed attempt (25). Penalty delay: 2000 ms.
+>>> 'helpu'
+<<< no command starts with helpu
+[RATE-LIMIT] Failed attempt (26). Penalty delay: 2000 ms.
+>>> 'helpv'
+<<< no command starts with helpv
+[RATE-LIMIT] Failed attempt (27). Penalty delay: 2000 ms.
+>>> 'helpw'
+<<< no command starts with helpw
+[RATE-LIMIT] Failed attempt (28). Penalty delay: 2000 ms.
+>>> 'helpe'
+<<< no command starts with helpe
+[RATE-LIMIT] Failed attempt (29). Penalty delay: 2000 ms.
+>>> 'helpg'
+<<< no command starts with helpg
+[RATE-LIMIT] Failed attempt (30). Penalty delay: 2000 ms.
+>>> 'helpj'
+<<< no command starts with helpj
+[RATE-LIMIT] Failed attempt (31). Penalty delay: 2000 ms.
+>>> 'helpk'
+<<< no command starts with helpk
+[RATE-LIMIT] Failed attempt (32). Penalty delay: 2000 ms.
+>>> 'helpl'
+<<< no command starts with helpl
+[RATE-LIMIT] Failed attempt (33). Penalty delay: 2000 ms.
+>>> 'helpm'
+<<< no command starts with helpm
+[RATE-LIMIT] Failed attempt (34). Penalty delay: 2000 ms.
+>>> 'helpq'
+<<< no command starts with helpq
+[RATE-LIMIT] Failed attempt (35). Penalty delay: 2000 ms.
+>>> 'helpr'
+<<< no command starts with helpr
+[RATE-LIMIT] Failed attempt (36). Penalty delay: 2000 ms.
+>>> 'helpx'
+<<< no command starts with helpx
+[RATE-LIMIT] Failed attempt (37). Penalty delay: 2000 ms.
+>>> 'helpy'
+<<< no command starts with helpy
+[RATE-LIMIT] Failed attempt (38). Penalty delay: 2000 ms.
+>>> 'helpz'
+<<< no command starts with helpz
+[RATE-LIMIT] Failed attempt (39). Penalty delay: 2000 ms.
+>>> 'help='
+<<< no command starts with help=
+[RATE-LIMIT] Failed attempt (40). Penalty delay: 2000 ms.
+>>> 'help:'
+<<< no command starts with help:
+[RATE-LIMIT] Failed attempt (41). Penalty delay: 2000 ms.
+>>> 'help1'
+<<< no command starts with help1
+[RATE-LIMIT] Failed attempt (42). Penalty delay: 2000 ms.
+>>> 'help-h'
+<<< no command starts with help-h
+[RATE-LIMIT] Failed attempt (43). Penalty delay: 2000 ms.
+>>> 'help--help'
+<<< no command starts with help--help
+[RATE-LIMIT] Failed attempt (44). Penalty delay: 2000 ms.
+>>> 'help2'
+<<< no command starts with help2
+[RATE-LIMIT] Failed attempt (45). Penalty delay: 2000 ms.
+>>> 'help3'
+<<< no command starts with help3
+[RATE-LIMIT] Failed attempt (46). Penalty delay: 2000 ms.
+>>> 'help4'
+<<< no command starts with help4
+[RATE-LIMIT] Failed attempt (47). Penalty delay: 2000 ms.
+>>> 'help5'
+<<< no command starts with help5
+[RATE-LIMIT] Failed attempt (48). Penalty delay: 2000 ms.
+>>> 'help6'
+<<< no command starts with help6
+[RATE-LIMIT] Failed attempt (49). Penalty delay: 2000 ms.
+>>> 'help7'
+<<< no command starts with help7
+[RATE-LIMIT] Failed attempt (50). Penalty delay: 2000 ms.
+>>> 'help8'
+<<< no command starts with help8
+[RATE-LIMIT] Failed attempt (51). Penalty delay: 2000 ms.
+>>> 'help9'
+<<< no command starts with help9
+[RATE-LIMIT] Failed attempt (52). Penalty delay: 2000 ms.
+>>> 'help/'
+<<< no command starts with help/
+[RATE-LIMIT] Failed attempt (53). Penalty delay: 2000 ms.
+>>> 'help,'
+<<< no command starts with help,
+[RATE-LIMIT] Failed attempt (54). Penalty delay: 2000 ms.
+>>> 'help;'
+<<< no command starts with help;
+[RATE-LIMIT] Failed attempt (55). Penalty delay: 2000 ms.
+>>> 'help@'
+<<< no command starts with help@
+[RATE-LIMIT] Failed attempt (56). Penalty delay: 2000 ms.
+>>> 'help_menu'
+<<< no command starts with help_menu
+[RATE-LIMIT] Failed attempt (57). Penalty delay: 2000 ms.
+>>> 'help_list'
+<<< no command starts with help_list
+[RATE-LIMIT] Failed attempt (58). Penalty delay: 2000 ms.
+>>> 'help_all'
+<<< no command starts with help_all
+[RATE-LIMIT] Failed attempt (59). Penalty delay: 2000 ms.
+>>> 'help+'
+<<< no command starts with help+
+[RATE-LIMIT] Failed attempt (60). Penalty delay: 2000 ms.
+>>> 'help#'
+<<< no command starts with help#
+[RATE-LIMIT] Failed attempt (61). Penalty delay: 2000 ms.
+>>> 'help!'
+<<< no command starts with help!
+[RATE-LIMIT] Failed attempt (62). Penalty delay: 2000 ms.
+>>> 'help*'
+<<< no command starts with help*
+[RATE-LIMIT] Failed attempt (63). Penalty delay: 2000 ms.
+>>> 'help~'
+<<< no command starts with help~
+[RATE-LIMIT] Failed attempt (64). Penalty delay: 2000 ms.
+>>> 'help|'
+<<< no command starts with help|
+[RATE-LIMIT] Failed attempt (65). Penalty delay: 2000 ms.
+>>> 'help\\'
+<<< no command starts with help\
+[RATE-LIMIT] Failed attempt (66). Penalty delay: 2000 ms.
+>>> 'help-a'
+<<< no command starts with help-a
+[RATE-LIMIT] Failed attempt (67). Penalty delay: 2000 ms.
+>>> 'help-l'
+<<< no command starts with help-l
+[RATE-LIMIT] Failed attempt (68). Penalty delay: 2000 ms.
+>>> 'help-v'
+<<< no command starts with help-v
+[RATE-LIMIT] Failed attempt (69). Penalty delay: 2000 ms.
+>>> 'help-d'
+<<< no command starts with help-d
+[RATE-LIMIT] Failed attempt (70). Penalty delay: 2000 ms.
+>>> 'help-x'
+<<< no command starts with help-x
+[RATE-LIMIT] Failed attempt (71). Penalty delay: 2000 ms.
+>>> 'helperme'
+<<< no command starts with helperme
+[RATE-LIMIT] Failed attempt (72). Penalty delay: 2000 ms.
+>>> 'helpersys'
+<<< no command starts with helpersys
+[RATE-LIMIT] Failed attempt (73). Penalty delay: 2000 ms.
+--- fin recherche par dictionnaire: exhausted ---
+--- recherche par dictionnaire (prefixe de depart='') ---
+>>> 'help'
+<<< one or more commands start with help
+This help menu is outdated. System commands have been reorganized.
+Supported characters: lowercase letters (a-z), spaces ( ), and special characters (!, @, -, _).
+>>> 'help-'
+<<< no command starts with help-
+[RATE-LIMIT] Failed attempt (74). Penalty delay: 2000 ms.
+>>> 'help_'
+<<< no command starts with help_
+[RATE-LIMIT] Failed attempt (75). Penalty delay: 2000 ms.
+>>> 'helper'
+<<< no command starts with helper
+[RATE-LIMIT] Failed attempt (76). Penalty delay: 2000 ms.
+>>> 'helpme'
+<<< no command starts with helpme
+[RATE-LIMIT] Failed attempt (77). Penalty delay: 2000 ms.
+>>> 'helps'
+<<< no command starts with helps
+[RATE-LIMIT] Failed attempt (78). Penalty delay: 2000 ms.
+>>> 'helpfull'
+<<< no command starts with helpfull
+[RATE-LIMIT] Failed attempt (79). Penalty delay: 2000 ms.
+>>> 'helpall'
+<<< no command starts with helpall
+[RATE-LIMIT] Failed attempt (80). Penalty delay: 2000 ms.
+>>> 'help2'
+<<< no command starts with help2
+[RATE-LIMIT] Failed attempt (81). Penalty delay: 2000 ms.
+>>> 'helpmenu'
+<<< no command starts with helpmenu
+[RATE-LIMIT] Failed attempt (82). Penalty delay: 2000 ms.
+>>> 'help--help'
+<<< no command starts with help--help
+[RATE-LIMIT] Failed attempt (83). Penalty delay: 2000 ms.
+>>> 'help.'
+<<< no command starts with help.
+[RATE-LIMIT] Failed attempt (84). Penalty delay: 2000 ms.
+>>> 'help?'
+<<< no command starts with help?
+[RATE-LIMIT] Failed attempt (85). Penalty delay: 2000 ms.
+>>> 'help='
+<<< no command starts with help=
+[RATE-LIMIT] Failed attempt (86). Penalty delay: 2000 ms.
+>>> 'helpcmd'
+<<< no command starts with helpcmd
+[RATE-LIMIT] Failed attempt (87). Penalty delay: 2000 ms.
+>>> 'help!'
+<<< no command starts with help!
+[RATE-LIMIT] Failed attempt (88). Penalty delay: 2000 ms.
+>>> 'help@'
+<<< no command starts with help@
+[RATE-LIMIT] Failed attempt (89). Penalty delay: 2000 ms.
+>>> 'help#'
+<<< no command starts with help#
+[RATE-LIMIT] Failed attempt (90). Penalty delay: 2000 ms.
+>>> 'help$'
+<<< no command starts with help$
+[RATE-LIMIT] Failed attempt (91). Penalty delay: 2000 ms.
+>>> 'help%'
+<<< no command starts with help%
+[RATE-LIMIT] Failed attempt (92). Penalty delay: 2000 ms.
+>>> 'help&'
+<<< no command starts with help&
+[RATE-LIMIT] Failed attempt (93). Penalty delay: 2000 ms.
+>>> 'help*'
+<<< no command starts with help*
+[RATE-LIMIT] Failed attempt (94). Penalty delay: 2000 ms.
+>>> 'help+'
+<<< no command starts with help+
+[RATE-LIMIT] Failed attempt (95). Penalty delay: 2000 ms.
+>>> 'help:'
+<<< no command starts with help:
+[RATE-LIMIT] Failed attempt (96). Penalty delay: 2000 ms.
+>>> 'help;'
+<<< no command starts with help;
+[RATE-LIMIT] Failed attempt (97). Penalty delay: 2000 ms.
+>>> 'help/'
+<<< no command starts with help/
+[RATE-LIMIT] Failed attempt (98). Penalty delay: 2000 ms.
+>>> 'help\\'
+<<< no command starts with help\
+[RATE-LIMIT] Failed attempt (99). Penalty delay: 2000 ms.
+>>> 'help0'
+<<< no command starts with help0
+[RATE-LIMIT] Failed attempt (100). Penalty delay: 2000 ms.
+>>> 'help1'
+<<< no command starts with help1
+[RATE-LIMIT] Failed attempt (101). Penalty delay: 2000 ms.
+--- recherche par dictionnaire (prefixe de depart='') ---
+>>> 'help'
+<<< one or more commands start with help
+This help menu is outdated. System commands have been reorganized.
+Supported characters: lowercase letters (a-z), spaces ( ), and special characters (!, @, -, _).
+>>> 'help-'
+<<< no command starts with help-
+[RATE-LIMIT] Failed attempt (1). Penalty delay: 10 ms.
+>>> 'helper'
+<<< no command starts with helper
+[RATE-LIMIT] Failed attempt (2). Penalty delay: 20 ms.
+>>> 'helpful'
+<<< no command starts with helpful
+[RATE-LIMIT] Failed attempt (3). Penalty delay: 40 ms.
+>>> 'helpdesk'
+<<< no command starts with helpdesk
+[RATE-LIMIT] Failed attempt (4). Penalty delay: 80 ms.
