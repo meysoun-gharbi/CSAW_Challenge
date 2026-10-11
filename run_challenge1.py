@@ -46,8 +46,8 @@ class _LazyCloud(LLMClient):
 def build_planner(llm, args) -> LLMClient | None:
     """Le 'planner' (strategiste) pour oracle_dictionary_search: toujours un
     backend cloud, independamment du backend principal choisi pour l'agent."""
-    if args.backend in ("gemini", "claude"):
-        return llm  # deja un client cloud: pas besoin d'en construire un autre
+    if args.backend in ("gemini", "claude", "deepseek", "cloud_fallback"):
+        return llm  # deja un client cloud (ou cascade cloud->cloud): pas besoin d'en construire un autre
     if args.fallback_backend and args.fallback_model:
         return _LazyCloud(lambda: build_llm(args.fallback_backend, args.fallback_model))
     return None  # pas de cloud configure: l'outil oracle_dictionary_search sera desactive
@@ -57,12 +57,16 @@ def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--port", default="COM4", help="port serie (COM4, /dev/ttyUSB0...)")
     ap.add_argument("--backend", default="gemini",
-                     choices=["gemini", "mock", "claude", "ollama", "hybrid"])
+                     choices=["gemini", "mock", "claude", "deepseek", "ollama",
+                              "hybrid", "cloud_fallback"])
     ap.add_argument("--model", default="gemini-flash-latest")
-    ap.add_argument("--fallback-backend", default=None, choices=["gemini", "claude"],
-                     help="(mode hybrid) backend cloud de secours")
+    ap.add_argument("--fallback-backend", default=None,
+                     choices=["gemini", "claude", "deepseek"],
+                     help="(mode hybrid: cloud de secours ; mode cloud_fallback: "
+                          "secours quand Gemini est a sec)")
     ap.add_argument("--fallback-model", default=None,
-                     help="(mode hybrid) modele cloud de secours (ex: gemini-flash-latest)")
+                     help="(hybrid/cloud_fallback) modele de secours "
+                          "(ex: gemini-flash-latest, deepseek-chat)")
     ap.add_argument("--local-timeout", type=float, default=20.0,
                      help="(mode hybrid) secondes max avant d'abandonner le local et escalader")
     ap.add_argument("--log", default="runs/challenge1.jsonl")

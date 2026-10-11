@@ -37,6 +37,9 @@ def build_llm(backend: str, model: str, fallback_backend: str | None = None,
     if backend == "claude":
         from esc_agent.llm.claude import ClaudeClient
         return ClaudeClient(model=model)
+    if backend == "deepseek":
+        from esc_agent.llm.deepseek import DeepSeekClient
+        return DeepSeekClient(model=model)
     if backend == "ollama":
         from esc_agent.llm.ollama import OllamaClient
         return OllamaClient(model=model)
@@ -55,18 +58,35 @@ def build_llm(backend: str, model: str, fallback_backend: str | None = None,
         local = OllamaClient(model=model, timeout=local_timeout)
         cloud_factory = lambda: build_llm(fallback_backend, fallback_model)  # noqa: E731
         return HybridClient(local, cloud_factory)
+    if backend == "cloud_fallback":
+        from esc_agent.llm.cloud_fallback import CloudFallbackClient
+        from esc_agent.llm.gemini import GeminiClient
+        if not fallback_backend or not fallback_model:
+            raise SystemExit(
+                "--backend cloud_fallback necessite --fallback-backend et --fallback-model "
+                "(ex: --fallback-backend deepseek --fallback-model deepseek-chat)"
+            )
+        # Gemini (gratuit, quota journalier limite) en primaire; DeepSeek (ou
+        # un autre cloud) construit PARESSEUSEMENT seulement si le quota casse.
+        primary = GeminiClient(model=model)
+        fallback_factory = lambda: build_llm(fallback_backend, fallback_model)  # noqa: E731
+        return CloudFallbackClient(primary, fallback_factory)
     raise SystemExit(f"backend inconnu: {backend}")
 
 
 def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--backend", default="mock",
-                     choices=["mock", "gemini", "claude", "ollama", "hybrid"])
+                     choices=["mock", "gemini", "claude", "deepseek", "ollama",
+                              "hybrid", "cloud_fallback"])
     ap.add_argument("--model", default="gemini-3-pro")
-    ap.add_argument("--fallback-backend", default=None, choices=["gemini", "claude"],
-                     help="(mode hybrid) backend cloud de secours")
+    ap.add_argument("--fallback-backend", default=None,
+                     choices=["gemini", "claude", "deepseek"],
+                     help="(mode hybrid: cloud de secours ; mode cloud_fallback: "
+                          "secours quand Gemini est a sec)")
     ap.add_argument("--fallback-model", default=None,
-                     help="(mode hybrid) modele cloud de secours (ex: gemini-flash-latest)")
+                     help="(hybrid/cloud_fallback) modele de secours "
+                          "(ex: gemini-flash-latest, deepseek-chat)")
     ap.add_argument("--local-timeout", type=float, default=20.0,
                      help="(mode hybrid) secondes max avant d'abandonner le local et escalader")
     ap.add_argument("--log", default="runs/run.jsonl")

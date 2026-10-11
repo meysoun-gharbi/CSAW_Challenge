@@ -11,6 +11,10 @@ google-genai>=1.0.0    # Teste: 2.28.0
 # --- Backend Claude (optionnel) ---
 anthropic>=0.40.0      # Teste: 1.11.0
 
+# --- Backend DeepSeek (optionnel, secours cloud bon marche) ---
+# API compatible OpenAI (REST brut via requests, deja requis plus bas) :
+# pas de SDK dedie a installer. Necessite DEEPSEEK_API_KEY.
+
 # --- Backend Ollama (modele local, optionnel) ---
 # necessite un serveur Ollama lance (`ollama serve`) + un modele pull
 # (`ollama pull <nom>`). Pas de cle API. requests est deja requis plus bas.
