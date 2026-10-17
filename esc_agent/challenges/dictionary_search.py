@@ -220,20 +220,112 @@ class _RebootBudget:
         pass  # le compteur n'est remis a zero QUE par un vrai reboot
 
 
-def _dfs(reg, prefix: str, confirmed_text: str | None, budget: _RebootBudget,
-          log) -> dict | None:
-    """Explore recursivement depuis `prefix` (deja confirme valide par
-    l'appelant). `confirmed_text` est la derniere reponse connue POUR CE
-    PREFIXE EXACT si elle contenait une sortie reelle (double nature),
-    sinon None (simple marqueur de prefixe intermediaire sans sortie propre).
+def _greedy_deepen(reg, prefix: str, confirmed_text: str | None,
+                     budget: _RebootBudget, log) -> dict:
+    """Descend GLOUTONNEMENT depuis `prefix` (deja confirme valide):
+    s'arrete au PREMIER caractere qui prolonge a chaque niveau, SANS jamais
+    verifier les freres restants a ce niveau (c'est le role du SEUL niveau
+    racine, gere par `run_dictionary_search`, pas celui-ci).
 
-    Renvoie un dict FINAL a remonter a l'agent (flag, ou sortie 'executed'
-    non-leurre), ou None si TOUTE cette branche est morte (leurre ou vide)
-    -- dans ce cas l'appelant doit continuer SON PROPRE balayage avec le
-    candidat suivant (backtrack automatique, zero appel agent).
+    Pourquoi pas de retour en arriere ICI: un run reel a montre que
+    verifier exhaustivement tous les freres a CHAQUE niveau intermediaire
+    d'une branche-leurre (h, he, hel, puis help) fait exploser le cout
+    (centaines de requetes) pour un gain quasi nul en pratique -- deux
+    commandes qui partagent un prefixe profond ET divergent ensuite sont
+    rares. Le retour en arriere au niveau RACINE seul suffit a couvrir le
+    cas reel observe (racines differentes: 'h' menant a un leurre, 'l'/'m'
+    menant a de vraies commandes).
+
+    Renvoie TOUJOURS un dict avec un statut parmi:
+      - 'flag'     : trouve en descendant.
+      - 'executed' : commande COMPLETE non-leurre trouvee (command/output).
+      - 'dead'     : toute la descente depuis `prefix` est un cul-de-sac
+                     (leurre explicite ou aucune sortie) -- rien d'autre a
+                     en tirer, l'appelant doit essayer un AUTRE candidat
+                     au niveau racine.
     """
+    while True:
+        if confirmed_text is not None:
+            # `prefix` produit deja une vraie sortie (pas juste un marqueur
+            # de prefixe intermediaire).
+            if _is_decoy(confirmed_text):
+                # Leurre explicite: on ne perd pas de requetes a verifier
+                # une eventuelle suite -- le vocabulaire ('outdated',
+                # 'legacy', ...) dit sans ambiguite que cette branche ne
+                # merite pas d'exploration plus poussee.
+                log(f"{prefix!r}: sortie 'leurre' (vocabulaire outdated/legacy/...), "
+                    f"abandon immediat de cette branche (pas de verif de suite)")
+                return {"status": "dead"}
+            # Sortie REELLE et non-leurre: on remonte a l'agent de toute
+            # facon pour interpretation, donc PAS de balayage complet de
+            # l'alphabet ici (couteux, ~41 requetes) -- juste la grammaire
+            # usuelle 'cmd <sous-commande> <--option>' (3 requetes), en
+            # INFO pour l'agent qui pourra rappeler l'outil avec le prefixe
+            # etendu s'il le juge utile.
+            extensions = []
+            for ext in (" ", "-", "--"):
+                cand = prefix + ext
+                res = reg.execute("uart_send", {"command": cand})
+                txt = res.get("response", "") if isinstance(res, dict) else ""
+                if isinstance(res, dict) and res.get("flag_detected"):
+                    log(f"{cand!r} -> FLAG: {txt[:120]!r}")
+                    return {"status": "flag", "flag": res["flag_detected"], "command": cand}
+                k = classify_oracle_response(txt)
+                log(f"{cand!r} -> {k}: {txt[:120]!r}")
+                if k == "invalid":
+                    budget.fail()
+                else:
+                    budget.ok()
+                    extensions.append(cand)
+            return {"status": "executed", "command": prefix, "output": confirmed_text,
+                    "extensions_available": extensions}
+
+        # `prefix` n'a encore produit aucune sortie propre (simple
+        # marqueur de prefixe intermediaire): cherche le PROCHAIN
+        # caractere qui le prolonge (balayage complet necessaire ici,
+        # c'est la seule facon de trouver la suite).
+        extended: tuple[str, str, str] | None = None  # (candidate, kind, resp_text)
+        for ch in _PRIORITY_CHARS:
+            candidate = prefix + ch
+            result = reg.execute("uart_send", {"command": candidate})
+            resp_text = result.get("response", "") if isinstance(result, dict) else ""
+            if isinstance(result, dict) and result.get("flag_detected"):
+                log(f"{candidate!r} -> FLAG: {resp_text[:120]!r}")
+                return {"status": "flag", "flag": result["flag_detected"], "command": candidate}
+            kind = classify_oracle_response(resp_text)
+            log(f"{candidate!r} -> {kind}: {resp_text[:120]!r}")
+            if kind == "invalid":
+                budget.fail()
+                continue
+            budget.ok()
+            extended = (candidate, kind, resp_text)
+            break  # glouton: premier candidat qui marche, pas de verif des freres
+        if extended is None:
+            return {"status": "dead"}  # rien ne prolonge ce marqueur de prefixe
+        prefix, kind, resp_text = extended
+        confirmed_text = resp_text if kind == "executed" else None
+        # on boucle: si kind=='executed', le tour suivant entre dans le
+        # bloc ci-dessus et fait la verification legere de grammaire.
+
+
+def _root_search(reg, root: str, root_confirmed_text: str | None,
+                   budget: _RebootBudget, log) -> dict | None:
+    """Essaie CHAQUE enfant direct de `root` (un seul niveau de largeur,
+    avec retour en arriere), et pour chacun qui prolonge, descend
+    gloutonnement via `_greedy_deepen`. Renvoie le premier resultat
+    'flag'/'executed' trouve, ou None si TOUT (racine elle-meme incluse)
+    n'est qu'un ou plusieurs leurres/culs-de-sac.
+    """
+    # Si `root` lui-meme produit deja une sortie non-leurre, on la garde
+    # comme repli SEULEMENT si aucun enfant plus specifique ne donne rien
+    # de mieux (coherent avec avant: on privilegie la commande la PLUS
+    # longue/specifique qui marche).
+    fallback = None
+    if root_confirmed_text is not None and not _is_decoy(root_confirmed_text):
+        fallback = {"status": "executed", "command": root, "output": root_confirmed_text}
+
     for ch in _PRIORITY_CHARS:
-        candidate = prefix + ch
+        candidate = root + ch
         result = reg.execute("uart_send", {"command": candidate})
         resp_text = result.get("response", "") if isinstance(result, dict) else ""
         if isinstance(result, dict) and result.get("flag_detected"):
@@ -245,24 +337,15 @@ def _dfs(reg, prefix: str, confirmed_text: str | None, budget: _RebootBudget,
             budget.fail()
             continue
         budget.ok()
-        sub = _dfs(reg, candidate, resp_text if kind == "executed" else None, budget, log)
-        if sub is not None:
-            return sub  # flag ou sortie interessante plus profond: on remonte tout de suite
-        # sub is None: cette branche est MORTE (leurre/vide) -> backtrack
-        # SILENCIEUX, on continue la boucle avec le candidat suivant.
-        log(f"{candidate!r}: branche morte (leurre/vide) -> retour en arriere, "
-            f"essai du candidat suivant")
+        deep = _greedy_deepen(reg, candidate, resp_text if kind == "executed" else None,
+                               budget, log)
+        if deep["status"] in ("flag", "executed"):
+            return deep
+        log(f"{candidate!r}: branche entiere morte (leurre/vide) -> retour au "
+            f"niveau racine, essai du candidat suivant")
+        # deep['status'] == 'dead': on continue la boucle racine (backtrack).
 
-    # Plus aucun candidat ne prolonge `prefix`.
-    if confirmed_text is not None:
-        if _is_decoy(confirmed_text):
-            log(f"{prefix!r}: sortie 'leurre' (vocabulaire outdated/legacy/...), "
-                f"backtrack silencieux")
-            return None  # rien d'interessant ici, l'appelant continue son balayage
-        return {"status": "executed", "command": prefix, "output": confirmed_text}
-    # `prefix` n'a lui-meme produit aucune sortie (simple marqueur de
-    # prefixe intermediaire) ET rien ne le prolonge -> cul-de-sac silencieux.
-    return None
+    return fallback  # peut etre None (rien du tout, meme pas la racine elle-meme)
 
 
 def run_dictionary_search(
@@ -321,16 +404,21 @@ def run_dictionary_search(
             confirmed_text = resp_text
 
     budget = _RebootBudget(reg)
-    result = _dfs(reg, start_prefix, confirmed_text, budget, log)
+    result = _root_search(reg, start_prefix, confirmed_text, budget, log)
 
     if result is not None:
         if result["status"] == "flag":
             log(f"FLAG detecte sur {result['command']!r}")
             return {"ok": True, **result}
-        note = ("Commande COMPLETE executee (recherche exhaustive, retour en "
-                "arriere automatique sur les leurres deja fait cote code): lis "
-                "cette sortie attentivement, elle peut contenir un indice ou la "
-                "suite a suivre.")
+        note = ("Commande COMPLETE executee (retour en arriere automatique sur "
+                "les leurres deja fait cote code): lis cette sortie attentivement, "
+                "elle peut contenir un indice ou la suite a suivre.")
+        available = result.get("extensions_available") or []
+        if available:
+            note += (" ATTENTION: cette commande accepte AUSSI une suite "
+                     f"(sous-commande/option) -- prefixes valides detectes: "
+                     f"{available!r}. Rappelle oracle_dictionary_search avec "
+                     f"prefix=l'un de ces prefixes pour explorer plus loin.")
         return {"ok": True, "status": "executed", "command": result["command"],
                 "output": result["output"], "note": note}
 
@@ -365,8 +453,8 @@ def run_dictionary_search(
                 kind = classify_oracle_response(resp_text)
                 attempts_log.append(f"{word!r} -> {kind}: {resp_text[:120]!r}")
                 if kind in ("valid", "executed"):
-                    sub = _dfs(reg, word, resp_text if kind == "executed" else None,
-                               budget, log)
+                    sub = _root_search(reg, word, resp_text if kind == "executed" else None,
+                                        budget, log)
                     if sub is not None:
                         if sub["status"] == "flag":
                             return {"ok": True, **sub}
