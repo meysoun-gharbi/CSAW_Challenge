@@ -2017,3 +2017,113 @@
 {"ts": 1791462104.0479667, "type": "llm_call", "run_id": "0bb2789cfc60", "model": "richardyoung/qwen3-4b-instruct-2507-abliterated:latest", "input_tokens": 3731, "output_tokens": 19, "cached_tokens": 0, "thinking_tokens": 0, "total_tokens": 3750, "latency_ms": 7780.648674997792, "n_tool_calls": 1}
 {"ts": 1791462105.4510627, "type": "tool_call", "run_id": "0bb2789cfc60", "name": "uart_send", "channel": "uart", "ok": true, "error": null, "latency_ms": 1402.8567630011821}
 {"ts": 1791462105.4512002, "type": "target_interaction", "run_id": "0bb2789cfc60", "channel": "uart", "tool": "uart_send", "latency_ms": 1402.8567630011821, "ok": true}
+{"ts": 1791754576.1437545, "type": "run_start", "run_id": "600d2b4d1705", "challenge": "serial_gateway", "model": "cloud_fallback[primary=gemini-flash-latest|fallback=lazy]", "max_steps": 400}
+{"ts": 1791754616.5300786, "type": "llm_call", "run_id": "600d2b4d1705", "model": "gemini-flash-latest", "input_tokens": 2943, "output_tokens": 0, "cached_tokens": 0, "thinking_tokens": 1137, "total_tokens": 4080, "latency_ms": 40348.589926000386, "n_tool_calls": 0}
+{"ts": 1791754642.8856728, "type": "llm_call", "run_id": "600d2b4d1705", "model": "gemini-flash-latest", "input_tokens": 2992, "output_tokens": 0, "cached_tokens": 0, "thinking_tokens": 917, "total_tokens": 3909, "latency_ms": 26355.341315999794, "n_tool_calls": 0}
+{"ts": 1791754734.6917396, "type": "llm_call", "run_id": "600d2b4d1705", "model": "gemini-flash-latest", "input_tokens": 3041, "output_tokens": 0, "cached_tokens": 0, "thinking_tokens": 772, "total_tokens": 3813, "latency_ms": 91805.74782599979, "n_tool_calls": 0}
+{"ts": 1791754734.7027223, "type": "run_end", "run_id": "600d2b4d1705", "solved": false, "reason": "model_stopped", "wall_ms": 158547.92982399976, "target_interactions": 0}
+{"ts": 1791754767.691843, "type": "run_start", "run_id": "93b82b11b9f3", "challenge": "serial_gateway", "model": "gemini-flash-latest", "max_steps": 400}
+{"ts": 1791754870.2008274, "type": "llm_call", "run_id": "93b82b11b9f3", "model": "gemini-flash-latest", "input_tokens": 2943, "output_tokens": 0, "cached_tokens": 0, "thinking_tokens": 729, "total_tokens": 3672, "latency_ms": 102498.42992199956, "n_tool_calls": 0}
+{"ts": 1792245606.957686, "type": "run_start", "run_id": "ae619d3bed1c", "challenge": "serial_gateway", "model": "gemini-flash-latest", "max_steps": 400}
+{"ts": 1792245617.465791, "type": "llm_call", "run_id": "ae619d3bed1c", "model": "gemini-flash-latest", "input_tokens": 2943, "output_tokens": 12, "cached_tokens": 0, "thinking_tokens": 216, "total_tokens": 3171, "latency_ms": 10490.611645996978, "n_tool_calls": 1}
+{"ts": 1792245627.1343658, "type": "tool_call", "run_id": "ae619d3bed1c", "name": "uart_send", "channel": "uart", "ok": true, "error": null, "latency_ms": 1404.6664549969137}
+{"ts": 1792245627.134439, "type": "target_interaction", "run_id": "ae619d3bed1c", "channel": "uart", "tool": "uart_send", "latency_ms": 1404.6664549969137, "ok": true}
+{"ts": 1792245742.5565214, "type": "run_start", "run_id": "cda7b070f24d", "challenge": "serial_gateway", "model": "gemini-flash-latest", "max_steps": 400}
+{"ts": 1792245764.9459798, "type": "llm_call", "run_id": "cda7b070f24d", "model": "gemini-flash-latest", "input_tokens": 2943, "output_tokens": 0, "cached_tokens": 0, "thinking_tokens": 0, "total_tokens": 2943, "latency_ms": 22378.772027004743, "n_tool_calls": 0}
+{"ts": 1792245783.5432718, "type": "llm_call", "run_id": "cda7b070f24d", "model": "gemini-flash-latest", "input_tokens": 2992, "output_tokens": 0, "cached_tokens": 0, "thinking_tokens": 0, "total_tokens": 2992, "latency_ms": 18597.064376997878, "n_tool_calls": 0}
+{"ts": 1792245818.0123239, "type": "run_start", "run_id": "716ab0f06fd3", "challenge": "serial_gateway", "model": "gemini-2.5-flash", "max_steps": 400}
+{"ts": 1792245832.289427, "type": "run_start", "run_id": "98b305c7bc68", "challenge": "serial_gateway", "model": "gemini-2.5-flash", "max_steps": 400}
+{"ts": 1792245859.3531938, "type": "run_start", "run_id": "a136086499ea", "challenge": "serial_gateway", "model": "gemini-flash-lite-latest", "max_steps": 400}
+{"ts": 1792245860.6614184, "type": "llm_call", "run_id": "a136086499ea", "model": "gemini-flash-lite-latest", "input_tokens": 2943, "output_tokens": 12, "cached_tokens": 0, "thinking_tokens": 0, "total_tokens": 2955, "latency_ms": 1296.7241599981207, "n_tool_calls": 1}
+{"ts": 1792245863.3669562, "type": "tool_call", "run_id": "a136086499ea", "name": "uart_send", "channel": "uart", "ok": true, "error": null, "latency_ms": 1404.3216970021604}
+{"ts": 1792245863.3670259, "type": "target_interaction", "run_id": "a136086499ea", "channel": "uart", "tool": "uart_send", "latency_ms": 1404.3216970021604, "ok": true}
+{"ts": 1792245865.8946307, "type": "tool_call", "run_id": "a136086499ea", "name": "uart_send", "channel": "uart", "ok": true, "error": null, "latency_ms": 1404.6732719943975}
+{"ts": 1792245865.894714, "type": "target_interaction", "run_id": "a136086499ea", "channel": "uart", "tool": "uart_send", "latency_ms": 1404.6732719943975, "ok": true}
+{"ts": 1792245867.2989705, "type": "tool_call", "run_id": "a136086499ea", "name": "uart_send", "channel": "uart", "ok": true, "error": null, "latency_ms": 1404.157999997551}
+{"ts": 1792245867.2990675, "type": "target_interaction", "run_id": "a136086499ea", "channel": "uart", "tool": "uart_send", "latency_ms": 1404.157999997551, "ok": true}
+{"ts": 1792245868.703735, "type": "tool_call", "run_id": "a136086499ea", "name": "uart_send", "channel": "uart", "ok": true, "error": null, "latency_ms": 1404.5792580000125}
+{"ts": 1792245868.7038372, "type": "target_interaction", "run_id": "a136086499ea", "channel": "uart", "tool": "uart_send", "latency_ms": 1404.5792580000125, "ok": true}
+{"ts": 1792245870.1083763, "type": "tool_call", "run_id": "a136086499ea", "name": "uart_send", "channel": "uart", "ok": true, "error": null, "latency_ms": 1404.4412139992346}
+{"ts": 1792245870.1084943, "type": "target_interaction", "run_id": "a136086499ea", "channel": "uart", "tool": "uart_send", "latency_ms": 1404.4412139992346, "ok": true}
+{"ts": 1792245871.5128336, "type": "tool_call", "run_id": "a136086499ea", "name": "uart_send", "channel": "uart", "ok": true, "error": null, "latency_ms": 1404.1895190021023}
+{"ts": 1792245871.5129094, "type": "target_interaction", "run_id": "a136086499ea", "channel": "uart", "tool": "uart_send", "latency_ms": 1404.1895190021023, "ok": true}
+{"ts": 1792245872.9165432, "type": "tool_call", "run_id": "a136086499ea", "name": "uart_send", "channel": "uart", "ok": true, "error": null, "latency_ms": 1403.558147001604}
+{"ts": 1792245872.916609, "type": "target_interaction", "run_id": "a136086499ea", "channel": "uart", "tool": "uart_send", "latency_ms": 1403.558147001604, "ok": true}
+{"ts": 1792245874.3208947, "type": "tool_call", "run_id": "a136086499ea", "name": "uart_send", "channel": "uart", "ok": true, "error": null, "latency_ms": 1404.2250029960996}
+{"ts": 1792245874.3441577, "type": "target_interaction", "run_id": "a136086499ea", "channel": "uart", "tool": "uart_send", "latency_ms": 1404.2250029960996, "ok": true}
+{"ts": 1792245875.7483125, "type": "tool_call", "run_id": "a136086499ea", "name": "uart_send", "channel": "uart", "ok": true, "error": null, "latency_ms": 1403.9410070035956}
+{"ts": 1792245875.7483804, "type": "target_interaction", "run_id": "a136086499ea", "channel": "uart", "tool": "uart_send", "latency_ms": 1403.9410070035956, "ok": true}
+{"ts": 1792245877.1551902, "type": "tool_call", "run_id": "a136086499ea", "name": "uart_send", "channel": "uart", "ok": true, "error": null, "latency_ms": 1406.7470919981133}
+{"ts": 1792245877.1552587, "type": "target_interaction", "run_id": "a136086499ea", "channel": "uart", "tool": "uart_send", "latency_ms": 1406.7470919981133, "ok": true}
+{"ts": 1792245879.1610718, "type": "tool_call", "run_id": "a136086499ea", "name": "uart_send", "channel": "uart", "ok": true, "error": null, "latency_ms": 2005.747325005359}
+{"ts": 1792245879.1611402, "type": "target_interaction", "run_id": "a136086499ea", "channel": "uart", "tool": "uart_send", "latency_ms": 2005.747325005359, "ok": true}
+{"ts": 1792245881.1664453, "type": "tool_call", "run_id": "a136086499ea", "name": "uart_send", "channel": "uart", "ok": true, "error": null, "latency_ms": 2005.242758001259}
+{"ts": 1792245881.1665113, "type": "target_interaction", "run_id": "a136086499ea", "channel": "uart", "tool": "uart_send", "latency_ms": 2005.242758001259, "ok": true}
+{"ts": 1792245882.9719017, "type": "tool_call", "run_id": "a136086499ea", "name": "uart_send", "channel": "uart", "ok": true, "error": null, "latency_ms": 1805.3172130021267}
+{"ts": 1792245882.9719992, "type": "target_interaction", "run_id": "a136086499ea", "channel": "uart", "tool": "uart_send", "latency_ms": 1805.3172130021267, "ok": true}
+{"ts": 1792245884.9766812, "type": "tool_call", "run_id": "a136086499ea", "name": "uart_send", "channel": "uart", "ok": true, "error": null, "latency_ms": 2004.5769790012855}
+{"ts": 1792245884.9767315, "type": "target_interaction", "run_id": "a136086499ea", "channel": "uart", "tool": "uart_send", "latency_ms": 2004.5769790012855, "ok": true}
+{"ts": 1792245886.9812655, "type": "tool_call", "run_id": "a136086499ea", "name": "uart_send", "channel": "uart", "ok": true, "error": null, "latency_ms": 2004.4766400023946}
+{"ts": 1792245886.98133, "type": "target_interaction", "run_id": "a136086499ea", "channel": "uart", "tool": "uart_send", "latency_ms": 2004.4766400023946, "ok": true}
+{"ts": 1792245888.9866402, "type": "tool_call", "run_id": "a136086499ea", "name": "uart_send", "channel": "uart", "ok": true, "error": null, "latency_ms": 2005.248647998087}
+{"ts": 1792245888.9867072, "type": "target_interaction", "run_id": "a136086499ea", "channel": "uart", "tool": "uart_send", "latency_ms": 2005.248647998087, "ok": true}
+{"ts": 1792245891.9354274, "type": "tool_call", "run_id": "a136086499ea", "name": "uart_send", "channel": "uart", "ok": true, "error": null, "latency_ms": 1404.7394459994393}
+{"ts": 1792245891.9354982, "type": "target_interaction", "run_id": "a136086499ea", "channel": "uart", "tool": "uart_send", "latency_ms": 1404.7394459994393, "ok": true}
+{"ts": 1792245893.9409444, "type": "tool_call", "run_id": "a136086499ea", "name": "uart_send", "channel": "uart", "ok": true, "error": null, "latency_ms": 2005.3639129982912}
+{"ts": 1792245893.9410105, "type": "target_interaction", "run_id": "a136086499ea", "channel": "uart", "tool": "uart_send", "latency_ms": 2005.3639129982912, "ok": true}
+{"ts": 1792245895.9456906, "type": "tool_call", "run_id": "a136086499ea", "name": "uart_send", "channel": "uart", "ok": true, "error": null, "latency_ms": 2004.6143050058163}
+{"ts": 1792245895.9457865, "type": "target_interaction", "run_id": "a136086499ea", "channel": "uart", "tool": "uart_send", "latency_ms": 2004.6143050058163, "ok": true}
+{"ts": 1792245897.7540846, "type": "tool_call", "run_id": "a136086499ea", "name": "uart_send", "channel": "uart", "ok": true, "error": null, "latency_ms": 1808.201079002174}
+{"ts": 1792245897.7557945, "type": "target_interaction", "run_id": "a136086499ea", "channel": "uart", "tool": "uart_send", "latency_ms": 1808.201079002174, "ok": true}
+{"ts": 1792245899.7608469, "type": "tool_call", "run_id": "a136086499ea", "name": "uart_send", "channel": "uart", "ok": true, "error": null, "latency_ms": 2004.9099259995273}
+{"ts": 1792245899.7609162, "type": "target_interaction", "run_id": "a136086499ea", "channel": "uart", "tool": "uart_send", "latency_ms": 2004.9099259995273, "ok": true}
+{"ts": 1792245901.7665741, "type": "tool_call", "run_id": "a136086499ea", "name": "uart_send", "channel": "uart", "ok": true, "error": null, "latency_ms": 2005.588516993157}
+{"ts": 1792245901.7666657, "type": "target_interaction", "run_id": "a136086499ea", "channel": "uart", "tool": "uart_send", "latency_ms": 2005.588516993157, "ok": true}
+{"ts": 1792245903.7721462, "type": "tool_call", "run_id": "a136086499ea", "name": "uart_send", "channel": "uart", "ok": true, "error": null, "latency_ms": 2005.3877550017205}
+{"ts": 1792245903.772213, "type": "target_interaction", "run_id": "a136086499ea", "channel": "uart", "tool": "uart_send", "latency_ms": 2005.3877550017205, "ok": true}
+{"ts": 1792245905.7771115, "type": "tool_call", "run_id": "a136086499ea", "name": "uart_send", "channel": "uart", "ok": true, "error": null, "latency_ms": 2004.83599799918}
+{"ts": 1792245905.7771847, "type": "target_interaction", "run_id": "a136086499ea", "channel": "uart", "tool": "uart_send", "latency_ms": 2004.83599799918, "ok": true}
+{"ts": 1792245907.7815526, "type": "tool_call", "run_id": "a136086499ea", "name": "uart_send", "channel": "uart", "ok": true, "error": null, "latency_ms": 2004.3026420025853}
+{"ts": 1792245907.781609, "type": "target_interaction", "run_id": "a136086499ea", "channel": "uart", "tool": "uart_send", "latency_ms": 2004.3026420025853, "ok": true}
+{"ts": 1792245909.787216, "type": "tool_call", "run_id": "a136086499ea", "name": "uart_send", "channel": "uart", "ok": true, "error": null, "latency_ms": 2005.5433380039176}
+{"ts": 1792245909.7872934, "type": "target_interaction", "run_id": "a136086499ea", "channel": "uart", "tool": "uart_send", "latency_ms": 2005.5433380039176, "ok": true}
+{"ts": 1792245911.7928696, "type": "tool_call", "run_id": "a136086499ea", "name": "uart_send", "channel": "uart", "ok": true, "error": null, "latency_ms": 2005.5015030011418}
+{"ts": 1792245911.7929404, "type": "target_interaction", "run_id": "a136086499ea", "channel": "uart", "tool": "uart_send", "latency_ms": 2005.5015030011418, "ok": true}
+{"ts": 1792245913.7985108, "type": "tool_call", "run_id": "a136086499ea", "name": "uart_send", "channel": "uart", "ok": true, "error": null, "latency_ms": 2005.5065159976948}
+{"ts": 1792245913.7986028, "type": "target_interaction", "run_id": "a136086499ea", "channel": "uart", "tool": "uart_send", "latency_ms": 2005.5065159976948, "ok": true}
+{"ts": 1792245915.8035498, "type": "tool_call", "run_id": "a136086499ea", "name": "uart_send", "channel": "uart", "ok": true, "error": null, "latency_ms": 2004.8763459999464}
+{"ts": 1792245915.8036025, "type": "target_interaction", "run_id": "a136086499ea", "channel": "uart", "tool": "uart_send", "latency_ms": 2004.8763459999464, "ok": true}
+{"ts": 1792245917.80828, "type": "tool_call", "run_id": "a136086499ea", "name": "uart_send", "channel": "uart", "ok": true, "error": null, "latency_ms": 2004.620558996976}
+{"ts": 1792245917.808348, "type": "target_interaction", "run_id": "a136086499ea", "channel": "uart", "tool": "uart_send", "latency_ms": 2004.620558996976, "ok": true}
+{"ts": 1792245920.711659, "type": "tool_call", "run_id": "a136086499ea", "name": "uart_send", "channel": "uart", "ok": true, "error": null, "latency_ms": 1404.2505109973717}
+{"ts": 1792245920.7117517, "type": "target_interaction", "run_id": "a136086499ea", "channel": "uart", "tool": "uart_send", "latency_ms": 1404.2505109973717, "ok": true}
+{"ts": 1792245922.7173488, "type": "tool_call", "run_id": "a136086499ea", "name": "uart_send", "channel": "uart", "ok": true, "error": null, "latency_ms": 2005.5172129941639}
+{"ts": 1792245922.7183745, "type": "target_interaction", "run_id": "a136086499ea", "channel": "uart", "tool": "uart_send", "latency_ms": 2005.5172129941639, "ok": true}
+{"ts": 1792245924.7238734, "type": "tool_call", "run_id": "a136086499ea", "name": "uart_send", "channel": "uart", "ok": true, "error": null, "latency_ms": 2005.4007770013413}
+{"ts": 1792245924.72394, "type": "target_interaction", "run_id": "a136086499ea", "channel": "uart", "tool": "uart_send", "latency_ms": 2005.4007770013413, "ok": true}
+{"ts": 1792245926.7300203, "type": "tool_call", "run_id": "a136086499ea", "name": "uart_send", "channel": "uart", "ok": true, "error": null, "latency_ms": 2006.0139220004203}
+{"ts": 1792245926.7301075, "type": "target_interaction", "run_id": "a136086499ea", "channel": "uart", "tool": "uart_send", "latency_ms": 2006.0139220004203, "ok": true}
+{"ts": 1792245928.5331738, "type": "tool_call", "run_id": "a136086499ea", "name": "uart_send", "channel": "uart", "ok": true, "error": null, "latency_ms": 1802.9790879954817}
+{"ts": 1792245928.5332413, "type": "target_interaction", "run_id": "a136086499ea", "channel": "uart", "tool": "uart_send", "latency_ms": 1802.9790879954817, "ok": true}
+{"ts": 1792245930.5365381, "type": "tool_call", "run_id": "a136086499ea", "name": "uart_send", "channel": "uart", "ok": true, "error": null, "latency_ms": 2003.2239430001937}
+{"ts": 1792245930.5366077, "type": "target_interaction", "run_id": "a136086499ea", "channel": "uart", "tool": "uart_send", "latency_ms": 2003.2239430001937, "ok": true}
+{"ts": 1792245932.540289, "type": "tool_call", "run_id": "a136086499ea", "name": "uart_send", "channel": "uart", "ok": true, "error": null, "latency_ms": 2003.6154569970677}
+{"ts": 1792245932.5403605, "type": "target_interaction", "run_id": "a136086499ea", "channel": "uart", "tool": "uart_send", "latency_ms": 2003.6154569970677, "ok": true}
+{"ts": 1792245934.5439026, "type": "tool_call", "run_id": "a136086499ea", "name": "uart_send", "channel": "uart", "ok": true, "error": null, "latency_ms": 2003.4649949957384}
+{"ts": 1792245934.543984, "type": "target_interaction", "run_id": "a136086499ea", "channel": "uart", "tool": "uart_send", "latency_ms": 2003.4649949957384, "ok": true}
+{"ts": 1792245936.5477095, "type": "tool_call", "run_id": "a136086499ea", "name": "uart_send", "channel": "uart", "ok": true, "error": null, "latency_ms": 2003.6370900052134}
+{"ts": 1792245936.5478013, "type": "target_interaction", "run_id": "a136086499ea", "channel": "uart", "tool": "uart_send", "latency_ms": 2003.6370900052134, "ok": true}
+{"ts": 1792245938.551934, "type": "tool_call", "run_id": "a136086499ea", "name": "uart_send", "channel": "uart", "ok": true, "error": null, "latency_ms": 2004.037034996145}
+{"ts": 1792245938.5520244, "type": "target_interaction", "run_id": "a136086499ea", "channel": "uart", "tool": "uart_send", "latency_ms": 2004.037034996145, "ok": true}
+{"ts": 1792245940.5561333, "type": "tool_call", "run_id": "a136086499ea", "name": "uart_send", "channel": "uart", "ok": true, "error": null, "latency_ms": 2004.0122979989974}
+{"ts": 1792245940.5562232, "type": "target_interaction", "run_id": "a136086499ea", "channel": "uart", "tool": "uart_send", "latency_ms": 2004.0122979989974, "ok": true}
+{"ts": 1792245942.5603569, "type": "tool_call", "run_id": "a136086499ea", "name": "uart_send", "channel": "uart", "ok": true, "error": null, "latency_ms": 2004.0429869986838}
+{"ts": 1792245942.5604398, "type": "target_interaction", "run_id": "a136086499ea", "channel": "uart", "tool": "uart_send", "latency_ms": 2004.0429869986838, "ok": true}
+{"ts": 1792245944.5646772, "type": "tool_call", "run_id": "a136086499ea", "name": "uart_send", "channel": "uart", "ok": true, "error": null, "latency_ms": 2004.1555850039003}
+{"ts": 1792245944.5647671, "type": "target_interaction", "run_id": "a136086499ea", "channel": "uart", "tool": "uart_send", "latency_ms": 2004.1555850039003, "ok": true}
+{"ts": 1792245946.569227, "type": "tool_call", "run_id": "a136086499ea", "name": "uart_send", "channel": "uart", "ok": true, "error": null, "latency_ms": 2004.3667510035448}
+{"ts": 1792245946.5919223, "type": "target_interaction", "run_id": "a136086499ea", "channel": "uart", "tool": "uart_send", "latency_ms": 2004.3667510035448, "ok": true}
+{"ts": 1792245949.8577995, "type": "tool_call", "run_id": "a136086499ea", "name": "uart_send", "channel": "uart", "ok": true, "error": null, "latency_ms": 1403.2491439938894}
+{"ts": 1792245949.8578675, "type": "target_interaction", "run_id": "a136086499ea", "channel": "uart", "tool": "uart_send", "latency_ms": 1403.2491439938894, "ok": true}
+{"ts": 1792245951.863364, "type": "tool_call", "run_id": "a136086499ea", "name": "uart_send", "channel": "uart", "ok": true, "error": null, "latency_ms": 2005.4325930032064}
+{"ts": 1792245951.8634446, "type": "target_interaction", "run_id": "a136086499ea", "channel": "uart", "tool": "uart_send", "latency_ms": 2005.4325930032064, "ok": true}

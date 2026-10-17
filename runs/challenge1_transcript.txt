@@ -3169,3 +3169,148 @@ Supported characters: lowercase letters (a-z), spaces ( ), and special character
 >>> 'helpdesk'
 <<< no command starts with helpdesk
 [RATE-LIMIT] Failed attempt (4). Penalty delay: 80 ms.
+--- recherche par dictionnaire (prefixe de depart='') ---
+>>> 'help'
+<<< one or more commands start with help
+This help menu is outdated. System commands have been reorganized.
+Supported characters: lowercase letters (a-z), spaces ( ), and special characters (!, @, -, _).
+--- recherche par dictionnaire (prefixe de depart='') ---
+>>> 'help'
+<<< one or more commands start with help
+This help menu is outdated. System commands have been reorganized.
+Supported characters: lowercase letters (a-z), spaces ( ), and special characters (!, @, -, _).
+>>> 'helpsystem'
+<<< no command starts with helpsystem
+[RATE-LIMIT] Failed attempt (1). Penalty delay: 10 ms.
+>>> 'helpstatus'
+<<< no command starts with helpstatus
+[RATE-LIMIT] Failed attempt (2). Penalty delay: 20 ms.
+>>> 'helpinfo'
+<<< no command starts with helpinfo
+[RATE-LIMIT] Failed attempt (3). Penalty delay: 40 ms.
+>>> 'helpconfig'
+<<< no command starts with helpconfig
+[RATE-LIMIT] Failed attempt (4). Penalty delay: 80 ms.
+>>> 'helpversion'
+<<< no command starts with helpversion
+[RATE-LIMIT] Failed attempt (5). Penalty delay: 160 ms.
+>>> 'helpdebug'
+<<< no command starts with helpdebug
+[RATE-LIMIT] Failed attempt (6). Penalty delay: 320 ms.
+>>> 'helpadmin'
+<<< no command starts with helpadmin
+[RATE-LIMIT] Failed attempt (7). Penalty delay: 640 ms.
+>>> 'helpnetwork'
+<<< no command starts with helpnetwork
+[RATE-LIMIT] Failed attempt (8). Penalty delay: 1280 ms.
+>>> 'helpwifi'
+<<< no command starts with helpwifi
+[RATE-LIMIT] Failed attempt (9). Penalty delay: 2000 ms.
+>>> 'helpreboot'
+<<< no command starts with helpreboot
+[RATE-LIMIT] Failed attempt (10). Penalty delay: 2000 ms.
+>>> 'helpupdate'
+<<< no command starts with helpupdate
+[RATE-LIMIT] Failed attempt (11). Penalty delay: 2000 ms.
+>>> 'helpshow'
+<<< no command starts with helpshow
+[RATE-LIMIT] Failed attempt (12). Penalty delay: 2000 ms.
+>>> 'helplist'
+<<< no command starts with helplist
+[RATE-LIMIT] Failed attempt (13). Penalty delay: 2000 ms.
+>>> 'helpset'
+<<< no command starts with helpset
+[RATE-LIMIT] Failed attempt (14). Penalty delay: 2000 ms.
+>>> 'helpget'
+<<< no command starts with helpget
+[RATE-LIMIT] Failed attempt (15). Penalty delay: 2000 ms.
+>>> 'help-h'
+<<< no command starts with help-h
+[RATE-LIMIT] Failed attempt (16). Penalty delay: 2000 ms.
+>>> 'help--help'
+<<< no command starts with help--help
+[RATE-LIMIT] Failed attempt (17). Penalty delay: 2000 ms.
+>>> 'helpall'
+<<< no command starts with helpall
+[RATE-LIMIT] Failed attempt (18). Penalty delay: 2000 ms.
+>>> 'helpmenu'
+<<< no command starts with helpmenu
+[RATE-LIMIT] Failed attempt (19). Penalty delay: 2000 ms.
+>>> 'helpcmd'
+<<< no command starts with helpcmd
+[RATE-LIMIT] Failed attempt (20). Penalty delay: 2000 ms.
+>>> 'helpcommands'
+<<< no command starts with helpcommands
+[RATE-LIMIT] Failed attempt (21). Penalty delay: 2000 ms.
+>>> 'helpusage'
+<<< no command starts with helpusage
+[RATE-LIMIT] Failed attempt (22). Penalty delay: 2000 ms.
+>>> 'helpmanual'
+<<< no command starts with helpmanual
+[RATE-LIMIT] Failed attempt (23). Penalty delay: 2000 ms.
+>>> 'helpdocs'
+<<< no command starts with helpdocs
+[RATE-LIMIT] Failed attempt (24). Penalty delay: 2000 ms.
+>>> 'helpdetails'
+<<< no command starts with helpdetails
+[RATE-LIMIT] Failed attempt (25). Penalty delay: 2000 ms.
+>>> 'help1'
+<<< no command starts with help1
+[RATE-LIMIT] Failed attempt (26). Penalty delay: 2000 ms.
+>>> 'help2'
+<<< no command starts with help2
+[RATE-LIMIT] Failed attempt (27). Penalty delay: 2000 ms.
+>>> 'helpfull'
+<<< no command starts with helpfull
+[RATE-LIMIT] Failed attempt (28). Penalty delay: 2000 ms.
+>>> 'helpshort'
+<<< no command starts with helpshort
+[RATE-LIMIT] Failed attempt (29). Penalty delay: 2000 ms.
+>>> 'help_'
+<<< no command starts with help_
+[RATE-LIMIT] Failed attempt (30). Penalty delay: 2000 ms.
+>>> 'help.'
+<<< no command starts with help.
+[RATE-LIMIT] Failed attempt (31). Penalty delay: 2000 ms.
+>>> 'help-v'
+<<< no command starts with help-v
+[RATE-LIMIT] Failed attempt (32). Penalty delay: 2000 ms.
+>>> 'help--version'
+<<< no command starts with help--version
+[RATE-LIMIT] Failed attempt (33). Penalty delay: 2000 ms.
+>>> 'help-d'
+<<< no command starts with help-d
+[RATE-LIMIT] Failed attempt (34). Penalty delay: 2000 ms.
+>>> 'help-f'
+<<< no command starts with help-f
+[RATE-LIMIT] Failed attempt (35). Penalty delay: 2000 ms.
+>>> 'help-s'
+<<< no command starts with help-s
+[RATE-LIMIT] Failed attempt (36). Penalty delay: 2000 ms.
+>>> 'help-a'
+<<< no command starts with help-a
+[RATE-LIMIT] Failed attempt (37). Penalty delay: 2000 ms.
+>>> 'help-c'
+<<< no command starts with help-c
+[RATE-LIMIT] Failed attempt (38). Penalty delay: 2000 ms.
+>>> 'help-i'
+<<< no command starts with help-i
+[RATE-LIMIT] Failed attempt (39). Penalty delay: 2000 ms.
+>>> 'help-n'
+<<< no command starts with help-n
+[RATE-LIMIT] Failed attempt (40). Penalty delay: 2000 ms.
+>>> 'help-t'
+<<< no command starts with help-t
+[RATE-LIMIT] Failed attempt (41). Penalty delay: 2000 ms.
+>>> 'help-u'
+<<< no command starts with help-u
+[RATE-LIMIT] Failed attempt (42). Penalty delay: 2000 ms.
+>>> 'help-x'
+<<< no command starts with help-x
+[RATE-LIMIT] Failed attempt (43). Penalty delay: 2000 ms.
+>>> 'helphelp'
+<<< no command starts with helphelp
+[RATE-LIMIT] Failed attempt (44). Penalty delay: 2000 ms.
+>>> 'helpping'
+<<< no command starts with helpping
+[RATE-LIMIT] Failed attempt (45). Penalty delay: 2000 ms.
