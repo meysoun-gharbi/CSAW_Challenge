@@ -67,10 +67,33 @@ _PRIORITY_CHARS: list[str] = (
 )
 
 
+def _has_extra_output(resp_text: str) -> bool:
+    """Vrai si la reponse contient du texte EN PLUS de la simple ligne de
+    confirmation d'oracle ('one or more commands start with ...').
+
+    Observe sur le firmware reel: 'help' renvoie A LA FOIS la confirmation
+    de prefixe valide ET un vrai texte explicatif derriere (menu d'aide
+    perime). C'est le signe qu'on vient d'EXECUTER une commande COMPLETE,
+    pas juste confirme un prefixe intermediaire -- il faut donc arreter de
+    continuer a epeler des caracteres et lire cette sortie, plutot que de
+    continuer a tester 'helph', 'helpl', 'helps'... pour rien.
+    """
+    lines = [l for l in resp_text.splitlines() if l.strip()]
+    if not lines or not _VALID_RE.search(lines[0]):
+        return False
+    return len(lines) > 1
+
+
 def classify_oracle_response(resp_text: str) -> str:
-    """Renvoie 'valid' | 'invalid' | 'executed'."""
+    """Renvoie 'valid' | 'invalid' | 'executed'.
+
+    'executed' couvre aussi le cas "double nature": prefixe confirme valide
+    MAIS avec un vrai texte de sortie derriere (voir `_has_extra_output`) --
+    la chaine testee est alors elle-meme une commande complete, pas juste un
+    prefixe a prolonger.
+    """
     if _VALID_RE.search(resp_text):
-        return "valid"
+        return "executed" if _has_extra_output(resp_text) else "valid"
     if _INVALID_RE.search(resp_text):
         return "invalid"
     # essaie de parser du JSON generique d'erreur (le firmware ne suit pas
@@ -336,6 +359,13 @@ def run_dictionary_search(
     else:
         note += (" Aucune sous-commande/option detectee juste apres "
                  "(espace/-/-- testes): cette commande semble terminale.")
+    _DECOY_WORDS = ("outdated", "legacy", "deprecated", "reorganized", "obsolete")
+    if any(w in last_text.lower() for w in _DECOY_WORDS):
+        note += (" ATTENTION: le vocabulaire de cette sortie ('outdated'/'legacy'/"
+                 "'reorganized'...) ressemble a un LEURRE delibere qui t'invite a "
+                 "continuer a explorer CETTE branche en vain. Vu qu'aucune extension "
+                 "n'a ete trouvee, ABANDONNE cette piste et explore un AUTRE prefixe "
+                 "racine plutot que d'insister ici.")
     log(f"extensions testees pour {prefix!r}: {extensions}")
     return {
         "ok": True, "status": "executed",
