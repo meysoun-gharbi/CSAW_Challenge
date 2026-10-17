@@ -306,12 +306,16 @@ def register_tools(reg: ToolRegistry, backend: RealSerialBackend,
             ToolSpec(
                 name="oracle_dictionary_search",
                 description=(
-                    "Explore l'oracle de prefixe UART EFFICACEMENT: un stratege "
-                    "(cloud) propose des dictionnaires de mots candidats "
-                    "(inspires de commandes Linux/CLI), et chaque mot est teste "
-                    "automatiquement contre l'oracle jusqu'a trouver une commande "
-                    "COMPLETE qui s'execute, ou jusqu'a epuisement. A PREFERER a "
-                    "uart_send caractere par caractere: bien plus efficace. "
+                    "Explore l'oracle de prefixe UART EFFICACEMENT ET GRATUITEMENT "
+                    "(zero appel LLM dans l'immense majorite des cas): prolonge le "
+                    "prefixe UN CARACTERE a la fois, en code, dans un ordre de "
+                    "priorite (lettres les plus frequentes en CLI/Linux, puis "
+                    "separateurs), jusqu'a trouver une commande COMPLETE qui "
+                    "s'execute. Un stratege cloud n'est sollicite qu'en DERNIER "
+                    "RECOURS (cas rare: meme l'alphabet complet ne prolonge rien). "
+                    "A PREFERER a uart_send caractere par caractere TOI-MEME: "
+                    "meme strategie, mais executee par le code (gratuit) au lieu "
+                    "de te couter un appel a chaque caractere. "
                     "Renvoie soit une sortie de commande executee (a interpreter "
                     "toi-meme: peut contenir un indice), soit un flag detecte, "
                     "soit un signal d'epuisement (essaie alors autre chose, ex: "
