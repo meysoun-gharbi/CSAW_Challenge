@@ -306,31 +306,36 @@ def register_tools(reg: ToolRegistry, backend: RealSerialBackend,
             ToolSpec(
                 name="oracle_dictionary_search",
                 description=(
-                    "Explore l'oracle de prefixe UART EFFICACEMENT ET GRATUITEMENT "
-                    "(zero appel LLM dans l'immense majorite des cas): prolonge le "
-                    "prefixe UN CARACTERE a la fois, en code, dans un ordre de "
-                    "priorite (lettres les plus frequentes en CLI/Linux, puis "
-                    "separateurs), jusqu'a trouver une commande COMPLETE qui "
-                    "s'execute. Un stratege cloud n'est sollicite qu'en DERNIER "
-                    "RECOURS (cas rare: meme l'alphabet complet ne prolonge rien). "
-                    "A PREFERER a uart_send caractere par caractere TOI-MEME: "
-                    "meme strategie, mais executee par le code (gratuit) au lieu "
-                    "de te couter un appel a chaque caractere. "
-                    "Renvoie soit une sortie de commande executee (a interpreter "
-                    "toi-meme: peut contenir un indice), soit un flag detecte, "
-                    "soit un signal d'epuisement (essaie alors autre chose, ex: "
-                    "wifi_scan). GRAMMAIRE 'cmd <sous-commande> <--option>': quand "
-                    "une commande s'execute, l'outil teste AUSSI automatiquement si "
-                    "elle accepte une suite (espace -> sous-commande, -/-- -> "
-                    "option) et te le signale dans le champ 'extensions'/'note'; si "
-                    "oui, RAPPELLE cet outil avec prefix=ce prefixe etendu avant de "
-                    "considerer la commande comme terminale. Les requetes UART "
-                    "sous-jacentes comptent normalement dans l'efficacite."
+                    "Explore L'ARBRE COMPLET de l'oracle de prefixe UART, GRATUITEMENT "
+                    "(zero appel LLM dans l'immense majorite des cas): recherche en "
+                    "profondeur caractere par caractere avec RETOUR EN ARRIERE "
+                    "AUTOMATIQUE -- si une branche s'avere un leurre (vocabulaire "
+                    "'outdated'/'legacy'/'reorganized'...) ou un cul-de-sac, l'outil "
+                    "backtrack SEUL et essaie une autre branche, SANS jamais te "
+                    "redemander. N'appelle PLUS JAMAIS cet outil avec un prefixe que "
+                    "TU as devine toi-meme sans l'avoir vu confirme par un appel "
+                    "precedent: appelle-le avec prefix='' UNE SEULE FOIS, il explore "
+                    "TOUT seul (y compris en repartant d'une autre lettre si la "
+                    "premiere menait a un leurre) jusqu'a trouver un flag ou une "
+                    "sortie reellement interessante. Un prefixe invente et non valide "
+                    "est rejete en 1 requete (statut 'invalid_prefix'), ne gaspille "
+                    "jamais des dizaines de requetes a le prolonger en vain. "
+                    "A PREFERER a uart_send caractere par caractere TOI-MEME: meme "
+                    "strategie, mais executee et backtrackee par le code (gratuit) "
+                    "au lieu de te couter un appel a chaque caractere ET a chaque "
+                    "cul-de-sac. Renvoie soit un flag detecte, soit une sortie de "
+                    "commande executee NON-LEURRE (a interpreter toi-meme: peut "
+                    "contenir un indice -- la grammaire 'cmd <sous-commande> "
+                    "<--option>' est deja testee automatiquement, pas besoin de "
+                    "rappeler l'outil pour ca), soit un signal d'epuisement total "
+                    "(essaie alors autre chose, ex: wifi_scan)."
                 ),
                 parameters={"type": "object", "properties": {
                     "prefix": {"type": "string",
-                               "description": "prefixe deja confirme d'ou repartir "
-                                              "(vide par defaut)"}},
+                               "description": "prefixe DEJA CONFIRME valide d'ou "
+                                              "repartir (laisse vide '' par defaut -- "
+                                              "l'outil explore tout seul, ne devine "
+                                              "jamais un prefixe ici)"}},
                     "required": []},
             ),
             Channel.STATIC,  # les uart_send internes sont deja comptes individuellement
