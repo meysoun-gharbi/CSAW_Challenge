@@ -1,40 +1,49 @@
-"""Recherche de prefixe UART — moteur caractere-par-caractere GRATUIT (code),
-cloud en filet de secours rare.
+"""Recherche de prefixe UART — moteur DFS caractere-par-caractere GRATUIT
+(code), avec retour en arriere automatique sur les leurres, cloud en filet
+de secours rare.
 
-Constat empirique (run du 17/10, modele gemini-flash-lite-latest): demander
-au cloud des DICTIONNAIRES DE MOTS ENTIERS a devine' 19 mots de suite sans
-qu'aucun ne marche, en faisant grimper la penalite de rate-limit pour rien.
+Historique des deux bugs empiriques qui ont motive cette version (runs du
+17/10, modele gemini-flash-lite-latest):
 
-Raison structurelle (pas juste de la malchance): sur un ORACLE DE PREFIXE,
-si "help"+MOT est une commande valide pour un mot entier MOT, alors
-"help"+MOT[0] (son seul 1er caractere) est TOUJOURS valide aussi — un
-prefixe d'un prefixe valide reste un prefixe valide. Deviner un mot entier
-d'un coup est donc un PARI qui peut echouer indefiniment, alors qu'avancer
-UN SEUL CARACTERE a la fois, dans un bon ordre de priorite (lettres les
-plus frequentes en CLI/Linux, puis separateurs), est GARANTI de trouver la
-suite si elle existe (au plus ~32 essais par niveau, l'alphabet autorise
-etant petit: a-z + espace + ! @ - _).
+1) Demander au cloud des DICTIONNAIRES DE MOTS ENTIERS a devine 19 mots de
+   suite sans qu'aucun ne marche. Raison structurelle, pas de la malchance:
+   sur un ORACLE DE PREFIXE, si prefixe+MOT est valide pour un mot entier,
+   alors prefixe+MOT[0] (son 1er caractere seul) est TOUJOURS valide aussi
+   -- avancer un caractere a la fois est donc GARANTI de trouver la suite
+   si elle existe, alors que deviner un mot entier est un pari qui peut
+   echouer indefiniment. -> moteur caractere-par-caractere (quick_extend,
+   version 1).
 
-Architecture retenue (fusion des deux approches precedentes):
-  - MOTEUR PRINCIPAL = extension caractere-par-caractere, en CODE (fonction
-    `quick_extend`), ZERO appel LLM, peu importe le nombre de caracteres
-    testes. C'est la methode qu'un humain ferait en CTF (teste les lettres
-    les plus evidentes, verrouille la bonne, prolonge), mais executee en
-    boucle par le code au lieu de couter 1 appel cloud par caractere.
-  - LE CLOUD (rare, cher mais intelligent) n'intervient QUE dans le cas
+2) Cette version 1 s'arretait au PREMIER caractere qui prolonge un niveau
+   et ne revenait JAMAIS en arriere. Resultat observe en live: 'h' prolonge
+   en 'help', qui s'avere etre un leurre ('This help menu is outdated...')
+   -- mais comme le code ne testait plus JAMAIS 'l', 's', 'm', etc. au
+   niveau racine (il s'etait arrete au premier 'h' qui marchait), l'AGENT
+   (LLM) a du deviner lui-meme d'autres lettres de depart ('s', 'c', 'f',
+   'd') pour continuer a chercher -- gaspillant des dizaines de requetes a
+   chaque mauvaise lettre devinee (si la lettre elle-meme n'etait pas un
+   prefixe valide, TOUT l'alphabet etait quand meme teste en vain derriere).
+
+Architecture retenue (DFS complet, backtrack automatique, zero appel LLM
+intermediaire):
+  - A chaque niveau, on teste TOUS les candidats de `_PRIORITY_CHARS` dans
+    l'ordre de priorite; pour CHAQUE candidat valide, on descend
+    recursivement. Si la branche s'avere un cul-de-sac (leurre explicite,
+    ou aucune sortie), on CONTINUE la boucle du niveau courant avec le
+    candidat SUIVANT au lieu de remonter a l'agent -- exactement ce qu'un
+    humain ferait ("ok 'help' c'est du vent, je retourne essayer autre
+    chose depuis la racine", sans avoir besoin qu'on le lui dise).
+  - Le cloud (rare, cher mais intelligent) n'intervient QUE dans le cas
     pathologique ou meme l'alphabet complet ne prolonge rien depuis le
-    prefixe vide (situation qui ne devrait normalement jamais arriver sur
-    cet oracle) — comme idee de secours, pas comme strategie principale.
-  - Des qu'une commande COMPLETE s'execute (plus aucun caractere ne la
-    prolonge), on teste sa grammaire 'cmd <sous-commande> <--option>'
-    (`probe_extensions`, deja gratuite) puis on remonte sa sortie telle
-    quelle a l'agent appelant: c'est un indice CTF a interpreter, pas a
-    nous d'en decider ici.
+    prefixe vide ET qu'aucune branche n'a produit le moindre contenu.
+  - On ne remonte a l'agent QUE sur: un flag detecte, OU une sortie
+    'executee' qui n'a pas le vocabulaire d'un leurre explicite (quelque
+    chose a potentiellement interpreter), OU un epuisement total.
 
-Cout attendu: 0 appel LLM dans l'immense majorite des cas (le cloud ne sert
-plus que de filet de secours quasi jamais sollicite); le nombre de requetes
-UART reste petit car chaque caractere teste fait soit progresser le prefixe,
-soit elimine definitivement une piste.
+Cout attendu: 0 appel LLM pour tout le graphe de recherche (peu importe sa
+taille ou son nombre de leurres); le nombre de requetes UART reste le seul
+cout, et chaque requete fait soit progresser une branche, soit l'elimine
+definitivement (jamais retestee).
 """
 from __future__ import annotations
 
@@ -43,28 +52,36 @@ import re
 
 from ..llm.base import LLMClient, Message, ToolSpec
 
-# Patterns connus de l'oracle (observes sur le firmware reel). On reste
-# tolerant: si la reponse ne correspond a AUCUN pattern connu d'echec/oracle,
-# on la traite comme une execution COMPLETE (hypothese la plus utile: mieux
-# vaut remonter une fausse sortie "executee" a l'agent, qui saura dire que ca
-# ne ressemble a rien, que de rater une vraie sortie en la classant a tort
-# comme 'invalide').
+# Patterns connus de l'oracle (observes sur le firmware reel).
 _VALID_RE = re.compile(r"one or more commands start with", re.IGNORECASE)
 _INVALID_RE = re.compile(r"no command starts? with", re.IGNORECASE)
 # Forme JSON generique observee en pratique sur ce firmware pour un rejet:
 # {"event":"error","reason":"unknown_command"} (ou variantes proches).
 _JSON_ERROR_HINTS = ("unknown_command", "unknown command", "invalid_command")
 
+# Vocabulaire explicite de LEURRE observe sur le firmware reel ('help' dit
+# "this help menu is outdated... reorganized"). Quand une sortie "executee"
+# contient ces mots ET qu'aucune extension ne la prolonge, on backtrack en
+# SILENCE (zero appel agent) plutot que de considerer la branche terminee.
+_DECOY_WORDS = ("outdated", "legacy", "deprecated", "reorganized", "obsolete")
+
 # Ordre de priorite (frequence d'usage reelle en CLI/Linux/BusyBox, PAS
-# alphabetique) pour le balayage caractere-par-caractere. Repris du system
-# prompt de serial_gateway.py, PLUS les chiffres: le firmware reel utilise
-# des commandes comme 'log37' (observe lors d'un run precedent) -- les
-# oublier rendrait ce moteur INCOMPLET. Les chiffres passent apres les
-# lettres (moins frequents en 1ere position de mot) mais avant les
-# separateurs (qui marquent plutot une fin/transition de commande).
+# alphabetique) pour le balayage caractere-par-caractere, PLUS les chiffres
+# (le firmware reel utilise des commandes comme 'log37'). Les separateurs
+# passent en dernier (ils marquent plutot une fin/transition de commande).
 _PRIORITY_CHARS: list[str] = (
     list("hlsmcrditevpabuwnogqkfjxyz") + list("0123456789") + [" ", "!", "@", "-", "_"]
 )
+
+# Combien d'echecs consecutifs avant un reboot GRATUIT (ne compte pas comme
+# requete) pour eviter que la penalite de rate-limit ne plafonne pendant
+# tout le balayage, qui peut couvrir un grand nombre de niveaux/branches.
+_REBOOT_EVERY = 8
+
+
+def _is_decoy(text: str) -> bool:
+    low = text.lower()
+    return any(w in low for w in _DECOY_WORDS)
 
 
 def _has_extra_output(resp_text: str) -> bool:
@@ -74,9 +91,7 @@ def _has_extra_output(resp_text: str) -> bool:
     Observe sur le firmware reel: 'help' renvoie A LA FOIS la confirmation
     de prefixe valide ET un vrai texte explicatif derriere (menu d'aide
     perime). C'est le signe qu'on vient d'EXECUTER une commande COMPLETE,
-    pas juste confirme un prefixe intermediaire -- il faut donc arreter de
-    continuer a epeler des caracteres et lire cette sortie, plutot que de
-    continuer a tester 'helph', 'helpl', 'helps'... pour rien.
+    pas juste confirme un prefixe intermediaire.
     """
     lines = [l for l in resp_text.splitlines() if l.strip()]
     if not lines or not _VALID_RE.search(lines[0]):
@@ -87,11 +102,18 @@ def _has_extra_output(resp_text: str) -> bool:
 def classify_oracle_response(resp_text: str) -> str:
     """Renvoie 'valid' | 'invalid' | 'executed'.
 
+    Une reponse VIDE (ou faite uniquement de blancs) est traitee comme
+    'invalid', pas 'executed': observe en pratique, une reponse vide
+    correspond a un glitch de lecture UART (carte qui redemarre, etc.),
+    jamais a une vraie commande qui "s'execute silencieusement". La traiter
+    comme 'executed' creait des branches fantomes (ex: 'mode developeh')
+    construites sur du bruit, jamais de vraies commandes.
+
     'executed' couvre aussi le cas "double nature": prefixe confirme valide
-    MAIS avec un vrai texte de sortie derriere (voir `_has_extra_output`) --
-    la chaine testee est alors elle-meme une commande complete, pas juste un
-    prefixe a prolonger.
+    MAIS avec un vrai texte de sortie derriere (voir `_has_extra_output`).
     """
+    if not resp_text.strip():
+        return "invalid"
     if _VALID_RE.search(resp_text):
         return "executed" if _has_extra_output(resp_text) else "valid"
     if _INVALID_RE.search(resp_text):
@@ -137,10 +159,10 @@ _DICTIONARY_TOOL = ToolSpec(
 
 _PLANNER_SYSTEM = (
     "Tu es sollicite en DERNIER RECOURS: une recherche caractere-par-caractere "
-    "(gratuite, deterministe) vient d'echouer a prolonger un prefixe sur un "
-    "ORACLE DE PREFIXE UART embarque (ESP32, style CTF) -- situation rare et "
-    "anormale, car normalement tout caractere valide prolonge un prefixe deja "
-    "confirme. Propose des idees DIFFERENTES (mots entiers varies, pas des "
+    "EXHAUSTIVE (gratuite, deterministe, avec retour en arriere automatique) "
+    "vient d'echouer a trouver QUOI QUE CE SOIT depuis le prefixe vide sur un "
+    "ORACLE DE PREFIXE UART embarque (ESP32, style CTF) -- situation tres rare "
+    "et anormale. Propose des idees DIFFERENTES (mots entiers varies, pas des "
     "lettres isolees deja testees) qui pourraient debloquer la recherche. "
     "NE REPETE JAMAIS un mot deja tente (liste fournie). "
     "Reponds UNIQUEMENT en appelant l'outil propose_dictionary."
@@ -179,65 +201,68 @@ def propose_dictionary(
     return [], "le cloud n'a pas appele propose_dictionary"
 
 
-def probe_extensions(reg, candidate: str) -> dict:
-    """Teste structurellement si une commande COMPLETE accepte une sous-commande
-    ou une option, selon la grammaire usuelle 'cmd <sous-commande> <--option>'.
+class _RebootBudget:
+    """Compteur d'echecs consecutifs partage sur tout le DFS (une seule
+    pile d'appels recursifs): declenche un reboot gratuit tous les
+    `_REBOOT_EVERY` echecs, peu importe a quelle profondeur ils arrivent."""
 
-    AUCUN appel LLM: ce ne sont pas des mots a deviner (contenu), juste la
-    syntaxe generique (espace -> sous-commande, '-'/'--' -> option) que toute
-    CLI respecte. Cout: jusqu'a 3 requetes UART de plus par commande trouvee.
+    def __init__(self, reg):
+        self._reg = reg
+        self._fails = 0
+
+    def fail(self) -> None:
+        self._fails += 1
+        if self._fails >= _REBOOT_EVERY:
+            self._reg.execute("reboot", {})
+            self._fails = 0
+
+    def ok(self) -> None:
+        pass  # le compteur n'est remis a zero QUE par un vrai reboot
+
+
+def _dfs(reg, prefix: str, confirmed_text: str | None, budget: _RebootBudget,
+          log) -> dict | None:
+    """Explore recursivement depuis `prefix` (deja confirme valide par
+    l'appelant). `confirmed_text` est la derniere reponse connue POUR CE
+    PREFIXE EXACT si elle contenait une sortie reelle (double nature),
+    sinon None (simple marqueur de prefixe intermediaire sans sortie propre).
+
+    Renvoie un dict FINAL a remonter a l'agent (flag, ou sortie 'executed'
+    non-leurre), ou None si TOUTE cette branche est morte (leurre ou vide)
+    -- dans ce cas l'appelant doit continuer SON PROPRE balayage avec le
+    candidat suivant (backtrack automatique, zero appel agent).
     """
-    extensions: dict[str, dict] = {}
-    for ext, label in ((" ", "subcommand"), (" -", "short_option"), (" --", "long_option")):
-        candidate_ext = candidate + ext
-        result = reg.execute("uart_send", {"command": candidate_ext})
-        resp_text = result.get("response", "") if isinstance(result, dict) else ""
-        kind = classify_oracle_response(resp_text)
-        extensions[label] = {"prefix": candidate_ext, "available": kind == "valid"}
-    return extensions
-
-
-def quick_extend(reg, prefix: str) -> tuple[dict | None, list[str]]:
-    """Essaie de prolonger `prefix` d'UN caractere, en code, ZERO appel LLM.
-
-    Teste les candidats de `_PRIORITY_CHARS` (lettres les plus frequentes en
-    CLI/Linux d'abord, puis separateurs) dans l'ordre, s'arrete au premier
-    qui prolonge effectivement le prefixe (reponse 'valid' ou 'executed').
-
-    Renvoie (resultat, log_des_tentatives):
-      - resultat=None               : AUCUN caractere ne prolonge `prefix`
-                                       (donc `prefix` est deja une commande
-                                       COMPLETE: plus rien a y ajouter).
-      - resultat={'flag': ...}      : flag trouve directement.
-      - resultat={'prefix','kind','text'} : nouveau prefixe plus profond
-                                       ('kind' == 'valid' -> continuer a
-                                       prolonger; 'kind' == 'executed' ->
-                                       commande complete trouvee directement).
-    """
-    # Balayer jusqu'a ~31 caracteres par niveau peut faire grimper la penalite
-    # de rate-limit du firmware au plafond. `reboot` ne compte PAS comme une
-    # requete (voir register_tools): on en profite pour la remettre a zero
-    # regulierement, ce qui garde le balayage rapide sans jamais fausser le
-    # compteur de requetes utilise pour la metrique d'efficacite.
-    _REBOOT_EVERY = 8
-    attempts: list[str] = []
-    fails_since_reboot = 0
     for ch in _PRIORITY_CHARS:
         candidate = prefix + ch
         result = reg.execute("uart_send", {"command": candidate})
         resp_text = result.get("response", "") if isinstance(result, dict) else ""
         if isinstance(result, dict) and result.get("flag_detected"):
-            attempts.append(f"{candidate!r} -> FLAG: {resp_text[:120]!r}")
-            return {"flag": result["flag_detected"], "command": candidate}, attempts
+            log(f"{candidate!r} -> FLAG: {resp_text[:120]!r}")
+            return {"status": "flag", "flag": result["flag_detected"], "command": candidate}
         kind = classify_oracle_response(resp_text)
-        attempts.append(f"{candidate!r} -> {kind}: {resp_text[:120]!r}")
-        if kind in ("valid", "executed"):
-            return {"prefix": candidate, "kind": kind, "text": resp_text}, attempts
-        fails_since_reboot += 1
-        if fails_since_reboot >= _REBOOT_EVERY:
-            reg.execute("reboot", {})
-            fails_since_reboot = 0
-    return None, attempts
+        log(f"{candidate!r} -> {kind}: {resp_text[:120]!r}")
+        if kind == "invalid":
+            budget.fail()
+            continue
+        budget.ok()
+        sub = _dfs(reg, candidate, resp_text if kind == "executed" else None, budget, log)
+        if sub is not None:
+            return sub  # flag ou sortie interessante plus profond: on remonte tout de suite
+        # sub is None: cette branche est MORTE (leurre/vide) -> backtrack
+        # SILENCIEUX, on continue la boucle avec le candidat suivant.
+        log(f"{candidate!r}: branche morte (leurre/vide) -> retour en arriere, "
+            f"essai du candidat suivant")
+
+    # Plus aucun candidat ne prolonge `prefix`.
+    if confirmed_text is not None:
+        if _is_decoy(confirmed_text):
+            log(f"{prefix!r}: sortie 'leurre' (vocabulaire outdated/legacy/...), "
+                f"backtrack silencieux")
+            return None  # rien d'interessant ici, l'appelant continue son balayage
+        return {"status": "executed", "command": prefix, "output": confirmed_text}
+    # `prefix` n'a lui-meme produit aucune sortie (simple marqueur de
+    # prefixe intermediaire) ET rien ne le prolonge -> cul-de-sac silencieux.
+    return None
 
 
 def run_dictionary_search(
@@ -248,127 +273,119 @@ def run_dictionary_search(
     n_words_per_round: int = 15,
     verbose: bool = True,
 ) -> dict:
-    """Boucle principale. Renvoie un dict structure pour l'agent appelant.
+    """Point d'entree. Renvoie un dict structure pour l'agent appelant.
 
     Statuts possibles:
-      - 'executed'  : une commande COMPLETE a produit une vraie sortie
-                       (output = cette sortie, a INTERPRETER cote appelant:
-                       elle peut contenir un indice/flag).
-      - 'flag'      : un flag a ete detecte directement dans une reponse.
-      - 'exhausted' : le prefixe vide lui-meme ne se prolonge par AUCUN
-                       caractere ET le cloud n'a pas eu de meilleure idee
-                       (situation pathologique, ne devrait pas arriver en
-                       pratique sur un oracle de prefixe classique).
+      - 'executed'      : une commande COMPLETE a produit une vraie sortie
+                           NON-LEURRE (output = cette sortie, a INTERPRETER
+                           cote appelant: elle peut contenir un indice/flag).
+      - 'flag'          : un flag a ete detecte directement dans une reponse.
+      - 'invalid_prefix': le `prefix` DONNE PAR L'APPELANT n'est lui-meme pas
+                           un prefixe valide -- inutile de chercher a le
+                           prolonger (un prefixe d'un prefixe valide est
+                           toujours valide: si celui-ci ne l'est pas, rien
+                           ne le prolongera). Rappelle avec un AUTRE prefixe
+                           (ou vide, pour une recherche complete depuis le
+                           debut).
+      - 'exhausted'     : recherche COMPLETE depuis `start_prefix` (tout
+                           l'arbre atteignable a ete explore avec retour en
+                           arriere automatique) sans rien trouver d'autre
+                           qu'eventuellement des leurres explicites.
     """
     def log(msg: str) -> None:
         if verbose:
             print(f"      [dict-search] {msg}", flush=True)
 
-    prefix = start_prefix
-    last_text = ""
+    confirmed_text: str | None = None
+    if start_prefix:
+        # Le prefixe donne par l'appelant doit D'ABORD etre confirme valide:
+        # s'il ne l'est pas, tout balayage de ses extensions est garanti
+        # inutile (un prefixe d'un prefixe valide est toujours valide).
+        result = reg.execute("uart_send", {"command": start_prefix})
+        resp_text = result.get("response", "") if isinstance(result, dict) else ""
+        if isinstance(result, dict) and result.get("flag_detected"):
+            return {"ok": True, "status": "flag", "flag": result["flag_detected"],
+                    "command": start_prefix}
+        kind = classify_oracle_response(resp_text)
+        if kind == "invalid":
+            log(f"prefixe donne {start_prefix!r} -> invalid: abandon immediat "
+                f"(aucune extension n'a de sens)")
+            return {"ok": True, "status": "invalid_prefix", "prefix": start_prefix,
+                    "note": "Ce prefixe n'est lui-meme pas valide (l'oracle dit "
+                            "'no command starts with ...'): inutile d'en tester les "
+                            "extensions, un prefixe d'un prefixe valide est toujours "
+                            "valide. Rappelle avec prefix='' pour une recherche complete "
+                            "(elle explore tout l'arbre et revient en arriere toute "
+                            "seule), ou avec un prefixe DEJA confirme valide."}
+        if kind == "executed":
+            confirmed_text = resp_text
 
-    # Si on reprend depuis un prefixe deja confirme (rappel de l'outil apres
-    # une 'extension' detectee par probe_extensions), on n'a pas encore sa
-    # sortie textuelle propre a ce run: on la recapture une fois pour avoir
-    # un `last_text` coherent si jamais aucun caractere ne le prolonge plus.
-    if prefix:
-        result = reg.execute("uart_send", {"command": prefix})
-        last_text = result.get("response", "") if isinstance(result, dict) else ""
+    budget = _RebootBudget(reg)
+    result = _dfs(reg, start_prefix, confirmed_text, budget, log)
 
-    while True:
-        outcome, attempts = quick_extend(reg, prefix)
-        for a in attempts:
-            log(a)
+    if result is not None:
+        if result["status"] == "flag":
+            log(f"FLAG detecte sur {result['command']!r}")
+            return {"ok": True, **result}
+        note = ("Commande COMPLETE executee (recherche exhaustive, retour en "
+                "arriere automatique sur les leurres deja fait cote code): lis "
+                "cette sortie attentivement, elle peut contenir un indice ou la "
+                "suite a suivre.")
+        return {"ok": True, "status": "executed", "command": result["command"],
+                "output": result["output"], "note": note}
 
-        if outcome is not None and "flag" in outcome:
-            log(f"FLAG detecte sur {outcome['command']!r}")
-            return {"ok": True, "status": "flag", "flag": outcome["flag"],
-                    "command": outcome["command"]}
+    # Toute la branche depuis start_prefix est morte (leurres/vide partout).
+    if not start_prefix:
+        # Cas pathologique rarissime: meme l'arbre COMPLET depuis le prefixe
+        # vide n'a rien donne d'autre que des leurres. Secours cloud.
+        log("recherche exhaustive depuis le prefixe vide: rien d'autre que des "
+            "leurres -> secours cloud")
+        tried: set[str] = set()
+        attempts_log: list[str] = []
+        rounds_without_progress = 0
+        while rounds_without_progress < max_rounds:
+            words, rationale = propose_dictionary(
+                cloud, "", sorted(tried), attempts_log, n_words_per_round
+            )
+            if not words:
+                log(f"cloud n'a propose aucun mot ({rationale}); abandon")
+                break
+            log(f"dictionnaire secours ({len(words)} mots) — {rationale}")
+            progressed = False
+            for word in words:
+                if word in tried:
+                    continue
+                tried.add(word)
+                res = reg.execute("uart_send", {"command": word})
+                resp_text = res.get("response", "") if isinstance(res, dict) else ""
+                if isinstance(res, dict) and res.get("flag_detected"):
+                    log(f"FLAG detecte sur {word!r}")
+                    return {"ok": True, "status": "flag",
+                            "flag": res["flag_detected"], "command": word}
+                kind = classify_oracle_response(resp_text)
+                attempts_log.append(f"{word!r} -> {kind}: {resp_text[:120]!r}")
+                if kind in ("valid", "executed"):
+                    sub = _dfs(reg, word, resp_text if kind == "executed" else None,
+                               budget, log)
+                    if sub is not None:
+                        if sub["status"] == "flag":
+                            return {"ok": True, **sub}
+                        return {"ok": True, "status": "executed",
+                                "command": sub["command"], "output": sub["output"],
+                                "note": "Commande COMPLETE executee (trouvee via le "
+                                        "secours cloud apres une recherche exhaustive "
+                                        "infructueuse): lis cette sortie attentivement."}
+                    progressed = True  # au moins un prefixe confirme, meme si mort derriere
+            if progressed:
+                break
+            rounds_without_progress += 1
+        return {"ok": True, "status": "exhausted", "prefix": "",
+                "note": "Recherche EXHAUSTIVE (tout l'arbre, retour en arriere "
+                        "automatique) et secours cloud: rien trouve d'autre que des "
+                        "leurres explicites. Essaie une autre piste (ex: wifi_scan)."}
 
-        if outcome is not None:
-            prefix = outcome["prefix"]
-            last_text = outcome["text"]
-            log(f"prefixe prolonge (gratuit, char-par-char) -> {prefix!r}")
-            if outcome["kind"] == "executed":
-                break  # commande complete trouvee directement
-            continue  # kind == 'valid': on retente de prolonger encore
-
-        # Aucun caractere ne prolonge `prefix`.
-        if not prefix:
-            # Cas pathologique: meme l'alphabet complet ne donne rien depuis
-            # le prefixe vide. Secours rare: demander au cloud des idees de
-            # mots entiers differents (peut-etre un caractere hors alphabet
-            # standard, ou une commande tres inhabituelle).
-            log("aucun caractere ne prolonge le prefixe vide -> secours cloud")
-            tried: set[str] = set()
-            attempts_log: list[str] = list(attempts)
-            rounds_without_progress = 0
-            found = False
-            while rounds_without_progress < max_rounds:
-                words, rationale = propose_dictionary(
-                    cloud, prefix, sorted(tried), attempts_log, n_words_per_round
-                )
-                if not words:
-                    log(f"cloud n'a propose aucun mot ({rationale}); abandon")
-                    break
-                log(f"dictionnaire secours ({len(words)} mots) — {rationale}")
-                progressed = False
-                for word in words:
-                    if word in tried:
-                        continue
-                    tried.add(word)
-                    result = reg.execute("uart_send", {"command": word})
-                    resp_text = result.get("response", "") if isinstance(result, dict) else ""
-                    if isinstance(result, dict) and result.get("flag_detected"):
-                        log(f"FLAG detecte sur {word!r}")
-                        return {"ok": True, "status": "flag",
-                                "flag": result["flag_detected"], "command": word}
-                    kind = classify_oracle_response(resp_text)
-                    attempts_log.append(f"{word!r} -> {kind}: {resp_text[:120]!r}")
-                    if kind in ("valid", "executed"):
-                        prefix = word
-                        last_text = resp_text
-                        progressed = True
-                        found = True
-                        log(f"PREFIXE CONFIRME (secours cloud) -> {prefix!r}")
-                        break
-                if progressed:
-                    break
-                rounds_without_progress += 1
-            if not found:
-                return {"ok": True, "status": "exhausted", "prefix": prefix,
-                        "note": "Ni l'alphabet complet ni les dictionnaires de secours "
-                                "du cloud n'ont trouve de commande depuis le prefixe vide. "
-                                "Essaie une autre piste (ex: wifi_scan) avant de reessayer."}
-            continue  # on a trouve un prefixe via le secours: retente de le prolonger gratuitement
-
-        # prefix non vide, aucune extension possible -> commande COMPLETE
-        break
-
-    extensions = probe_extensions(reg, prefix)
-    available = [v["prefix"] for v in extensions.values() if v["available"]]
-    note = ("Commande COMPLETE executee: lis cette sortie attentivement, "
-            "elle peut contenir un indice ou la suite a suivre.")
-    if available:
-        note += (" ATTENTION: cette commande accepte AUSSI une suite "
-                 f"(sous-commande/option) -- grammaire 'cmd <sous-commande> "
-                 f"<--option>' -- prefixes detectes comme valides: "
-                 f"{available!r}. Rappelle oracle_dictionary_search avec "
-                 f"prefix=l'un de ces prefixes pour explorer plus loin "
-                 f"AVANT de considerer cette commande comme terminale.")
-    else:
-        note += (" Aucune sous-commande/option detectee juste apres "
-                 "(espace/-/-- testes): cette commande semble terminale.")
-    _DECOY_WORDS = ("outdated", "legacy", "deprecated", "reorganized", "obsolete")
-    if any(w in last_text.lower() for w in _DECOY_WORDS):
-        note += (" ATTENTION: le vocabulaire de cette sortie ('outdated'/'legacy'/"
-                 "'reorganized'...) ressemble a un LEURRE delibere qui t'invite a "
-                 "continuer a explorer CETTE branche en vain. Vu qu'aucune extension "
-                 "n'a ete trouvee, ABANDONNE cette piste et explore un AUTRE prefixe "
-                 "racine plutot que d'insister ici.")
-    log(f"extensions testees pour {prefix!r}: {extensions}")
-    return {
-        "ok": True, "status": "executed",
-        "command": prefix, "output": last_text,
-        "extensions": extensions, "note": note,
-    }
+    return {"ok": True, "status": "exhausted", "prefix": start_prefix,
+            "note": f"Recherche exhaustive depuis {start_prefix!r} (retour en "
+                    "arriere automatique): rien trouve d'autre que des leurres "
+                    "explicites sous ce prefixe. Essaie un AUTRE prefixe (ou "
+                    "prefix='' pour repartir d'une recherche complete)."}
