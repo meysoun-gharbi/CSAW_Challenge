@@ -9377,3 +9377,1962 @@ Supported characters: lowercase letters (a-z), spaces ( ), and special character
 --- reboot (penalite remise a zero) ---
 --- reboot (penalite remise a zero) ---
 --- fin recherche par dictionnaire: exhausted ---
+--- recherche par dictionnaire (prefixe de depart='') ---
+>>> 'h'
+<<< one or more commands start with h
+>>> 'hh'
+<<< no command starts with hh
+[RATE-LIMIT] Failed attempt (1). Penalty delay: 10 ms.
+>>> 'hl'
+<<< no command starts with hl
+[RATE-LIMIT] Failed attempt (2). Penalty delay: 20 ms.
+>>> 'hs'
+<<< no command starts with hs
+[RATE-LIMIT] Failed attempt (3). Penalty delay: 40 ms.
+>>> 'hm'
+<<< no command starts with hm
+[RATE-LIMIT] Failed attempt (4). Penalty delay: 80 ms.
+>>> 'hc'
+<<< no command starts with hc
+[RATE-LIMIT] Failed attempt (5). Penalty delay: 160 ms.
+>>> 'hr'
+<<< no command starts with hr
+[RATE-LIMIT] Failed attempt (6). Penalty delay: 320 ms.
+>>> 'hd'
+<<< no command starts with hd
+[RATE-LIMIT] Failed attempt (7). Penalty delay: 640 ms.
+>>> 'hi'
+<<< no command starts with hi
+[RATE-LIMIT] Failed attempt (8). Penalty delay: 1280 ms.
+--- reboot (penalite remise a zero) ---
+>>> 'ht'
+<<< no command starts with ht
+[RATE-LIMIT] Failed attempt (1). Penalty delay: 10 ms.
+>>> 'he'
+<<< one or more commands start with he
+>>> 'heh'
+<<< no command starts with heh
+[RATE-LIMIT] Failed attempt (2). Penalty delay: 20 ms.
+>>> 'hel'
+<<< one or more commands start with hel
+>>> 'helh'
+<<< no command starts with helh
+[RATE-LIMIT] Failed attempt (3). Penalty delay: 40 ms.
+>>> 'hell'
+<<< no command starts with hell
+[RATE-LIMIT] Failed attempt (4). Penalty delay: 80 ms.
+>>> 'hels'
+<<< no command starts with hels
+[RATE-LIMIT] Failed attempt (5). Penalty delay: 160 ms.
+>>> 'helm'
+<<< no command starts with helm
+[RATE-LIMIT] Failed attempt (6). Penalty delay: 320 ms.
+>>> 'helc'
+<<< no command starts with helc
+[RATE-LIMIT] Failed attempt (7). Penalty delay: 640 ms.
+>>> 'helr'
+<<< no command starts with helr
+[RATE-LIMIT] Failed attempt (8). Penalty delay: 1280 ms.
+--- reboot (penalite remise a zero) ---
+>>> 'held'
+<<< no command starts with held
+[RATE-LIMIT] Failed attempt (1). Penalty delay: 10 ms.
+>>> 'heli'
+<<< no command starts with heli
+[RATE-LIMIT] Failed attempt (2). Penalty delay: 20 ms.
+>>> 'helt'
+<<< no command starts with helt
+[RATE-LIMIT] Failed attempt (3). Penalty delay: 40 ms.
+>>> 'hele'
+<<< no command starts with hele
+[RATE-LIMIT] Failed attempt (4). Penalty delay: 80 ms.
+>>> 'helv'
+<<< no command starts with helv
+[RATE-LIMIT] Failed attempt (5). Penalty delay: 160 ms.
+>>> 'help'
+<<< one or more commands start with help
+This help menu is outdated. System commands have been reorganized.
+Supported characters: lowercase letters (a-z), spaces ( ), and special characters (!, @, -, _).
+>>> 'l'
+<<< no command starts with l
+[RATE-LIMIT] Failed attempt (6). Penalty delay: 320 ms.
+>>> 's'
+<<< no command starts with s
+[RATE-LIMIT] Failed attempt (7). Penalty delay: 640 ms.
+>>> 'm'
+<<< one or more commands start with m
+>>> 'mh'
+<<< no command starts with mh
+[RATE-LIMIT] Failed attempt (8). Penalty delay: 1280 ms.
+--- reboot (penalite remise a zero) ---
+>>> 'ml'
+<<< no command starts with ml
+[RATE-LIMIT] Failed attempt (1). Penalty delay: 10 ms.
+>>> 'ms'
+<<< no command starts with ms
+[RATE-LIMIT] Failed attempt (2). Penalty delay: 20 ms.
+>>> 'mm'
+<<< no command starts with mm
+[RATE-LIMIT] Failed attempt (3). Penalty delay: 40 ms.
+>>> 'mc'
+<<< no command starts with mc
+[RATE-LIMIT] Failed attempt (4). Penalty delay: 80 ms.
+>>> 'mr'
+<<< no command starts with mr
+[RATE-LIMIT] Failed attempt (5). Penalty delay: 160 ms.
+>>> 'md'
+<<< no command starts with md
+[RATE-LIMIT] Failed attempt (6). Penalty delay: 320 ms.
+>>> 'mi'
+<<< no command starts with mi
+[RATE-LIMIT] Failed attempt (7). Penalty delay: 640 ms.
+>>> 'mt'
+<<< no command starts with mt
+[RATE-LIMIT] Failed attempt (8). Penalty delay: 1280 ms.
+--- reboot (penalite remise a zero) ---
+>>> 'me'
+<<< no command starts with me
+[RATE-LIMIT] Failed attempt (1). Penalty delay: 10 ms.
+>>> 'mv'
+<<< no command starts with mv
+[RATE-LIMIT] Failed attempt (2). Penalty delay: 20 ms.
+>>> 'mp'
+<<< no command starts with mp
+[RATE-LIMIT] Failed attempt (3). Penalty delay: 40 ms.
+>>> 'ma'
+<<< no command starts with ma
+[RATE-LIMIT] Failed attempt (4). Penalty delay: 80 ms.
+>>> 'mb'
+<<< no command starts with mb
+[RATE-LIMIT] Failed attempt (5). Penalty delay: 160 ms.
+>>> 'mu'
+<<< no command starts with mu
+[RATE-LIMIT] Failed attempt (6). Penalty delay: 320 ms.
+>>> 'mw'
+<<< no command starts with mw
+[RATE-LIMIT] Failed attempt (7). Penalty delay: 640 ms.
+>>> 'mn'
+<<< no command starts with mn
+[RATE-LIMIT] Failed attempt (8). Penalty delay: 1280 ms.
+--- reboot (penalite remise a zero) ---
+>>> 'mo'
+<<< one or more commands start with mo
+>>> 'moh'
+<<< no command starts with moh
+[RATE-LIMIT] Failed attempt (1). Penalty delay: 10 ms.
+>>> 'mol'
+<<< no command starts with mol
+[RATE-LIMIT] Failed attempt (2). Penalty delay: 20 ms.
+>>> 'mos'
+<<< no command starts with mos
+[RATE-LIMIT] Failed attempt (3). Penalty delay: 40 ms.
+>>> 'mom'
+<<< no command starts with mom
+[RATE-LIMIT] Failed attempt (4). Penalty delay: 80 ms.
+>>> 'moc'
+<<< no command starts with moc
+[RATE-LIMIT] Failed attempt (5). Penalty delay: 160 ms.
+>>> 'mor'
+<<< no command starts with mor
+[RATE-LIMIT] Failed attempt (6). Penalty delay: 320 ms.
+>>> 'mod'
+<<< one or more commands start with mod
+>>> 'modh'
+<<< no command starts with modh
+[RATE-LIMIT] Failed attempt (7). Penalty delay: 640 ms.
+>>> 'modl'
+<<< no command starts with modl
+[RATE-LIMIT] Failed attempt (8). Penalty delay: 1280 ms.
+--- reboot (penalite remise a zero) ---
+>>> 'mods'
+<<< no command starts with mods
+[RATE-LIMIT] Failed attempt (1). Penalty delay: 10 ms.
+>>> 'modm'
+<<< no command starts with modm
+[RATE-LIMIT] Failed attempt (2). Penalty delay: 20 ms.
+>>> 'modc'
+<<< no command starts with modc
+[RATE-LIMIT] Failed attempt (3). Penalty delay: 40 ms.
+>>> 'modr'
+<<< no command starts with modr
+[RATE-LIMIT] Failed attempt (4). Penalty delay: 80 ms.
+>>> 'modd'
+<<< no command starts with modd
+[RATE-LIMIT] Failed attempt (5). Penalty delay: 160 ms.
+>>> 'modi'
+<<< no command starts with modi
+[RATE-LIMIT] Failed attempt (6). Penalty delay: 320 ms.
+>>> 'modt'
+<<< no command starts with modt
+[RATE-LIMIT] Failed attempt (7). Penalty delay: 640 ms.
+>>> 'mode'
+<<< one or more commands start with mode
+>>> 'modeh'
+<<< no command starts with modeh
+[RATE-LIMIT] Failed attempt (8). Penalty delay: 1280 ms.
+--- reboot (penalite remise a zero) ---
+>>> 'model'
+<<< no command starts with model
+[RATE-LIMIT] Failed attempt (1). Penalty delay: 10 ms.
+>>> 'modes'
+<<< no command starts with modes
+[RATE-LIMIT] Failed attempt (2). Penalty delay: 20 ms.
+>>> 'modem'
+<<< no command starts with modem
+[RATE-LIMIT] Failed attempt (3). Penalty delay: 40 ms.
+>>> 'modec'
+<<< no command starts with modec
+[RATE-LIMIT] Failed attempt (4). Penalty delay: 80 ms.
+>>> 'moder'
+<<< no command starts with moder
+[RATE-LIMIT] Failed attempt (5). Penalty delay: 160 ms.
+>>> 'moded'
+<<< no command starts with moded
+[RATE-LIMIT] Failed attempt (6). Penalty delay: 320 ms.
+>>> 'modei'
+<<< no command starts with modei
+[RATE-LIMIT] Failed attempt (7). Penalty delay: 640 ms.
+>>> 'modet'
+<<< no command starts with modet
+[RATE-LIMIT] Failed attempt (8). Penalty delay: 1280 ms.
+--- reboot (penalite remise a zero) ---
+>>> 'modee'
+<<< no command starts with modee
+[RATE-LIMIT] Failed attempt (1). Penalty delay: 10 ms.
+>>> 'modev'
+<<< no command starts with modev
+[RATE-LIMIT] Failed attempt (2). Penalty delay: 20 ms.
+>>> 'modep'
+<<< no command starts with modep
+[RATE-LIMIT] Failed attempt (3). Penalty delay: 40 ms.
+>>> 'modea'
+<<< no command starts with modea
+[RATE-LIMIT] Failed attempt (4). Penalty delay: 80 ms.
+>>> 'modeb'
+<<< no command starts with modeb
+[RATE-LIMIT] Failed attempt (5). Penalty delay: 160 ms.
+>>> 'modeu'
+<<< no command starts with modeu
+[RATE-LIMIT] Failed attempt (6). Penalty delay: 320 ms.
+>>> 'modew'
+<<< no command starts with modew
+[RATE-LIMIT] Failed attempt (7). Penalty delay: 640 ms.
+>>> 'moden'
+<<< no command starts with moden
+[RATE-LIMIT] Failed attempt (8). Penalty delay: 1280 ms.
+--- reboot (penalite remise a zero) ---
+>>> 'modeo'
+<<< no command starts with modeo
+[RATE-LIMIT] Failed attempt (1). Penalty delay: 10 ms.
+>>> 'modeg'
+<<< no command starts with modeg
+[RATE-LIMIT] Failed attempt (2). Penalty delay: 20 ms.
+>>> 'modeq'
+<<< no command starts with modeq
+[RATE-LIMIT] Failed attempt (3). Penalty delay: 40 ms.
+>>> 'modek'
+<<< no command starts with modek
+[RATE-LIMIT] Failed attempt (4). Penalty delay: 80 ms.
+>>> 'modef'
+<<< no command starts with modef
+[RATE-LIMIT] Failed attempt (5). Penalty delay: 160 ms.
+>>> 'modej'
+<<< no command starts with modej
+[RATE-LIMIT] Failed attempt (6). Penalty delay: 320 ms.
+>>> 'modex'
+<<< no command starts with modex
+[RATE-LIMIT] Failed attempt (7). Penalty delay: 640 ms.
+>>> 'modey'
+<<< no command starts with modey
+[RATE-LIMIT] Failed attempt (8). Penalty delay: 1280 ms.
+--- reboot (penalite remise a zero) ---
+>>> 'modez'
+<<< no command starts with modez
+[RATE-LIMIT] Failed attempt (1). Penalty delay: 10 ms.
+>>> 'mode0'
+<<< no command starts with mode0
+[RATE-LIMIT] Failed attempt (2). Penalty delay: 20 ms.
+>>> 'mode1'
+<<< no command starts with mode1
+[RATE-LIMIT] Failed attempt (3). Penalty delay: 40 ms.
+>>> 'mode2'
+<<< no command starts with mode2
+[RATE-LIMIT] Failed attempt (4). Penalty delay: 80 ms.
+>>> 'mode3'
+<<< no command starts with mode3
+[RATE-LIMIT] Failed attempt (5). Penalty delay: 160 ms.
+>>> 'mode4'
+<<< no command starts with mode4
+[RATE-LIMIT] Failed attempt (6). Penalty delay: 320 ms.
+>>> 'mode5'
+<<< no command starts with mode5
+[RATE-LIMIT] Failed attempt (7). Penalty delay: 640 ms.
+>>> 'mode6'
+<<< no command starts with mode6
+[RATE-LIMIT] Failed attempt (8). Penalty delay: 1280 ms.
+--- reboot (penalite remise a zero) ---
+>>> 'mode7'
+<<< no command starts with mode7
+[RATE-LIMIT] Failed attempt (1). Penalty delay: 10 ms.
+>>> 'mode8'
+<<< no command starts with mode8
+[RATE-LIMIT] Failed attempt (2). Penalty delay: 20 ms.
+>>> 'mode9'
+<<< no command starts with mode9
+[RATE-LIMIT] Failed attempt (3). Penalty delay: 40 ms.
+>>> 'mode '
+<<< one or more commands start with mode
+>>> 'mode h'
+<<< no command starts with mode h
+[RATE-LIMIT] Failed attempt (4). Penalty delay: 80 ms.
+>>> 'mode l'
+<<< no command starts with mode l
+[RATE-LIMIT] Failed attempt (5). Penalty delay: 160 ms.
+>>> 'mode s'
+<<< no command starts with mode s
+[RATE-LIMIT] Failed attempt (6). Penalty delay: 320 ms.
+>>> 'mode m'
+<<< no command starts with mode m
+[RATE-LIMIT] Failed attempt (7). Penalty delay: 640 ms.
+>>> 'mode c'
+<<< no command starts with mode c
+[RATE-LIMIT] Failed attempt (8). Penalty delay: 1280 ms.
+--- reboot (penalite remise a zero) ---
+>>> 'mode r'
+<<< no command starts with mode r
+[RATE-LIMIT] Failed attempt (1). Penalty delay: 10 ms.
+>>> 'mode d'
+<<< one or more commands start with mode d
+>>> 'mode dh'
+<<< no command starts with mode dh
+[RATE-LIMIT] Failed attempt (2). Penalty delay: 20 ms.
+>>> 'mode dl'
+<<< no command starts with mode dl
+[RATE-LIMIT] Failed attempt (3). Penalty delay: 40 ms.
+>>> 'mode ds'
+<<< no command starts with mode ds
+[RATE-LIMIT] Failed attempt (4). Penalty delay: 80 ms.
+>>> 'mode dm'
+<<< no command starts with mode dm
+[RATE-LIMIT] Failed attempt (5). Penalty delay: 160 ms.
+>>> 'mode dc'
+<<< no command starts with mode dc
+[RATE-LIMIT] Failed attempt (6). Penalty delay: 320 ms.
+>>> 'mode dr'
+<<< no command starts with mode dr
+[RATE-LIMIT] Failed attempt (7). Penalty delay: 640 ms.
+>>> 'mode dd'
+<<< no command starts with mode dd
+[RATE-LIMIT] Failed attempt (8). Penalty delay: 1280 ms.
+--- reboot (penalite remise a zero) ---
+>>> 'mode di'
+<<< no command starts with mode di
+[RATE-LIMIT] Failed attempt (1). Penalty delay: 10 ms.
+>>> 'mode dt'
+<<< no command starts with mode dt
+[RATE-LIMIT] Failed attempt (2). Penalty delay: 20 ms.
+>>> 'mode de'
+<<< one or more commands start with mode de
+>>> 'mode deh'
+<<< no command starts with mode deh
+[RATE-LIMIT] Failed attempt (3). Penalty delay: 40 ms.
+>>> 'mode del'
+<<< no command starts with mode del
+[RATE-LIMIT] Failed attempt (4). Penalty delay: 80 ms.
+>>> 'mode des'
+<<< no command starts with mode des
+[RATE-LIMIT] Failed attempt (5). Penalty delay: 160 ms.
+>>> 'mode dem'
+<<< no command starts with mode dem
+[RATE-LIMIT] Failed attempt (6). Penalty delay: 320 ms.
+>>> 'mode dec'
+<<< no command starts with mode dec
+[RATE-LIMIT] Failed attempt (7). Penalty delay: 640 ms.
+>>> 'mode der'
+<<< no command starts with mode der
+[RATE-LIMIT] Failed attempt (8). Penalty delay: 1280 ms.
+--- reboot (penalite remise a zero) ---
+>>> 'mode ded'
+<<< no command starts with mode ded
+[RATE-LIMIT] Failed attempt (1). Penalty delay: 10 ms.
+>>> 'mode dei'
+<<< no command starts with mode dei
+[RATE-LIMIT] Failed attempt (2). Penalty delay: 20 ms.
+>>> 'mode det'
+<<< no command starts with mode det
+[RATE-LIMIT] Failed attempt (3). Penalty delay: 40 ms.
+>>> 'mode dee'
+<<< no command starts with mode dee
+[RATE-LIMIT] Failed attempt (4). Penalty delay: 80 ms.
+>>> 'mode dev'
+<<< one or more commands start with mode dev
+>>> 'mode devh'
+<<< no command starts with mode devh
+[RATE-LIMIT] Failed attempt (5). Penalty delay: 160 ms.
+>>> 'mode devl'
+<<< no command starts with mode devl
+[RATE-LIMIT] Failed attempt (6). Penalty delay: 320 ms.
+>>> 'mode devs'
+<<< no command starts with mode devs
+[RATE-LIMIT] Failed attempt (7). Penalty delay: 640 ms.
+>>> 'mode devm'
+<<< no command starts with mode devm
+[RATE-LIMIT] Failed attempt (8). Penalty delay: 1280 ms.
+--- reboot (penalite remise a zero) ---
+>>> 'mode devc'
+<<< no command starts with mode devc
+[RATE-LIMIT] Failed attempt (1). Penalty delay: 10 ms.
+>>> 'mode devr'
+<<< no command starts with mode devr
+[RATE-LIMIT] Failed attempt (2). Penalty delay: 20 ms.
+>>> 'mode devd'
+<<< no command starts with mode devd
+[RATE-LIMIT] Failed attempt (3). Penalty delay: 40 ms.
+>>> 'mode devi'
+<<< no command starts with mode devi
+[RATE-LIMIT] Failed attempt (4). Penalty delay: 80 ms.
+>>> 'mode devt'
+<<< no command starts with mode devt
+[RATE-LIMIT] Failed attempt (5). Penalty delay: 160 ms.
+>>> 'mode deve'
+<<< one or more commands start with mode deve
+>>> 'mode deveh'
+<<< no command starts with mode deveh
+[RATE-LIMIT] Failed attempt (6). Penalty delay: 320 ms.
+>>> 'mode devel'
+<<< one or more commands start with mode devel
+>>> 'mode develh'
+<<< no command starts with mode develh
+[RATE-LIMIT] Failed attempt (7). Penalty delay: 640 ms.
+>>> 'mode devell'
+<<< no command starts with mode devell
+[RATE-LIMIT] Failed attempt (8). Penalty delay: 1280 ms.
+--- reboot (penalite remise a zero) ---
+>>> 'mode devels'
+<<< no command starts with mode devels
+[RATE-LIMIT] Failed attempt (1). Penalty delay: 10 ms.
+>>> 'mode develm'
+<<< no command starts with mode develm
+[RATE-LIMIT] Failed attempt (2). Penalty delay: 20 ms.
+>>> 'mode develc'
+<<< no command starts with mode develc
+[RATE-LIMIT] Failed attempt (3). Penalty delay: 40 ms.
+>>> 'mode develr'
+<<< no command starts with mode develr
+[RATE-LIMIT] Failed attempt (4). Penalty delay: 80 ms.
+>>> 'mode develd'
+<<< no command starts with mode develd
+[RATE-LIMIT] Failed attempt (5). Penalty delay: 160 ms.
+>>> 'mode develi'
+<<< no command starts with mode develi
+[RATE-LIMIT] Failed attempt (6). Penalty delay: 320 ms.
+>>> 'mode develt'
+<<< no command starts with mode develt
+[RATE-LIMIT] Failed attempt (7). Penalty delay: 640 ms.
+>>> 'mode devele'
+<<< no command starts with mode devele
+[RATE-LIMIT] Failed attempt (8). Penalty delay: 1280 ms.
+--- reboot (penalite remise a zero) ---
+>>> 'mode develv'
+<<< no command starts with mode develv
+[RATE-LIMIT] Failed attempt (1). Penalty delay: 10 ms.
+>>> 'mode develp'
+<<< no command starts with mode develp
+[RATE-LIMIT] Failed attempt (2). Penalty delay: 20 ms.
+>>> 'mode devela'
+<<< no command starts with mode devela
+[RATE-LIMIT] Failed attempt (3). Penalty delay: 40 ms.
+>>> 'mode develb'
+<<< no command starts with mode develb
+[RATE-LIMIT] Failed attempt (4). Penalty delay: 80 ms.
+>>> 'mode develu'
+<<< no command starts with mode develu
+[RATE-LIMIT] Failed attempt (5). Penalty delay: 160 ms.
+>>> 'mode develw'
+<<< no command starts with mode develw
+[RATE-LIMIT] Failed attempt (6). Penalty delay: 320 ms.
+>>> 'mode develn'
+<<< no command starts with mode develn
+[RATE-LIMIT] Failed attempt (7). Penalty delay: 640 ms.
+>>> 'mode develo'
+<<< one or more commands start with mode develo
+>>> 'mode develoh'
+<<< no command starts with mode develoh
+[RATE-LIMIT] Failed attempt (8). Penalty delay: 1280 ms.
+--- reboot (penalite remise a zero) ---
+>>> 'mode develol'
+<<< no command starts with mode develol
+[RATE-LIMIT] Failed attempt (1). Penalty delay: 10 ms.
+>>> 'mode develos'
+<<< no command starts with mode develos
+[RATE-LIMIT] Failed attempt (2). Penalty delay: 20 ms.
+>>> 'mode develom'
+<<< no command starts with mode develom
+[RATE-LIMIT] Failed attempt (3). Penalty delay: 40 ms.
+>>> 'mode develoc'
+<<< no command starts with mode develoc
+[RATE-LIMIT] Failed attempt (4). Penalty delay: 80 ms.
+>>> 'mode develor'
+<<< no command starts with mode develor
+[RATE-LIMIT] Failed attempt (5). Penalty delay: 160 ms.
+>>> 'mode develod'
+<<< no command starts with mode develod
+[RATE-LIMIT] Failed attempt (6). Penalty delay: 320 ms.
+>>> 'mode develoi'
+<<< no command starts with mode develoi
+[RATE-LIMIT] Failed attempt (7). Penalty delay: 640 ms.
+>>> 'mode develot'
+<<< no command starts with mode develot
+[RATE-LIMIT] Failed attempt (8). Penalty delay: 1280 ms.
+--- reboot (penalite remise a zero) ---
+>>> 'mode develoe'
+<<< no command starts with mode develoe
+[RATE-LIMIT] Failed attempt (1). Penalty delay: 10 ms.
+>>> 'mode develov'
+<<< no command starts with mode develov
+[RATE-LIMIT] Failed attempt (2). Penalty delay: 20 ms.
+>>> 'mode develop'
+<<< one or more commands start with mode develop
+>>> 'mode developh'
+<<< no command starts with mode developh
+[RATE-LIMIT] Failed attempt (3). Penalty delay: 40 ms.
+>>> 'mode developl'
+<<< no command starts with mode developl
+[RATE-LIMIT] Failed attempt (4). Penalty delay: 80 ms.
+>>> 'mode develops'
+<<< no command starts with mode develops
+[RATE-LIMIT] Failed attempt (5). Penalty delay: 160 ms.
+>>> 'mode developm'
+<<< no command starts with mode developm
+[RATE-LIMIT] Failed attempt (6). Penalty delay: 320 ms.
+>>> 'mode developc'
+<<< no command starts with mode developc
+[RATE-LIMIT] Failed attempt (7). Penalty delay: 640 ms.
+>>> 'mode developr'
+<<< no command starts with mode developr
+[RATE-LIMIT] Failed attempt (8). Penalty delay: 1280 ms.
+--- reboot (penalite remise a zero) ---
+>>> 'mode developd'
+<<< no command starts with mode developd
+[RATE-LIMIT] Failed attempt (1). Penalty delay: 10 ms.
+>>> 'mode developi'
+<<< no command starts with mode developi
+[RATE-LIMIT] Failed attempt (2). Penalty delay: 20 ms.
+>>> 'mode developt'
+<<< no command starts with mode developt
+[RATE-LIMIT] Failed attempt (3). Penalty delay: 40 ms.
+>>> 'mode develope'
+<<< one or more commands start with mode develope
+>>> 'mode developeh'
+<<< no command starts with mode developeh
+[RATE-LIMIT] Failed attempt (4). Penalty delay: 80 ms.
+>>> 'mode developel'
+<<< no command starts with mode developel
+[RATE-LIMIT] Failed attempt (5). Penalty delay: 160 ms.
+>>> 'mode developes'
+<<< no command starts with mode developes
+[RATE-LIMIT] Failed attempt (6). Penalty delay: 320 ms.
+>>> 'mode developem'
+<<< no command starts with mode developem
+[RATE-LIMIT] Failed attempt (7). Penalty delay: 640 ms.
+>>> 'mode developec'
+<<< no command starts with mode developec
+[RATE-LIMIT] Failed attempt (8). Penalty delay: 1280 ms.
+--- reboot (penalite remise a zero) ---
+>>> 'mode developer'
+<<< one or more commands start with mode developer
+>>> 'mode developerh'
+<<< no command starts with mode developerh
+[RATE-LIMIT] Failed attempt (1). Penalty delay: 10 ms.
+>>> 'mode developerl'
+<<< no command starts with mode developerl
+[RATE-LIMIT] Failed attempt (2). Penalty delay: 20 ms.
+>>> 'mode developers'
+<<< no command starts with mode developers
+[RATE-LIMIT] Failed attempt (3). Penalty delay: 40 ms.
+>>> 'mode developerm'
+<<< no command starts with mode developerm
+[RATE-LIMIT] Failed attempt (4). Penalty delay: 80 ms.
+>>> 'mode developerc'
+<<< no command starts with mode developerc
+[RATE-LIMIT] Failed attempt (5). Penalty delay: 160 ms.
+>>> 'mode developerr'
+<<< no command starts with mode developerr
+[RATE-LIMIT] Failed attempt (6). Penalty delay: 320 ms.
+>>> 'mode developerd'
+<<< no command starts with mode developerd
+[RATE-LIMIT] Failed attempt (7). Penalty delay: 640 ms.
+>>> 'mode developeri'
+<<< no command starts with mode developeri
+[RATE-LIMIT] Failed attempt (8). Penalty delay: 1280 ms.
+--- reboot (penalite remise a zero) ---
+>>> 'mode developert'
+<<< no command starts with mode developert
+[RATE-LIMIT] Failed attempt (1). Penalty delay: 10 ms.
+>>> 'mode developere'
+<<< no command starts with mode developere
+[RATE-LIMIT] Failed attempt (2). Penalty delay: 20 ms.
+>>> 'mode developerv'
+<<< no command starts with mode developerv
+[RATE-LIMIT] Failed attempt (3). Penalty delay: 40 ms.
+>>> 'mode developerp'
+<<< no command starts with mode developerp
+[RATE-LIMIT] Failed attempt (4). Penalty delay: 80 ms.
+>>> 'mode developera'
+<<< no command starts with mode developera
+[RATE-LIMIT] Failed attempt (5). Penalty delay: 160 ms.
+>>> 'mode developerb'
+<<< no command starts with mode developerb
+[RATE-LIMIT] Failed attempt (6). Penalty delay: 320 ms.
+>>> 'mode developeru'
+<<< no command starts with mode developeru
+[RATE-LIMIT] Failed attempt (7). Penalty delay: 640 ms.
+>>> 'mode developerw'
+<<< no command starts with mode developerw
+[RATE-LIMIT] Failed attempt (8). Penalty delay: 1280 ms.
+--- reboot (penalite remise a zero) ---
+>>> 'mode developern'
+<<< no command starts with mode developern
+[RATE-LIMIT] Failed attempt (1). Penalty delay: 10 ms.
+>>> 'mode developero'
+<<< no command starts with mode developero
+[RATE-LIMIT] Failed attempt (2). Penalty delay: 20 ms.
+>>> 'mode developerg'
+<<< no command starts with mode developerg
+[RATE-LIMIT] Failed attempt (3). Penalty delay: 40 ms.
+>>> 'mode developerq'
+<<< no command starts with mode developerq
+[RATE-LIMIT] Failed attempt (4). Penalty delay: 80 ms.
+>>> 'mode developerk'
+<<< no command starts with mode developerk
+[RATE-LIMIT] Failed attempt (5). Penalty delay: 160 ms.
+>>> 'mode developerf'
+<<< no command starts with mode developerf
+[RATE-LIMIT] Failed attempt (6). Penalty delay: 320 ms.
+>>> 'mode developerj'
+<<< no command starts with mode developerj
+[RATE-LIMIT] Failed attempt (7). Penalty delay: 640 ms.
+>>> 'mode developerx'
+<<< no command starts with mode developerx
+[RATE-LIMIT] Failed attempt (8). Penalty delay: 1280 ms.
+--- reboot (penalite remise a zero) ---
+>>> 'mode developery'
+<<< no command starts with mode developery
+[RATE-LIMIT] Failed attempt (1). Penalty delay: 10 ms.
+>>> 'mode developerz'
+<<< no command starts with mode developerz
+[RATE-LIMIT] Failed attempt (2). Penalty delay: 20 ms.
+>>> 'mode developer0'
+<<< no command starts with mode developer0
+[RATE-LIMIT] Failed attempt (3). Penalty delay: 40 ms.
+>>> 'mode developer1'
+<<< no command starts with mode developer1
+[RATE-LIMIT] Failed attempt (4). Penalty delay: 80 ms.
+>>> 'mode developer2'
+<<< no command starts with mode developer2
+[RATE-LIMIT] Failed attempt (5). Penalty delay: 160 ms.
+>>> 'mode developer3'
+<<< no command starts with mode developer3
+[RATE-LIMIT] Failed attempt (6). Penalty delay: 320 ms.
+>>> 'mode developer4'
+<<< no command starts with mode developer4
+[RATE-LIMIT] Failed attempt (7). Penalty delay: 640 ms.
+>>> 'mode developer5'
+<<< no command starts with mode developer5
+[RATE-LIMIT] Failed attempt (8). Penalty delay: 1280 ms.
+--- reboot (penalite remise a zero) ---
+>>> 'mode developer6'
+<<< no command starts with mode developer6
+[RATE-LIMIT] Failed attempt (1). Penalty delay: 10 ms.
+>>> 'mode developer7'
+<<< no command starts with mode developer7
+[RATE-LIMIT] Failed attempt (2). Penalty delay: 20 ms.
+>>> 'mode developer8'
+<<< no command starts with mode developer8
+[RATE-LIMIT] Failed attempt (3). Penalty delay: 40 ms.
+>>> 'mode developer9'
+<<< no command starts with mode developer9
+[RATE-LIMIT] Failed attempt (4). Penalty delay: 80 ms.
+>>> 'mode developer '
+<<< one or more commands start with mode developer
+>>> 'mode developer h'
+<<< no command starts with mode developer h
+[RATE-LIMIT] Failed attempt (5). Penalty delay: 160 ms.
+>>> 'mode developer l'
+<<< no command starts with mode developer l
+[RATE-LIMIT] Failed attempt (6). Penalty delay: 320 ms.
+>>> 'mode developer s'
+<<< no command starts with mode developer s
+[RATE-LIMIT] Failed attempt (7). Penalty delay: 640 ms.
+>>> 'mode developer m'
+<<< no command starts with mode developer m
+[RATE-LIMIT] Failed attempt (8). Penalty delay: 1280 ms.
+--- reboot (penalite remise a zero) ---
+>>> 'mode developer c'
+<<< no command starts with mode developer c
+[RATE-LIMIT] Failed attempt (1). Penalty delay: 10 ms.
+>>> 'mode developer r'
+<<< no command starts with mode developer r
+[RATE-LIMIT] Failed attempt (2). Penalty delay: 20 ms.
+>>> 'mode developer d'
+<<< no command starts with mode developer d
+[RATE-LIMIT] Failed attempt (3). Penalty delay: 40 ms.
+>>> 'mode developer i'
+<<< no command starts with mode developer i
+[RATE-LIMIT] Failed attempt (4). Penalty delay: 80 ms.
+>>> 'mode developer t'
+<<< no command starts with mode developer t
+[RATE-LIMIT] Failed attempt (5). Penalty delay: 160 ms.
+>>> 'mode developer e'
+<<< no command starts with mode developer e
+[RATE-LIMIT] Failed attempt (6). Penalty delay: 320 ms.
+>>> 'mode developer v'
+<<< no command starts with mode developer v
+[RATE-LIMIT] Failed attempt (7). Penalty delay: 640 ms.
+>>> 'mode developer p'
+<<< no command starts with mode developer p
+[RATE-LIMIT] Failed attempt (8). Penalty delay: 1280 ms.
+--- reboot (penalite remise a zero) ---
+>>> 'mode developer a'
+<<< no command starts with mode developer a
+[RATE-LIMIT] Failed attempt (1). Penalty delay: 10 ms.
+>>> 'mode developer b'
+<<< no command starts with mode developer b
+[RATE-LIMIT] Failed attempt (2). Penalty delay: 20 ms.
+>>> 'mode developer u'
+<<< no command starts with mode developer u
+[RATE-LIMIT] Failed attempt (3). Penalty delay: 40 ms.
+>>> 'mode developer w'
+<<< no command starts with mode developer w
+[RATE-LIMIT] Failed attempt (4). Penalty delay: 80 ms.
+>>> 'mode developer n'
+<<< no command starts with mode developer n
+[RATE-LIMIT] Failed attempt (5). Penalty delay: 160 ms.
+>>> 'mode developer o'
+<<< no command starts with mode developer o
+[RATE-LIMIT] Failed attempt (6). Penalty delay: 320 ms.
+>>> 'mode developer g'
+<<< no command starts with mode developer g
+[RATE-LIMIT] Failed attempt (7). Penalty delay: 640 ms.
+>>> 'mode developer q'
+<<< no command starts with mode developer q
+[RATE-LIMIT] Failed attempt (8). Penalty delay: 1280 ms.
+--- reboot (penalite remise a zero) ---
+>>> 'mode developer k'
+<<< no command starts with mode developer k
+[RATE-LIMIT] Failed attempt (1). Penalty delay: 10 ms.
+>>> 'mode developer f'
+<<< no command starts with mode developer f
+[RATE-LIMIT] Failed attempt (2). Penalty delay: 20 ms.
+>>> 'mode developer j'
+<<< no command starts with mode developer j
+[RATE-LIMIT] Failed attempt (3). Penalty delay: 40 ms.
+>>> 'mode developer x'
+<<< no command starts with mode developer x
+[RATE-LIMIT] Failed attempt (4). Penalty delay: 80 ms.
+>>> 'mode developer y'
+<<< no command starts with mode developer y
+[RATE-LIMIT] Failed attempt (5). Penalty delay: 160 ms.
+>>> 'mode developer z'
+<<< no command starts with mode developer z
+[RATE-LIMIT] Failed attempt (6). Penalty delay: 320 ms.
+>>> 'mode developer 0'
+<<< no command starts with mode developer 0
+[RATE-LIMIT] Failed attempt (7). Penalty delay: 640 ms.
+>>> 'mode developer 1'
+<<< no command starts with mode developer 1
+[RATE-LIMIT] Failed attempt (8). Penalty delay: 1280 ms.
+--- reboot (penalite remise a zero) ---
+>>> 'mode developer 2'
+<<< no command starts with mode developer 2
+[RATE-LIMIT] Failed attempt (1). Penalty delay: 10 ms.
+>>> 'mode developer 3'
+<<< no command starts with mode developer 3
+[RATE-LIMIT] Failed attempt (2). Penalty delay: 20 ms.
+>>> 'mode developer 4'
+<<< no command starts with mode developer 4
+[RATE-LIMIT] Failed attempt (3). Penalty delay: 40 ms.
+>>> 'mode developer 5'
+<<< no command starts with mode developer 5
+[RATE-LIMIT] Failed attempt (4). Penalty delay: 80 ms.
+>>> 'mode developer 6'
+<<< no command starts with mode developer 6
+[RATE-LIMIT] Failed attempt (5). Penalty delay: 160 ms.
+>>> 'mode developer 7'
+<<< no command starts with mode developer 7
+[RATE-LIMIT] Failed attempt (6). Penalty delay: 320 ms.
+>>> 'mode developer 8'
+<<< no command starts with mode developer 8
+[RATE-LIMIT] Failed attempt (7). Penalty delay: 640 ms.
+>>> 'mode developer 9'
+<<< no command starts with mode developer 9
+[RATE-LIMIT] Failed attempt (8). Penalty delay: 1280 ms.
+--- reboot (penalite remise a zero) ---
+>>> 'mode developer  '
+<<< no command starts with mode developer  
+[RATE-LIMIT] Failed attempt (1). Penalty delay: 10 ms.
+>>> 'mode developer !'
+<<< no command starts with mode developer !
+[RATE-LIMIT] Failed attempt (2). Penalty delay: 20 ms.
+>>> 'mode developer @'
+<<< no command starts with mode developer @
+[RATE-LIMIT] Failed attempt (3). Penalty delay: 40 ms.
+>>> 'mode developer -'
+<<< one or more commands start with mode developer -
+>>> 'mode developer -h'
+<<< no command starts with mode developer -h
+[RATE-LIMIT] Failed attempt (4). Penalty delay: 80 ms.
+>>> 'mode developer -l'
+<<< no command starts with mode developer -l
+[RATE-LIMIT] Failed attempt (5). Penalty delay: 160 ms.
+>>> 'mode developer -s'
+<<< no command starts with mode developer -s
+[RATE-LIMIT] Failed attempt (6). Penalty delay: 320 ms.
+>>> 'mode developer -m'
+<<< no command starts with mode developer -m
+[RATE-LIMIT] Failed attempt (7). Penalty delay: 640 ms.
+>>> 'mode developer -c'
+<<< no command starts with mode developer -c
+[RATE-LIMIT] Failed attempt (8). Penalty delay: 1280 ms.
+--- reboot (penalite remise a zero) ---
+>>> 'mode developer -r'
+<<< no command starts with mode developer -r
+[RATE-LIMIT] Failed attempt (1). Penalty delay: 10 ms.
+>>> 'mode developer -d'
+<<< no command starts with mode developer -d
+[RATE-LIMIT] Failed attempt (2). Penalty delay: 20 ms.
+>>> 'mode developer -i'
+<<< no command starts with mode developer -i
+[RATE-LIMIT] Failed attempt (3). Penalty delay: 40 ms.
+>>> 'mode developer -t'
+<<< no command starts with mode developer -t
+[RATE-LIMIT] Failed attempt (4). Penalty delay: 80 ms.
+>>> 'mode developer -e'
+<<< no command starts with mode developer -e
+[RATE-LIMIT] Failed attempt (5). Penalty delay: 160 ms.
+>>> 'mode developer -v'
+<<< no command starts with mode developer -v
+[RATE-LIMIT] Failed attempt (6). Penalty delay: 320 ms.
+>>> 'mode developer -p'
+<<< no command starts with mode developer -p
+[RATE-LIMIT] Failed attempt (7). Penalty delay: 640 ms.
+>>> 'mode developer -a'
+<<< no command starts with mode developer -a
+[RATE-LIMIT] Failed attempt (8). Penalty delay: 1280 ms.
+--- reboot (penalite remise a zero) ---
+>>> 'mode developer -b'
+<<< no command starts with mode developer -b
+[RATE-LIMIT] Failed attempt (1). Penalty delay: 10 ms.
+>>> 'mode developer -u'
+<<< no command starts with mode developer -u
+[RATE-LIMIT] Failed attempt (2). Penalty delay: 20 ms.
+>>> 'mode developer -w'
+<<< no command starts with mode developer -w
+[RATE-LIMIT] Failed attempt (3). Penalty delay: 40 ms.
+>>> 'mode developer -n'
+<<< no command starts with mode developer -n
+[RATE-LIMIT] Failed attempt (4). Penalty delay: 80 ms.
+>>> 'mode developer -o'
+<<< no command starts with mode developer -o
+[RATE-LIMIT] Failed attempt (5). Penalty delay: 160 ms.
+>>> 'mode developer -g'
+<<< no command starts with mode developer -g
+[RATE-LIMIT] Failed attempt (6). Penalty delay: 320 ms.
+>>> 'mode developer -q'
+<<< no command starts with mode developer -q
+[RATE-LIMIT] Failed attempt (7). Penalty delay: 640 ms.
+>>> 'mode developer -k'
+<<< no command starts with mode developer -k
+[RATE-LIMIT] Failed attempt (8). Penalty delay: 1280 ms.
+--- reboot (penalite remise a zero) ---
+>>> 'mode developer -f'
+<<< no command starts with mode developer -f
+[RATE-LIMIT] Failed attempt (1). Penalty delay: 10 ms.
+>>> 'mode developer -j'
+<<< no command starts with mode developer -j
+[RATE-LIMIT] Failed attempt (2). Penalty delay: 20 ms.
+>>> 'mode developer -x'
+<<< no command starts with mode developer -x
+[RATE-LIMIT] Failed attempt (3). Penalty delay: 40 ms.
+>>> 'mode developer -y'
+<<< no command starts with mode developer -y
+[RATE-LIMIT] Failed attempt (4). Penalty delay: 80 ms.
+>>> 'mode developer -z'
+<<< no command starts with mode developer -z
+[RATE-LIMIT] Failed attempt (5). Penalty delay: 160 ms.
+>>> 'mode developer -0'
+<<< no command starts with mode developer -0
+[RATE-LIMIT] Failed attempt (6). Penalty delay: 320 ms.
+>>> 'mode developer -1'
+<<< no command starts with mode developer -1
+[RATE-LIMIT] Failed attempt (7). Penalty delay: 640 ms.
+>>> 'mode developer -2'
+<<< no command starts with mode developer -2
+[RATE-LIMIT] Failed attempt (8). Penalty delay: 1280 ms.
+--- reboot (penalite remise a zero) ---
+>>> 'mode developer -3'
+<<< no command starts with mode developer -3
+[RATE-LIMIT] Failed attempt (1). Penalty delay: 10 ms.
+>>> 'mode developer -4'
+<<< no command starts with mode developer -4
+[RATE-LIMIT] Failed attempt (2). Penalty delay: 20 ms.
+>>> 'mode developer -5'
+<<< no command starts with mode developer -5
+[RATE-LIMIT] Failed attempt (3). Penalty delay: 40 ms.
+>>> 'mode developer -6'
+<<< no command starts with mode developer -6
+[RATE-LIMIT] Failed attempt (4). Penalty delay: 80 ms.
+>>> 'mode developer -7'
+<<< no command starts with mode developer -7
+[RATE-LIMIT] Failed attempt (5). Penalty delay: 160 ms.
+>>> 'mode developer -8'
+<<< no command starts with mode developer -8
+[RATE-LIMIT] Failed attempt (6). Penalty delay: 320 ms.
+>>> 'mode developer -9'
+<<< no command starts with mode developer -9
+[RATE-LIMIT] Failed attempt (7). Penalty delay: 640 ms.
+>>> 'mode developer - '
+<<< no command starts with mode developer - 
+[RATE-LIMIT] Failed attempt (8). Penalty delay: 1280 ms.
+--- reboot (penalite remise a zero) ---
+>>> 'mode developer -!'
+<<< no command starts with mode developer -!
+[RATE-LIMIT] Failed attempt (1). Penalty delay: 10 ms.
+>>> 'mode developer -@'
+<<< no command starts with mode developer -@
+[RATE-LIMIT] Failed attempt (2). Penalty delay: 20 ms.
+>>> 'mode developer --'
+<<< one or more commands start with mode developer --
+>>> 'mode developer --h'
+<<< one or more commands start with mode developer --h
+>>> 'mode developer --hh'
+<<< no command starts with mode developer --hh
+[RATE-LIMIT] Failed attempt (3). Penalty delay: 40 ms.
+>>> 'mode developer --hl'
+<<< no command starts with mode developer --hl
+[RATE-LIMIT] Failed attempt (4). Penalty delay: 80 ms.
+>>> 'mode developer --hs'
+<<< no command starts with mode developer --hs
+[RATE-LIMIT] Failed attempt (5). Penalty delay: 160 ms.
+>>> 'mode developer --hm'
+<<< no command starts with mode developer --hm
+[RATE-LIMIT] Failed attempt (6). Penalty delay: 320 ms.
+>>> 'mode developer --hc'
+<<< no command starts with mode developer --hc
+[RATE-LIMIT] Failed attempt (7). Penalty delay: 640 ms.
+>>> 'mode developer --hr'
+<<< no command starts with mode developer --hr
+[RATE-LIMIT] Failed attempt (8). Penalty delay: 1280 ms.
+--- reboot (penalite remise a zero) ---
+>>> 'mode developer --hd'
+<<< no command starts with mode developer --hd
+[RATE-LIMIT] Failed attempt (1). Penalty delay: 10 ms.
+>>> 'mode developer --hi'
+<<< no command starts with mode developer --hi
+[RATE-LIMIT] Failed attempt (2). Penalty delay: 20 ms.
+>>> 'mode developer --ht'
+<<< no command starts with mode developer --ht
+[RATE-LIMIT] Failed attempt (3). Penalty delay: 40 ms.
+>>> 'mode developer --he'
+<<< one or more commands start with mode developer --he
+>>> 'mode developer --heh'
+<<< no command starts with mode developer --heh
+[RATE-LIMIT] Failed attempt (4). Penalty delay: 80 ms.
+>>> 'mode developer --hel'
+<<< one or more commands start with mode developer --hel
+>>> 'mode developer --helh'
+<<< no command starts with mode developer --helh
+[RATE-LIMIT] Failed attempt (5). Penalty delay: 160 ms.
+>>> 'mode developer --hell'
+<<< no command starts with mode developer --hell
+[RATE-LIMIT] Failed attempt (6). Penalty delay: 320 ms.
+>>> 'mode developer --hels'
+<<< no command starts with mode developer --hels
+[RATE-LIMIT] Failed attempt (7). Penalty delay: 640 ms.
+>>> 'mode developer --helm'
+<<< no command starts with mode developer --helm
+[RATE-LIMIT] Failed attempt (8). Penalty delay: 1280 ms.
+--- reboot (penalite remise a zero) ---
+>>> 'mode developer --helc'
+<<< no command starts with mode developer --helc
+[RATE-LIMIT] Failed attempt (1). Penalty delay: 10 ms.
+>>> 'mode developer --helr'
+<<< no command starts with mode developer --helr
+[RATE-LIMIT] Failed attempt (2). Penalty delay: 20 ms.
+>>> 'mode developer --held'
+<<< no command starts with mode developer --held
+[RATE-LIMIT] Failed attempt (3). Penalty delay: 40 ms.
+>>> 'mode developer --heli'
+<<< no command starts with mode developer --heli
+[RATE-LIMIT] Failed attempt (4). Penalty delay: 80 ms.
+>>> 'mode developer --helt'
+<<< no command starts with mode developer --helt
+[RATE-LIMIT] Failed attempt (5). Penalty delay: 160 ms.
+>>> 'mode developer --hele'
+<<< no command starts with mode developer --hele
+[RATE-LIMIT] Failed attempt (6). Penalty delay: 320 ms.
+>>> 'mode developer --helv'
+<<< no command starts with mode developer --helv
+[RATE-LIMIT] Failed attempt (7). Penalty delay: 640 ms.
+>>> 'mode developer --help'
+<<< [AUTH REQUIRED] Developer mode requires device verification.
+Enter MAC suffix (6 hex digits, e.g. A4C138):
+>>> 'mode developer --help '
+<<< [AUTH ERROR] Invalid MAC verification passkey.
+[RATE-LIMIT] Failed attempt (8). Penalty delay: 1280 ms.
+>>> 'mode developer --help-'
+<<< no command starts with mode developer --help-
+[RATE-LIMIT] Failed attempt (9). Penalty delay: 2000 ms.
+--- reboot (penalite remise a zero) ---
+>>> 'mode developer --help--'
+<<< no command starts with mode developer --help--
+[RATE-LIMIT] Failed attempt (1). Penalty delay: 10 ms.
+--- fin recherche par dictionnaire: executed ---
+>>> '769469'
+<<< no command starts with 769469
+[RATE-LIMIT] Failed attempt (2). Penalty delay: 20 ms.
+>>> '769468'
+<<< no command starts with 769468
+[RATE-LIMIT] Failed attempt (3). Penalty delay: 40 ms.
+>>> 'ecc9ff769469'
+<<< no command starts with ecc9ff769469
+[RATE-LIMIT] Failed attempt (4). Penalty delay: 80 ms.
+>>> 'ECC9FF'
+<<< no command starts with ECC9FF
+[RATE-LIMIT] Failed attempt (5). Penalty delay: 160 ms.
+>>> 'ecc9ff'
+<<< no command starts with ecc9ff
+[RATE-LIMIT] Failed attempt (6). Penalty delay: 320 ms.
+--- recherche par dictionnaire (prefixe de depart='mode developer') ---
+>>> 'mode developer'
+<<< one or more commands start with mode developer
+>>> 'mode developerh'
+<<< no command starts with mode developerh
+[RATE-LIMIT] Failed attempt (7). Penalty delay: 640 ms.
+>>> 'mode developerl'
+<<< no command starts with mode developerl
+[RATE-LIMIT] Failed attempt (8). Penalty delay: 1280 ms.
+>>> 'mode developers'
+<<< no command starts with mode developers
+[RATE-LIMIT] Failed attempt (9). Penalty delay: 2000 ms.
+>>> 'mode developerm'
+<<< no command starts with mode developerm
+[RATE-LIMIT] Failed attempt (10). Penalty delay: 2000 ms.
+>>> 'mode developerc'
+<<< no command starts with mode developerc
+[RATE-LIMIT] Failed attempt (11). Penalty delay: 2000 ms.
+>>> 'mode developerr'
+<<< no command starts with mode developerr
+[RATE-LIMIT] Failed attempt (12). Penalty delay: 2000 ms.
+>>> 'mode developerd'
+<<< no command starts with mode developerd
+[RATE-LIMIT] Failed attempt (13). Penalty delay: 2000 ms.
+>>> 'mode developeri'
+<<< no command starts with mode developeri
+[RATE-LIMIT] Failed attempt (14). Penalty delay: 2000 ms.
+--- reboot (penalite remise a zero) ---
+>>> 'mode developert'
+<<< no command starts with mode developert
+[RATE-LIMIT] Failed attempt (1). Penalty delay: 10 ms.
+>>> 'mode developere'
+<<< no command starts with mode developere
+[RATE-LIMIT] Failed attempt (2). Penalty delay: 20 ms.
+>>> 'mode developerv'
+<<< no command starts with mode developerv
+[RATE-LIMIT] Failed attempt (3). Penalty delay: 40 ms.
+>>> 'mode developerp'
+<<< no command starts with mode developerp
+[RATE-LIMIT] Failed attempt (4). Penalty delay: 80 ms.
+>>> 'mode developera'
+<<< no command starts with mode developera
+[RATE-LIMIT] Failed attempt (5). Penalty delay: 160 ms.
+>>> 'mode developerb'
+<<< no command starts with mode developerb
+[RATE-LIMIT] Failed attempt (6). Penalty delay: 320 ms.
+>>> 'mode developeru'
+<<< no command starts with mode developeru
+[RATE-LIMIT] Failed attempt (7). Penalty delay: 640 ms.
+>>> 'mode developerw'
+<<< no command starts with mode developerw
+[RATE-LIMIT] Failed attempt (8). Penalty delay: 1280 ms.
+--- reboot (penalite remise a zero) ---
+>>> 'mode developern'
+<<< no command starts with mode developern
+[RATE-LIMIT] Failed attempt (1). Penalty delay: 10 ms.
+>>> 'mode developero'
+<<< no command starts with mode developero
+[RATE-LIMIT] Failed attempt (2). Penalty delay: 20 ms.
+>>> 'mode developerg'
+<<< no command starts with mode developerg
+[RATE-LIMIT] Failed attempt (3). Penalty delay: 40 ms.
+>>> 'mode developerq'
+<<< no command starts with mode developerq
+[RATE-LIMIT] Failed attempt (4). Penalty delay: 80 ms.
+>>> 'mode developerk'
+<<< no command starts with mode developerk
+[RATE-LIMIT] Failed attempt (5). Penalty delay: 160 ms.
+>>> 'mode developerf'
+<<< no command starts with mode developerf
+[RATE-LIMIT] Failed attempt (6). Penalty delay: 320 ms.
+>>> 'mode developerj'
+<<< no command starts with mode developerj
+[RATE-LIMIT] Failed attempt (7). Penalty delay: 640 ms.
+>>> 'mode developerx'
+<<< no command starts with mode developerx
+[RATE-LIMIT] Failed attempt (8). Penalty delay: 1280 ms.
+--- reboot (penalite remise a zero) ---
+>>> 'mode developery'
+<<< no command starts with mode developery
+[RATE-LIMIT] Failed attempt (1). Penalty delay: 10 ms.
+>>> 'mode developerz'
+<<< no command starts with mode developerz
+[RATE-LIMIT] Failed attempt (2). Penalty delay: 20 ms.
+>>> 'mode developer0'
+<<< no command starts with mode developer0
+[RATE-LIMIT] Failed attempt (3). Penalty delay: 40 ms.
+>>> 'mode developer1'
+<<< no command starts with mode developer1
+[RATE-LIMIT] Failed attempt (4). Penalty delay: 80 ms.
+>>> 'mode developer2'
+<<< no command starts with mode developer2
+[RATE-LIMIT] Failed attempt (5). Penalty delay: 160 ms.
+>>> 'mode developer3'
+<<< no command starts with mode developer3
+[RATE-LIMIT] Failed attempt (6). Penalty delay: 320 ms.
+>>> 'mode developer4'
+<<< no command starts with mode developer4
+[RATE-LIMIT] Failed attempt (7). Penalty delay: 640 ms.
+>>> 'mode developer5'
+<<< no command starts with mode developer5
+[RATE-LIMIT] Failed attempt (8). Penalty delay: 1280 ms.
+--- reboot (penalite remise a zero) ---
+>>> 'mode developer6'
+<<< no command starts with mode developer6
+[RATE-LIMIT] Failed attempt (1). Penalty delay: 10 ms.
+>>> 'mode developer7'
+<<< no command starts with mode developer7
+[RATE-LIMIT] Failed attempt (2). Penalty delay: 20 ms.
+>>> 'mode developer8'
+<<< no command starts with mode developer8
+[RATE-LIMIT] Failed attempt (3). Penalty delay: 40 ms.
+>>> 'mode developer9'
+<<< no command starts with mode developer9
+[RATE-LIMIT] Failed attempt (4). Penalty delay: 80 ms.
+>>> 'mode developer '
+<<< one or more commands start with mode developer
+>>> 'mode developer h'
+<<< no command starts with mode developer h
+[RATE-LIMIT] Failed attempt (5). Penalty delay: 160 ms.
+>>> 'mode developer l'
+<<< no command starts with mode developer l
+[RATE-LIMIT] Failed attempt (6). Penalty delay: 320 ms.
+>>> 'mode developer s'
+<<< no command starts with mode developer s
+[RATE-LIMIT] Failed attempt (7). Penalty delay: 640 ms.
+>>> 'mode developer m'
+<<< no command starts with mode developer m
+[RATE-LIMIT] Failed attempt (8). Penalty delay: 1280 ms.
+--- reboot (penalite remise a zero) ---
+>>> 'mode developer c'
+<<< no command starts with mode developer c
+[RATE-LIMIT] Failed attempt (1). Penalty delay: 10 ms.
+>>> 'mode developer r'
+<<< no command starts with mode developer r
+[RATE-LIMIT] Failed attempt (2). Penalty delay: 20 ms.
+>>> 'mode developer d'
+<<< no command starts with mode developer d
+[RATE-LIMIT] Failed attempt (3). Penalty delay: 40 ms.
+>>> 'mode developer i'
+<<< no command starts with mode developer i
+[RATE-LIMIT] Failed attempt (4). Penalty delay: 80 ms.
+>>> 'mode developer t'
+<<< no command starts with mode developer t
+[RATE-LIMIT] Failed attempt (5). Penalty delay: 160 ms.
+>>> 'mode developer e'
+<<< no command starts with mode developer e
+[RATE-LIMIT] Failed attempt (6). Penalty delay: 320 ms.
+>>> 'mode developer v'
+<<< no command starts with mode developer v
+[RATE-LIMIT] Failed attempt (7). Penalty delay: 640 ms.
+>>> 'mode developer p'
+<<< no command starts with mode developer p
+[RATE-LIMIT] Failed attempt (8). Penalty delay: 1280 ms.
+--- reboot (penalite remise a zero) ---
+>>> 'mode developer a'
+<<< no command starts with mode developer a
+[RATE-LIMIT] Failed attempt (1). Penalty delay: 10 ms.
+>>> 'mode developer b'
+<<< no command starts with mode developer b
+[RATE-LIMIT] Failed attempt (2). Penalty delay: 20 ms.
+>>> 'mode developer u'
+<<< no command starts with mode developer u
+[RATE-LIMIT] Failed attempt (3). Penalty delay: 40 ms.
+>>> 'mode developer w'
+<<< no command starts with mode developer w
+[RATE-LIMIT] Failed attempt (4). Penalty delay: 80 ms.
+>>> 'mode developer n'
+<<< no command starts with mode developer n
+[RATE-LIMIT] Failed attempt (5). Penalty delay: 160 ms.
+>>> 'mode developer o'
+<<< no command starts with mode developer o
+[RATE-LIMIT] Failed attempt (6). Penalty delay: 320 ms.
+>>> 'mode developer g'
+<<< no command starts with mode developer g
+[RATE-LIMIT] Failed attempt (7). Penalty delay: 640 ms.
+>>> 'mode developer q'
+<<< no command starts with mode developer q
+[RATE-LIMIT] Failed attempt (8). Penalty delay: 1280 ms.
+--- reboot (penalite remise a zero) ---
+>>> 'mode developer k'
+<<< no command starts with mode developer k
+[RATE-LIMIT] Failed attempt (1). Penalty delay: 10 ms.
+>>> 'mode developer f'
+<<< no command starts with mode developer f
+[RATE-LIMIT] Failed attempt (2). Penalty delay: 20 ms.
+>>> 'mode developer j'
+<<< no command starts with mode developer j
+[RATE-LIMIT] Failed attempt (3). Penalty delay: 40 ms.
+>>> 'mode developer x'
+<<< no command starts with mode developer x
+[RATE-LIMIT] Failed attempt (4). Penalty delay: 80 ms.
+>>> 'mode developer y'
+<<< no command starts with mode developer y
+[RATE-LIMIT] Failed attempt (5). Penalty delay: 160 ms.
+>>> 'mode developer z'
+<<< no command starts with mode developer z
+[RATE-LIMIT] Failed attempt (6). Penalty delay: 320 ms.
+>>> 'mode developer 0'
+<<< no command starts with mode developer 0
+[RATE-LIMIT] Failed attempt (7). Penalty delay: 640 ms.
+>>> 'mode developer 1'
+<<< no command starts with mode developer 1
+[RATE-LIMIT] Failed attempt (8). Penalty delay: 1280 ms.
+--- reboot (penalite remise a zero) ---
+>>> 'mode developer 2'
+<<< no command starts with mode developer 2
+[RATE-LIMIT] Failed attempt (1). Penalty delay: 10 ms.
+>>> 'mode developer 3'
+<<< no command starts with mode developer 3
+[RATE-LIMIT] Failed attempt (2). Penalty delay: 20 ms.
+>>> 'mode developer 4'
+<<< no command starts with mode developer 4
+[RATE-LIMIT] Failed attempt (3). Penalty delay: 40 ms.
+>>> 'mode developer 5'
+<<< no command starts with mode developer 5
+[RATE-LIMIT] Failed attempt (4). Penalty delay: 80 ms.
+>>> 'mode developer 6'
+<<< no command starts with mode developer 6
+[RATE-LIMIT] Failed attempt (5). Penalty delay: 160 ms.
+>>> 'mode developer 7'
+<<< no command starts with mode developer 7
+[RATE-LIMIT] Failed attempt (6). Penalty delay: 320 ms.
+>>> 'mode developer 8'
+<<< no command starts with mode developer 8
+[RATE-LIMIT] Failed attempt (7). Penalty delay: 640 ms.
+>>> 'mode developer 9'
+<<< no command starts with mode developer 9
+[RATE-LIMIT] Failed attempt (8). Penalty delay: 1280 ms.
+--- reboot (penalite remise a zero) ---
+>>> 'mode developer  '
+<<< no command starts with mode developer  
+[RATE-LIMIT] Failed attempt (1). Penalty delay: 10 ms.
+>>> 'mode developer !'
+<<< no command starts with mode developer !
+[RATE-LIMIT] Failed attempt (2). Penalty delay: 20 ms.
+>>> 'mode developer @'
+<<< no command starts with mode developer @
+[RATE-LIMIT] Failed attempt (3). Penalty delay: 40 ms.
+>>> 'mode developer -'
+<<< one or more commands start with mode developer -
+>>> 'mode developer -h'
+<<< no command starts with mode developer -h
+[RATE-LIMIT] Failed attempt (4). Penalty delay: 80 ms.
+>>> 'mode developer -l'
+<<< no command starts with mode developer -l
+[RATE-LIMIT] Failed attempt (5). Penalty delay: 160 ms.
+>>> 'mode developer -s'
+<<< no command starts with mode developer -s
+[RATE-LIMIT] Failed attempt (6). Penalty delay: 320 ms.
+>>> 'mode developer -m'
+<<< no command starts with mode developer -m
+[RATE-LIMIT] Failed attempt (7). Penalty delay: 640 ms.
+>>> 'mode developer -c'
+<<< no command starts with mode developer -c
+[RATE-LIMIT] Failed attempt (8). Penalty delay: 1280 ms.
+--- reboot (penalite remise a zero) ---
+>>> 'mode developer -r'
+<<< no command starts with mode developer -r
+[RATE-LIMIT] Failed attempt (1). Penalty delay: 10 ms.
+>>> 'mode developer -d'
+<<< no command starts with mode developer -d
+[RATE-LIMIT] Failed attempt (2). Penalty delay: 20 ms.
+>>> 'mode developer -i'
+<<< no command starts with mode developer -i
+[RATE-LIMIT] Failed attempt (3). Penalty delay: 40 ms.
+>>> 'mode developer -t'
+<<< no command starts with mode developer -t
+[RATE-LIMIT] Failed attempt (4). Penalty delay: 80 ms.
+>>> 'mode developer -e'
+<<< no command starts with mode developer -e
+[RATE-LIMIT] Failed attempt (5). Penalty delay: 160 ms.
+>>> 'mode developer -v'
+<<< no command starts with mode developer -v
+[RATE-LIMIT] Failed attempt (6). Penalty delay: 320 ms.
+>>> 'mode developer -p'
+<<< no command starts with mode developer -p
+[RATE-LIMIT] Failed attempt (7). Penalty delay: 640 ms.
+>>> 'mode developer -a'
+<<< no command starts with mode developer -a
+[RATE-LIMIT] Failed attempt (8). Penalty delay: 1280 ms.
+--- reboot (penalite remise a zero) ---
+>>> 'mode developer -b'
+<<< no command starts with mode developer -b
+[RATE-LIMIT] Failed attempt (1). Penalty delay: 10 ms.
+>>> 'mode developer -u'
+<<< no command starts with mode developer -u
+[RATE-LIMIT] Failed attempt (2). Penalty delay: 20 ms.
+>>> 'mode developer -w'
+<<< no command starts with mode developer -w
+[RATE-LIMIT] Failed attempt (3). Penalty delay: 40 ms.
+>>> 'mode developer -n'
+<<< no command starts with mode developer -n
+[RATE-LIMIT] Failed attempt (4). Penalty delay: 80 ms.
+>>> 'mode developer -o'
+<<< no command starts with mode developer -o
+[RATE-LIMIT] Failed attempt (5). Penalty delay: 160 ms.
+>>> 'mode developer -g'
+<<< no command starts with mode developer -g
+[RATE-LIMIT] Failed attempt (6). Penalty delay: 320 ms.
+>>> 'mode developer -q'
+<<< no command starts with mode developer -q
+[RATE-LIMIT] Failed attempt (7). Penalty delay: 640 ms.
+>>> 'mode developer -k'
+<<< no command starts with mode developer -k
+[RATE-LIMIT] Failed attempt (8). Penalty delay: 1280 ms.
+--- reboot (penalite remise a zero) ---
+>>> 'mode developer -f'
+<<< no command starts with mode developer -f
+[RATE-LIMIT] Failed attempt (1). Penalty delay: 10 ms.
+>>> 'mode developer -j'
+<<< no command starts with mode developer -j
+[RATE-LIMIT] Failed attempt (2). Penalty delay: 20 ms.
+>>> 'mode developer -x'
+<<< no command starts with mode developer -x
+[RATE-LIMIT] Failed attempt (3). Penalty delay: 40 ms.
+>>> 'mode developer -y'
+<<< no command starts with mode developer -y
+[RATE-LIMIT] Failed attempt (4). Penalty delay: 80 ms.
+>>> 'mode developer -z'
+<<< no command starts with mode developer -z
+[RATE-LIMIT] Failed attempt (5). Penalty delay: 160 ms.
+>>> 'mode developer -0'
+<<< no command starts with mode developer -0
+[RATE-LIMIT] Failed attempt (6). Penalty delay: 320 ms.
+>>> 'mode developer -1'
+<<< no command starts with mode developer -1
+[RATE-LIMIT] Failed attempt (7). Penalty delay: 640 ms.
+>>> 'mode developer -2'
+<<< no command starts with mode developer -2
+[RATE-LIMIT] Failed attempt (8). Penalty delay: 1280 ms.
+--- reboot (penalite remise a zero) ---
+>>> 'mode developer -3'
+<<< no command starts with mode developer -3
+[RATE-LIMIT] Failed attempt (1). Penalty delay: 10 ms.
+>>> 'mode developer -4'
+<<< no command starts with mode developer -4
+[RATE-LIMIT] Failed attempt (2). Penalty delay: 20 ms.
+>>> 'mode developer -5'
+<<< no command starts with mode developer -5
+[RATE-LIMIT] Failed attempt (3). Penalty delay: 40 ms.
+>>> 'mode developer -6'
+<<< no command starts with mode developer -6
+[RATE-LIMIT] Failed attempt (4). Penalty delay: 80 ms.
+>>> 'mode developer -7'
+<<< no command starts with mode developer -7
+[RATE-LIMIT] Failed attempt (5). Penalty delay: 160 ms.
+>>> 'mode developer -8'
+<<< no command starts with mode developer -8
+[RATE-LIMIT] Failed attempt (6). Penalty delay: 320 ms.
+>>> 'mode developer -9'
+<<< no command starts with mode developer -9
+[RATE-LIMIT] Failed attempt (7). Penalty delay: 640 ms.
+>>> 'mode developer - '
+<<< no command starts with mode developer - 
+[RATE-LIMIT] Failed attempt (8). Penalty delay: 1280 ms.
+--- reboot (penalite remise a zero) ---
+>>> 'mode developer -!'
+<<< no command starts with mode developer -!
+[RATE-LIMIT] Failed attempt (1). Penalty delay: 10 ms.
+>>> 'mode developer -@'
+<<< no command starts with mode developer -@
+[RATE-LIMIT] Failed attempt (2). Penalty delay: 20 ms.
+>>> 'mode developer --'
+<<< one or more commands start with mode developer --
+>>> 'mode developer --h'
+<<< one or more commands start with mode developer --h
+>>> 'mode developer --hh'
+<<< no command starts with mode developer --hh
+[RATE-LIMIT] Failed attempt (3). Penalty delay: 40 ms.
+>>> 'mode developer --hl'
+<<< no command starts with mode developer --hl
+[RATE-LIMIT] Failed attempt (4). Penalty delay: 80 ms.
+>>> 'mode developer --hs'
+<<< no command starts with mode developer --hs
+[RATE-LIMIT] Failed attempt (5). Penalty delay: 160 ms.
+>>> 'mode developer --hm'
+<<< no command starts with mode developer --hm
+[RATE-LIMIT] Failed attempt (6). Penalty delay: 320 ms.
+>>> 'mode developer --hc'
+<<< no command starts with mode developer --hc
+[RATE-LIMIT] Failed attempt (7). Penalty delay: 640 ms.
+>>> 'mode developer --hr'
+<<< no command starts with mode developer --hr
+[RATE-LIMIT] Failed attempt (8). Penalty delay: 1280 ms.
+--- reboot (penalite remise a zero) ---
+>>> 'mode developer --hd'
+<<< no command starts with mode developer --hd
+[RATE-LIMIT] Failed attempt (1). Penalty delay: 10 ms.
+>>> 'mode developer --hi'
+<<< no command starts with mode developer --hi
+[RATE-LIMIT] Failed attempt (2). Penalty delay: 20 ms.
+>>> 'mode developer --ht'
+<<< no command starts with mode developer --ht
+[RATE-LIMIT] Failed attempt (3). Penalty delay: 40 ms.
+>>> 'mode developer --he'
+<<< one or more commands start with mode developer --he
+>>> 'mode developer --heh'
+<<< no command starts with mode developer --heh
+[RATE-LIMIT] Failed attempt (4). Penalty delay: 80 ms.
+>>> 'mode developer --hel'
+<<< one or more commands start with mode developer --hel
+>>> 'mode developer --helh'
+<<< no command starts with mode developer --helh
+[RATE-LIMIT] Failed attempt (5). Penalty delay: 160 ms.
+>>> 'mode developer --hell'
+<<< no command starts with mode developer --hell
+[RATE-LIMIT] Failed attempt (6). Penalty delay: 320 ms.
+>>> 'mode developer --hels'
+<<< no command starts with mode developer --hels
+[RATE-LIMIT] Failed attempt (7). Penalty delay: 640 ms.
+>>> 'mode developer --helm'
+<<< no command starts with mode developer --helm
+[RATE-LIMIT] Failed attempt (8). Penalty delay: 1280 ms.
+--- reboot (penalite remise a zero) ---
+>>> 'mode developer --helc'
+<<< no command starts with mode developer --helc
+[RATE-LIMIT] Failed attempt (1). Penalty delay: 10 ms.
+>>> 'mode developer --helr'
+<<< no command starts with mode developer --helr
+[RATE-LIMIT] Failed attempt (2). Penalty delay: 20 ms.
+>>> 'mode developer --held'
+<<< no command starts with mode developer --held
+[RATE-LIMIT] Failed attempt (3). Penalty delay: 40 ms.
+>>> 'mode developer --heli'
+<<< no command starts with mode developer --heli
+[RATE-LIMIT] Failed attempt (4). Penalty delay: 80 ms.
+>>> 'mode developer --helt'
+<<< no command starts with mode developer --helt
+[RATE-LIMIT] Failed attempt (5). Penalty delay: 160 ms.
+>>> 'mode developer --hele'
+<<< no command starts with mode developer --hele
+[RATE-LIMIT] Failed attempt (6). Penalty delay: 320 ms.
+>>> 'mode developer --helv'
+<<< no command starts with mode developer --helv
+[RATE-LIMIT] Failed attempt (7). Penalty delay: 640 ms.
+>>> 'mode developer --help'
+<<< [AUTH REQUIRED] Developer mode requires device verification.
+Enter MAC suffix (6 hex digits, e.g. A4C138):
+>>> 'mode developer --help '
+<<< [AUTH ERROR] Invalid MAC verification passkey.
+[RATE-LIMIT] Failed attempt (8). Penalty delay: 1280 ms.
+>>> 'mode developer --help-'
+<<< no command starts with mode developer --help-
+[RATE-LIMIT] Failed attempt (9). Penalty delay: 2000 ms.
+--- reboot (penalite remise a zero) ---
+>>> 'mode developer --help--'
+<<< no command starts with mode developer --help--
+[RATE-LIMIT] Failed attempt (1). Penalty delay: 10 ms.
+--- fin recherche par dictionnaire: executed ---
+>>> '769469'
+<<< no command starts with 769469
+[RATE-LIMIT] Failed attempt (2). Penalty delay: 20 ms.
+>>> 'ecc9ff'
+<<< no command starts with ecc9ff
+[RATE-LIMIT] Failed attempt (3). Penalty delay: 40 ms.
+>>> 'ec c9 ff'
+<<< no command starts with ec c9 ff
+[RATE-LIMIT] Failed attempt (4). Penalty delay: 80 ms.
+>>> '769468'
+<<< no command starts with 769468
+[RATE-LIMIT] Failed attempt (5). Penalty delay: 160 ms.
+>>> 'ecc9fe'
+<<< no command starts with ecc9fe
+[RATE-LIMIT] Failed attempt (6). Penalty delay: 320 ms.
+>>> '76946a'
+<<< no command starts with 76946a
+[RATE-LIMIT] Failed attempt (7). Penalty delay: 640 ms.
+>>> 'ecc9ff'
+<<< no command starts with ecc9ff
+[RATE-LIMIT] Failed attempt (8). Penalty delay: 1280 ms.
+>>> 'ECC9FF'
+<<< no command starts with ECC9FF
+[RATE-LIMIT] Failed attempt (9). Penalty delay: 2000 ms.
+>>> '769469'
+<<< no command starts with 769469
+[RATE-LIMIT] Failed attempt (10). Penalty delay: 2000 ms.
+--- recherche par dictionnaire (prefixe de depart='mode developer') ---
+>>> 'mode developer'
+<<< one or more commands start with mode developer
+>>> 'mode developerh'
+<<< no command starts with mode developerh
+[RATE-LIMIT] Failed attempt (11). Penalty delay: 2000 ms.
+>>> 'mode developerl'
+<<< no command starts with mode developerl
+[RATE-LIMIT] Failed attempt (12). Penalty delay: 2000 ms.
+>>> 'mode developers'
+<<< no command starts with mode developers
+[RATE-LIMIT] Failed attempt (13). Penalty delay: 2000 ms.
+>>> 'mode developerm'
+<<< no command starts with mode developerm
+[RATE-LIMIT] Failed attempt (14). Penalty delay: 2000 ms.
+>>> 'mode developerc'
+<<< no command starts with mode developerc
+[RATE-LIMIT] Failed attempt (15). Penalty delay: 2000 ms.
+>>> 'mode developerr'
+<<< no command starts with mode developerr
+[RATE-LIMIT] Failed attempt (16). Penalty delay: 2000 ms.
+>>> 'mode developerd'
+<<< no command starts with mode developerd
+[RATE-LIMIT] Failed attempt (17). Penalty delay: 2000 ms.
+>>> 'mode developeri'
+<<< no command starts with mode developeri
+[RATE-LIMIT] Failed attempt (18). Penalty delay: 2000 ms.
+--- reboot (penalite remise a zero) ---
+>>> 'mode developert'
+<<< no command starts with mode developert
+[RATE-LIMIT] Failed attempt (1). Penalty delay: 10 ms.
+>>> 'mode developere'
+<<< no command starts with mode developere
+[RATE-LIMIT] Failed attempt (2). Penalty delay: 20 ms.
+>>> 'mode developerv'
+<<< no command starts with mode developerv
+[RATE-LIMIT] Failed attempt (3). Penalty delay: 40 ms.
+>>> 'mode developerp'
+<<< no command starts with mode developerp
+[RATE-LIMIT] Failed attempt (4). Penalty delay: 80 ms.
+>>> 'mode developera'
+<<< no command starts with mode developera
+[RATE-LIMIT] Failed attempt (5). Penalty delay: 160 ms.
+>>> 'mode developerb'
+<<< no command starts with mode developerb
+[RATE-LIMIT] Failed attempt (6). Penalty delay: 320 ms.
+>>> 'mode developeru'
+<<< no command starts with mode developeru
+[RATE-LIMIT] Failed attempt (7). Penalty delay: 640 ms.
+>>> 'mode developerw'
+<<< no command starts with mode developerw
+[RATE-LIMIT] Failed attempt (8). Penalty delay: 1280 ms.
+--- reboot (penalite remise a zero) ---
+>>> 'mode developern'
+<<< no command starts with mode developern
+[RATE-LIMIT] Failed attempt (1). Penalty delay: 10 ms.
+>>> 'mode developero'
+<<< no command starts with mode developero
+[RATE-LIMIT] Failed attempt (2). Penalty delay: 20 ms.
+>>> 'mode developerg'
+<<< no command starts with mode developerg
+[RATE-LIMIT] Failed attempt (3). Penalty delay: 40 ms.
+>>> 'mode developerq'
+<<< no command starts with mode developerq
+[RATE-LIMIT] Failed attempt (4). Penalty delay: 80 ms.
+>>> 'mode developerk'
+<<< no command starts with mode developerk
+[RATE-LIMIT] Failed attempt (5). Penalty delay: 160 ms.
+>>> 'mode developerf'
+<<< no command starts with mode developerf
+[RATE-LIMIT] Failed attempt (6). Penalty delay: 320 ms.
+>>> 'mode developerj'
+<<< no command starts with mode developerj
+[RATE-LIMIT] Failed attempt (7). Penalty delay: 640 ms.
+>>> 'mode developerx'
+<<< no command starts with mode developerx
+[RATE-LIMIT] Failed attempt (8). Penalty delay: 1280 ms.
+--- reboot (penalite remise a zero) ---
+>>> 'mode developery'
+<<< no command starts with mode developery
+[RATE-LIMIT] Failed attempt (1). Penalty delay: 10 ms.
+>>> 'mode developerz'
+<<< no command starts with mode developerz
+[RATE-LIMIT] Failed attempt (2). Penalty delay: 20 ms.
+>>> 'mode developer0'
+<<< no command starts with mode developer0
+[RATE-LIMIT] Failed attempt (3). Penalty delay: 40 ms.
+>>> 'mode developer1'
+<<< no command starts with mode developer1
+[RATE-LIMIT] Failed attempt (4). Penalty delay: 80 ms.
+>>> 'mode developer2'
+<<< no command starts with mode developer2
+[RATE-LIMIT] Failed attempt (5). Penalty delay: 160 ms.
+>>> 'mode developer3'
+<<< no command starts with mode developer3
+[RATE-LIMIT] Failed attempt (6). Penalty delay: 320 ms.
+>>> 'mode developer4'
+<<< no command starts with mode developer4
+[RATE-LIMIT] Failed attempt (7). Penalty delay: 640 ms.
+>>> 'mode developer5'
+<<< no command starts with mode developer5
+[RATE-LIMIT] Failed attempt (8). Penalty delay: 1280 ms.
+--- reboot (penalite remise a zero) ---
+>>> 'mode developer6'
+<<< no command starts with mode developer6
+[RATE-LIMIT] Failed attempt (1). Penalty delay: 10 ms.
+>>> 'mode developer7'
+<<< no command starts with mode developer7
+[RATE-LIMIT] Failed attempt (2). Penalty delay: 20 ms.
+>>> 'mode developer8'
+<<< no command starts with mode developer8
+[RATE-LIMIT] Failed attempt (3). Penalty delay: 40 ms.
+>>> 'mode developer9'
+<<< no command starts with mode developer9
+[RATE-LIMIT] Failed attempt (4). Penalty delay: 80 ms.
+>>> 'mode developer '
+<<< one or more commands start with mode developer
+>>> 'mode developer h'
+<<< no command starts with mode developer h
+[RATE-LIMIT] Failed attempt (5). Penalty delay: 160 ms.
+>>> 'mode developer l'
+<<< no command starts with mode developer l
+[RATE-LIMIT] Failed attempt (6). Penalty delay: 320 ms.
+>>> 'mode developer s'
+<<< no command starts with mode developer s
+[RATE-LIMIT] Failed attempt (7). Penalty delay: 640 ms.
+>>> 'mode developer m'
+<<< no command starts with mode developer m
+[RATE-LIMIT] Failed attempt (8). Penalty delay: 1280 ms.
+--- reboot (penalite remise a zero) ---
+>>> 'mode developer c'
+<<< no command starts with mode developer c
+[RATE-LIMIT] Failed attempt (1). Penalty delay: 10 ms.
+>>> 'mode developer r'
+<<< no command starts with mode developer r
+[RATE-LIMIT] Failed attempt (2). Penalty delay: 20 ms.
+>>> 'mode developer d'
+<<< no command starts with mode developer d
+[RATE-LIMIT] Failed attempt (3). Penalty delay: 40 ms.
+>>> 'mode developer i'
+<<< no command starts with mode developer i
+[RATE-LIMIT] Failed attempt (4). Penalty delay: 80 ms.
+>>> 'mode developer t'
+<<< no command starts with mode developer t
+[RATE-LIMIT] Failed attempt (5). Penalty delay: 160 ms.
+>>> 'mode developer e'
+<<< no command starts with mode developer e
+[RATE-LIMIT] Failed attempt (6). Penalty delay: 320 ms.
+>>> 'mode developer v'
+<<< no command starts with mode developer v
+[RATE-LIMIT] Failed attempt (7). Penalty delay: 640 ms.
+>>> 'mode developer p'
+<<< no command starts with mode developer p
+[RATE-LIMIT] Failed attempt (8). Penalty delay: 1280 ms.
+--- reboot (penalite remise a zero) ---
+>>> 'mode developer a'
+<<< no command starts with mode developer a
+[RATE-LIMIT] Failed attempt (1). Penalty delay: 10 ms.
+>>> 'mode developer b'
+<<< no command starts with mode developer b
+[RATE-LIMIT] Failed attempt (2). Penalty delay: 20 ms.
+>>> 'mode developer u'
+<<< no command starts with mode developer u
+[RATE-LIMIT] Failed attempt (3). Penalty delay: 40 ms.
+>>> 'mode developer w'
+<<< no command starts with mode developer w
+[RATE-LIMIT] Failed attempt (4). Penalty delay: 80 ms.
+>>> 'mode developer n'
+<<< no command starts with mode developer n
+[RATE-LIMIT] Failed attempt (5). Penalty delay: 160 ms.
+>>> 'mode developer o'
+<<< no command starts with mode developer o
+[RATE-LIMIT] Failed attempt (6). Penalty delay: 320 ms.
+>>> 'mode developer g'
+<<< no command starts with mode developer g
+[RATE-LIMIT] Failed attempt (7). Penalty delay: 640 ms.
+>>> 'mode developer q'
+<<< no command starts with mode developer q
+[RATE-LIMIT] Failed attempt (8). Penalty delay: 1280 ms.
+--- reboot (penalite remise a zero) ---
+>>> 'mode developer k'
+<<< no command starts with mode developer k
+[RATE-LIMIT] Failed attempt (1). Penalty delay: 10 ms.
+>>> 'mode developer f'
+<<< no command starts with mode developer f
+[RATE-LIMIT] Failed attempt (2). Penalty delay: 20 ms.
+>>> 'mode developer j'
+<<< no command starts with mode developer j
+[RATE-LIMIT] Failed attempt (3). Penalty delay: 40 ms.
+>>> 'mode developer x'
+<<< no command starts with mode developer x
+[RATE-LIMIT] Failed attempt (4). Penalty delay: 80 ms.
+>>> 'mode developer y'
+<<< no command starts with mode developer y
+[RATE-LIMIT] Failed attempt (5). Penalty delay: 160 ms.
+>>> 'mode developer z'
+<<< no command starts with mode developer z
+[RATE-LIMIT] Failed attempt (6). Penalty delay: 320 ms.
+>>> 'mode developer 0'
+<<< no command starts with mode developer 0
+[RATE-LIMIT] Failed attempt (7). Penalty delay: 640 ms.
+>>> 'mode developer 1'
+<<< no command starts with mode developer 1
+[RATE-LIMIT] Failed attempt (8). Penalty delay: 1280 ms.
+--- reboot (penalite remise a zero) ---
+>>> 'mode developer 2'
+<<< no command starts with mode developer 2
+[RATE-LIMIT] Failed attempt (1). Penalty delay: 10 ms.
+>>> 'mode developer 3'
+<<< no command starts with mode developer 3
+[RATE-LIMIT] Failed attempt (2). Penalty delay: 20 ms.
+>>> 'mode developer 4'
+<<< no command starts with mode developer 4
+[RATE-LIMIT] Failed attempt (3). Penalty delay: 40 ms.
+>>> 'mode developer 5'
+<<< no command starts with mode developer 5
+[RATE-LIMIT] Failed attempt (4). Penalty delay: 80 ms.
+>>> 'mode developer 6'
+<<< no command starts with mode developer 6
+[RATE-LIMIT] Failed attempt (5). Penalty delay: 160 ms.
+>>> 'mode developer 7'
+<<< no command starts with mode developer 7
+[RATE-LIMIT] Failed attempt (6). Penalty delay: 320 ms.
+>>> 'mode developer 8'
+<<< no command starts with mode developer 8
+[RATE-LIMIT] Failed attempt (7). Penalty delay: 640 ms.
+>>> 'mode developer 9'
+<<< no command starts with mode developer 9
+[RATE-LIMIT] Failed attempt (8). Penalty delay: 1280 ms.
+--- reboot (penalite remise a zero) ---
+>>> 'mode developer  '
+<<< no command starts with mode developer  
+[RATE-LIMIT] Failed attempt (1). Penalty delay: 10 ms.
+>>> 'mode developer !'
+<<< no command starts with mode developer !
+[RATE-LIMIT] Failed attempt (2). Penalty delay: 20 ms.
+>>> 'mode developer @'
+<<< no command starts with mode developer @
+[RATE-LIMIT] Failed attempt (3). Penalty delay: 40 ms.
+>>> 'mode developer -'
+<<< one or more commands start with mode developer -
+>>> 'mode developer -h'
+<<< no command starts with mode developer -h
+[RATE-LIMIT] Failed attempt (4). Penalty delay: 80 ms.
+>>> 'mode developer -l'
+<<< no command starts with mode developer -l
+[RATE-LIMIT] Failed attempt (5). Penalty delay: 160 ms.
+>>> 'mode developer -s'
+<<< no command starts with mode developer -s
+[RATE-LIMIT] Failed attempt (6). Penalty delay: 320 ms.
+>>> 'mode developer -m'
+<<< no command starts with mode developer -m
+[RATE-LIMIT] Failed attempt (7). Penalty delay: 640 ms.
+>>> 'mode developer -c'
+<<< no command starts with mode developer -c
+[RATE-LIMIT] Failed attempt (8). Penalty delay: 1280 ms.
+--- reboot (penalite remise a zero) ---
+>>> 'mode developer -r'
+<<< no command starts with mode developer -r
+[RATE-LIMIT] Failed attempt (1). Penalty delay: 10 ms.
+>>> 'mode developer -d'
+<<< no command starts with mode developer -d
+[RATE-LIMIT] Failed attempt (2). Penalty delay: 20 ms.
+>>> 'mode developer -i'
+<<< no command starts with mode developer -i
+[RATE-LIMIT] Failed attempt (3). Penalty delay: 40 ms.
+>>> 'mode developer -t'
+<<< no command starts with mode developer -t
+[RATE-LIMIT] Failed attempt (4). Penalty delay: 80 ms.
+>>> 'mode developer -e'
+<<< no command starts with mode developer -e
+[RATE-LIMIT] Failed attempt (5). Penalty delay: 160 ms.
+>>> 'mode developer -v'
+<<< no command starts with mode developer -v
+[RATE-LIMIT] Failed attempt (6). Penalty delay: 320 ms.
+>>> 'mode developer -p'
+<<< no command starts with mode developer -p
+[RATE-LIMIT] Failed attempt (7). Penalty delay: 640 ms.
+>>> 'mode developer -a'
+<<< no command starts with mode developer -a
+[RATE-LIMIT] Failed attempt (8). Penalty delay: 1280 ms.
+--- reboot (penalite remise a zero) ---
+>>> 'mode developer -b'
+<<< no command starts with mode developer -b
+[RATE-LIMIT] Failed attempt (1). Penalty delay: 10 ms.
+>>> 'mode developer -u'
+<<< no command starts with mode developer -u
+[RATE-LIMIT] Failed attempt (2). Penalty delay: 20 ms.
+>>> 'mode developer -w'
+<<< no command starts with mode developer -w
+[RATE-LIMIT] Failed attempt (3). Penalty delay: 40 ms.
+>>> 'mode developer -n'
+<<< no command starts with mode developer -n
+[RATE-LIMIT] Failed attempt (4). Penalty delay: 80 ms.
+>>> 'mode developer -o'
+<<< no command starts with mode developer -o
+[RATE-LIMIT] Failed attempt (5). Penalty delay: 160 ms.
+>>> 'mode developer -g'
+<<< no command starts with mode developer -g
+[RATE-LIMIT] Failed attempt (6). Penalty delay: 320 ms.
+>>> 'mode developer -q'
+<<< no command starts with mode developer -q
+[RATE-LIMIT] Failed attempt (7). Penalty delay: 640 ms.
+>>> 'mode developer -k'
+<<< no command starts with mode developer -k
+[RATE-LIMIT] Failed attempt (8). Penalty delay: 1280 ms.
+--- reboot (penalite remise a zero) ---
+>>> 'mode developer -f'
+<<< no command starts with mode developer -f
+[RATE-LIMIT] Failed attempt (1). Penalty delay: 10 ms.
+>>> 'mode developer -j'
+<<< no command starts with mode developer -j
+[RATE-LIMIT] Failed attempt (2). Penalty delay: 20 ms.
+>>> 'mode developer -x'
+<<< no command starts with mode developer -x
+[RATE-LIMIT] Failed attempt (3). Penalty delay: 40 ms.
+>>> 'mode developer -y'
+<<< no command starts with mode developer -y
+[RATE-LIMIT] Failed attempt (4). Penalty delay: 80 ms.
+>>> 'mode developer -z'
+<<< no command starts with mode developer -z
+[RATE-LIMIT] Failed attempt (5). Penalty delay: 160 ms.
+>>> 'mode developer -0'
+<<< no command starts with mode developer -0
+[RATE-LIMIT] Failed attempt (6). Penalty delay: 320 ms.
+>>> 'mode developer -1'
+<<< no command starts with mode developer -1
+[RATE-LIMIT] Failed attempt (7). Penalty delay: 640 ms.
+>>> 'mode developer -2'
+<<< no command starts with mode developer -2
+[RATE-LIMIT] Failed attempt (8). Penalty delay: 1280 ms.
+--- reboot (penalite remise a zero) ---
+>>> 'mode developer -3'
+<<< no command starts with mode developer -3
+[RATE-LIMIT] Failed attempt (1). Penalty delay: 10 ms.
+>>> 'mode developer -4'
+<<< no command starts with mode developer -4
+[RATE-LIMIT] Failed attempt (2). Penalty delay: 20 ms.
+>>> 'mode developer -5'
+<<< no command starts with mode developer -5
+[RATE-LIMIT] Failed attempt (3). Penalty delay: 40 ms.
+>>> 'mode developer -6'
+<<< no command starts with mode developer -6
+[RATE-LIMIT] Failed attempt (4). Penalty delay: 80 ms.
+>>> 'mode developer -7'
+<<< no command starts with mode developer -7
+[RATE-LIMIT] Failed attempt (5). Penalty delay: 160 ms.
+>>> 'mode developer -8'
+<<< no command starts with mode developer -8
+[RATE-LIMIT] Failed attempt (6). Penalty delay: 320 ms.
+>>> 'mode developer -9'
+<<< no command starts with mode developer -9
+[RATE-LIMIT] Failed attempt (7). Penalty delay: 640 ms.
+>>> 'mode developer - '
+<<< no command starts with mode developer - 
+[RATE-LIMIT] Failed attempt (8). Penalty delay: 1280 ms.
+--- reboot (penalite remise a zero) ---
+>>> 'mode developer -!'
+<<< no command starts with mode developer -!
+[RATE-LIMIT] Failed attempt (1). Penalty delay: 10 ms.
+>>> 'mode developer -@'
+<<< no command starts with mode developer -@
+[RATE-LIMIT] Failed attempt (2). Penalty delay: 20 ms.
+>>> 'mode developer --'
+<<< one or more commands start with mode developer --
+>>> 'mode developer --h'
+<<< one or more commands start with mode developer --h
+>>> 'mode developer --hh'
+<<< no command starts with mode developer --hh
+[RATE-LIMIT] Failed attempt (3). Penalty delay: 40 ms.
+>>> 'mode developer --hl'
+<<< no command starts with mode developer --hl
+[RATE-LIMIT] Failed attempt (4). Penalty delay: 80 ms.
+>>> 'mode developer --hs'
+<<< no command starts with mode developer --hs
+[RATE-LIMIT] Failed attempt (5). Penalty delay: 160 ms.
+>>> 'mode developer --hm'
+<<< no command starts with mode developer --hm
+[RATE-LIMIT] Failed attempt (6). Penalty delay: 320 ms.
+>>> 'mode developer --hc'
+<<< no command starts with mode developer --hc
+[RATE-LIMIT] Failed attempt (7). Penalty delay: 640 ms.
+>>> 'mode developer --hr'
+<<< no command starts with mode developer --hr
+[RATE-LIMIT] Failed attempt (8). Penalty delay: 1280 ms.
+--- reboot (penalite remise a zero) ---
+>>> 'mode developer --hd'
+<<< no command starts with mode developer --hd
+[RATE-LIMIT] Failed attempt (1). Penalty delay: 10 ms.
+>>> 'mode developer --hi'
+<<< no command starts with mode developer --hi
+[RATE-LIMIT] Failed attempt (2). Penalty delay: 20 ms.
+>>> 'mode developer --ht'
+<<< no command starts with mode developer --ht
+[RATE-LIMIT] Failed attempt (3). Penalty delay: 40 ms.
+>>> 'mode developer --he'
+<<< one or more commands start with mode developer --he
+>>> 'mode developer --heh'
+<<< no command starts with mode developer --heh
+[RATE-LIMIT] Failed attempt (4). Penalty delay: 80 ms.
+>>> 'mode developer --hel'
+<<< one or more commands start with mode developer --hel
+>>> 'mode developer --helh'
+<<< no command starts with mode developer --helh
+[RATE-LIMIT] Failed attempt (5). Penalty delay: 160 ms.
+>>> 'mode developer --hell'
+<<< no command starts with mode developer --hell
+[RATE-LIMIT] Failed attempt (6). Penalty delay: 320 ms.
+>>> 'mode developer --hels'
+<<< no command starts with mode developer --hels
+[RATE-LIMIT] Failed attempt (7). Penalty delay: 640 ms.
+>>> 'mode developer --helm'
+<<< no command starts with mode developer --helm
+[RATE-LIMIT] Failed attempt (8). Penalty delay: 1280 ms.
+--- reboot (penalite remise a zero) ---
+>>> 'mode developer --helc'
+<<< no command starts with mode developer --helc
+[RATE-LIMIT] Failed attempt (1). Penalty delay: 10 ms.
+>>> 'mode developer --helr'
+<<< no command starts with mode developer --helr
+[RATE-LIMIT] Failed attempt (2). Penalty delay: 20 ms.
+>>> 'mode developer --held'
+<<< no command starts with mode developer --held
+[RATE-LIMIT] Failed attempt (3). Penalty delay: 40 ms.
+>>> 'mode developer --heli'
+<<< no command starts with mode developer --heli
+[RATE-LIMIT] Failed attempt (4). Penalty delay: 80 ms.
+>>> 'mode developer --helt'
+<<< no command starts with mode developer --helt
+[RATE-LIMIT] Failed attempt (5). Penalty delay: 160 ms.
+>>> 'mode developer --hele'
+<<< no command starts with mode developer --hele
+[RATE-LIMIT] Failed attempt (6). Penalty delay: 320 ms.
+>>> 'mode developer --helv'
+<<< no command starts with mode developer --helv
+[RATE-LIMIT] Failed attempt (7). Penalty delay: 640 ms.
+>>> 'mode developer --help'
+<<< [AUTH REQUIRED] Developer mode requires device verification.
+Enter MAC suffix (6 hex digits, e.g. A4C138):
+>>> 'mode developer --help '
+<<< [AUTH ERROR] Invalid MAC verification passkey.
+[RATE-LIMIT] Failed attempt (8). Penalty delay: 1280 ms.
+>>> 'mode developer --help-'
+<<< no command starts with mode developer --help-
+[RATE-LIMIT] Failed attempt (9). Penalty delay: 2000 ms.
+--- reboot (penalite remise a zero) ---
+>>> 'mode developer --help--'
+<<< no command starts with mode developer --help--
+[RATE-LIMIT] Failed attempt (1). Penalty delay: 10 ms.
+--- fin recherche par dictionnaire: executed ---
+>>> '769469'
+<<< no command starts with 769469
+[RATE-LIMIT] Failed attempt (2). Penalty delay: 20 ms.
+>>> 'ECC9F9'
+<<< no command starts with ECC9F9
+[RATE-LIMIT] Failed attempt (3). Penalty delay: 40 ms.
