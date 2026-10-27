@@ -1,138 +1,175 @@
-"""La boucle agent: Observer -> LLM -> Agir (outil) -> Verifier -> journaliser.
-
-Entierement instrumentee. Renvoie un RunSummary (metriques du run). La logique
-est backend-agnostique: elle ne connait que LLMClient + ToolRegistry.
-"""
+"""Core agent loop: LLM decides which tool to call each step."""
 from __future__ import annotations
 
+import json
+import re
 import time
 import uuid
 
-from .llm.base import LLMClient, Message
-from .metrics import EventLogger, RunSummary
-from .tools.base import ToolRegistry
+from .llm import LLMResponse, ToolCall, ToolSpec
+
+
+def _parse_tool_from_text(text: str, known_tools: set[str]) -> ToolCall | None:
+    """Fallback: extract a tool call from model text output.
+
+    Small models sometimes write tool calls as JSON in their text instead of
+    using the structured tool calling API. This catches that pattern.
+    """
+    # Match {"name": "tool_name", "arguments": {...}}
+    for m in re.finditer(r'\{[^{}]*"name"\s*:\s*"(\w+)"[^{}]*"arguments"\s*:\s*(\{[^{}]*\})', text):
+        name = m.group(1)
+        if name in known_tools:
+            try:
+                args = json.loads(m.group(2))
+            except json.JSONDecodeError:
+                args = {}
+            return ToolCall(id="call_" + uuid.uuid4().hex[:8], name=name, arguments=args)
+
+    # Match tool_name({"key": "value"}) or tool_name(key="value")
+    for m in re.finditer(r'(\w+)\(\s*(\{[^)]*\})\s*\)', text):
+        name = m.group(1)
+        if name in known_tools:
+            try:
+                args = json.loads(m.group(2))
+            except json.JSONDecodeError:
+                args = {}
+            return ToolCall(id="call_" + uuid.uuid4().hex[:8], name=name, arguments=args)
+
+    # Match just a tool name with a simple string arg: uart_send("help")
+    for m in re.finditer(r'(\w+)\(\s*["\']([^"\']+)["\']\s*\)', text):
+        name = m.group(1)
+        if name in known_tools:
+            return ToolCall(id="call_" + uuid.uuid4().hex[:8], name=name,
+                           arguments={"command": m.group(2)})
+
+    # Match a zero-arg call: read_mac(), wifi_scan(), reboot()
+    for m in re.finditer(r'(\w+)\(\s*\)', text):
+        name = m.group(1)
+        if name in known_tools:
+            return ToolCall(id="call_" + uuid.uuid4().hex[:8], name=name, arguments={})
+
+    return None
 
 
 class Agent:
-    def __init__(self, llm: LLMClient, registry: ToolRegistry,
-                 logger: EventLogger, run_id: str, max_steps: int = 12,
-                 verbose: bool = False):
+    def __init__(self, llm, tools: dict[str, dict],
+                 system: str, goal: str, max_steps: int = 200):
         self.llm = llm
-        self.registry = registry
-        self.logger = logger
-        self.run_id = run_id
+        self._tools = tools
+        self.system = system
         self.max_steps = max_steps
-        self.verbose = verbose  # affiche le raisonnement + les decisions d'outil en direct
+        self.history: list[dict] = [{"role": "user", "text": goal}]
+        self.solved = False
+        self.flag = None
+        self.uart_calls = 0
+        self.llm_calls = 0
+        self._tried_commands: dict[str, int] = {}
 
-    def run(self, system: str, goal: str, challenge: str = "mock") -> RunSummary:
-        s = RunSummary(run_id=self.run_id, challenge=challenge, model=self.llm.model,
-                       solved=False)
-        self.logger.emit("run_start", run_id=self.run_id, challenge=challenge,
-                         model=self.llm.model, max_steps=self.max_steps)
-        history: list[Message] = [Message(role="user", text=goal)]
-        tools = self.registry.specs()
+    def tool_specs(self) -> list[ToolSpec]:
+        return [t["spec"] for t in self._tools.values()]
 
-        wall0 = time.perf_counter()
-        reason = "max_steps_reached"
-        # Quand le modele tourne en mode 'auto' (il n'est pas force d'appeler un
-        # outil), il peut repondre du texte sans agir. On le relance alors avec un
-        # nudge, et on n'abandonne qu'apres plusieurs tours sans outil d'affilee.
-        no_tool_streak = 0
-        max_no_tool = 3
-        for _ in range(self.max_steps):
-            resp = self.llm.step(system, history, tools)
+    def _execute(self, tc: ToolCall) -> dict:
+        print(f"[tool] {tc.name}({tc.arguments})", flush=True)
+        tool = self._tools.get(tc.name)
+        if not tool:
+            result = {"error": f"unknown tool: {tc.name}"}
+        else:
+            try:
+                result = tool["fn"](**tc.arguments)
+            except Exception as exc:
+                result = {"error": str(exc)}
+            if tool.get("counted"):
+                self.uart_calls += 1
+        print(f"  -> {json.dumps(result, ensure_ascii=False, default=str)[:500]}", flush=True)
+        return result
 
-            # --- metriques de l'appel LLM ---
-            u = resp.usage
-            s.llm_calls += 1
-            s.input_tokens += u.input_tokens
-            s.output_tokens += u.output_tokens
-            s.cached_tokens += u.cached_tokens
-            s.thinking_tokens += u.thinking_tokens
-            s.total_tokens += u.total_tokens
-            s.llm_ms += resp.latency_ms
-            self.logger.emit("llm_call", run_id=self.run_id, model=resp.model,
-                             input_tokens=u.input_tokens, output_tokens=u.output_tokens,
-                             cached_tokens=u.cached_tokens, thinking_tokens=u.thinking_tokens,
-                             total_tokens=u.total_tokens, latency_ms=resp.latency_ms,
-                             n_tool_calls=len(resp.tool_calls))
+    def run(self) -> dict:
+        t0 = time.perf_counter()
+        no_tool = 0
+        dead_streak = 0
+        known = set(self._tools.keys())
 
-            # enregistre le tour assistant dans l'historique
-            history.append(Message(role="assistant", text=resp.text,
-                                   tool_calls=resp.tool_calls))
+        for step in range(self.max_steps):
+            # Inject tried-commands list so the model doesn't have to track it
+            if self._tried_commands:
+                tried = "; ".join(f"{c} (x{n})" for c, n in self._tried_commands.items())
+                self.history.append({"role": "user",
+                    "text": f"ALREADY TRIED (do not repeat): {tried}"})
 
-            # affichage en direct du raisonnement + des decisions d'outil
-            if self.verbose:
-                if resp.text and resp.text.strip():
-                    print(f"\n[pensee du modele | {resp.model}] {resp.text.strip()}", flush=True)
-                for tc in resp.tool_calls:
-                    print(f"[decision -> {tc.name} | {resp.model}] {tc.arguments}", flush=True)
+            resp = self.llm.step(self.system, self.history, self.tool_specs())
+            self.llm_calls += 1
 
-            if not resp.tool_calls:
-                no_tool_streak += 1
-                if no_tool_streak >= max_no_tool:
-                    reason = "model_stopped"
+            tool_calls = resp.tool_calls
+
+            # Fallback: if model wrote a tool call in text, parse it
+            if not tool_calls and resp.text:
+                parsed = _parse_tool_from_text(resp.text, known)
+                if parsed:
+                    print(f"  (parsed tool call from text)", flush=True)
+                    tool_calls = [parsed]
+
+            self.history.append({
+                "role": "assistant",
+                "text": resp.text,
+                "tool_calls": tool_calls,
+            })
+
+            if resp.text:
+                print(f"\n[think] {resp.text[:300]}", flush=True)
+
+            if not tool_calls:
+                no_tool += 1
+                if no_tool >= 5:
                     break
-                # nudge: on le pousse a agir plutot que d'abandonner tout de suite
-                history.append(Message(role="user", text=(
-                    "Tu n'as appele AUCUN outil. Pour progresser tu DOIS appeler un outil "
-                    "(static_analysis, uart_send, reboot ou submit_flag). N'explique pas, "
-                    "AGIS : appelle un outil maintenant.")))
+                self.history.append({"role": "user", "text":
+                    "You MUST call a tool now. Do NOT write JSON — use the tool calling API. "
+                    "Available tools: " + ", ".join(known)})
                 continue
-            no_tool_streak = 0
+            no_tool = 0
 
-            # --- execution des outils demandes ---
-            solved_now = False
-            for tc in resp.tool_calls:
-                s.tool_calls += 1
-                result = self.registry.execute(tc.name, tc.arguments)
-                history.append(Message(role="tool", tool_call_id=tc.id,
-                                       tool_name=tc.name, text=_as_text(result)))
-                # condition de victoire: submit_flag correct
-                if tc.name == "submit_flag" and result.get("correct") is True:
-                    solved_now = True
-            if solved_now:
-                s.solved = True
-                reason = "flag_correct"
+            for tc in tool_calls:
+                # Detect loops: same uart command sent 3+ times
+                if tc.name == "uart_send":
+                    cmd = tc.arguments.get("command", "")
+                    self._tried_commands[cmd] = self._tried_commands.get(cmd, 0) + 1
+                    if self._tried_commands[cmd] >= 3:
+                        result = {"error": f"LOOP DETECTED: you already sent {cmd!r} {self._tried_commands[cmd]} times. Try something DIFFERENT."}
+                        print(f"[loop] blocked repeat: {cmd!r}", flush=True)
+                        self.history.append({
+                            "role": "tool", "tool_call_id": tc.id,
+                            "tool_name": tc.name,
+                            "text": json.dumps(result),
+                        })
+                        continue
+
+                result = self._execute(tc)
+                self.history.append({
+                    "role": "tool",
+                    "tool_call_id": tc.id,
+                    "tool_name": tc.name,
+                    "text": json.dumps(result, ensure_ascii=False, default=str),
+                })
+                if tc.name == "submit_flag" and result.get("correct"):
+                    self.solved = True
+                    self.flag = tc.arguments.get("flag")
+                if tc.name == "uart_send":
+                    if "no command starts with" in (result.get("response") or "").lower():
+                        dead_streak += 1
+                    else:
+                        dead_streak = 0
+
+            if self.solved:
+                break
+            if dead_streak >= 10:
+                print(f"[abort] {dead_streak} consecutive dead-end commands — "
+                      "the model is guessing in circles, stopping.", flush=True)
                 break
 
-        # agrege les requetes-cible depuis les evenements du run (source de verite)
-        wall_ms = (time.perf_counter() - wall0) * 1000.0
-        s.wall_ms = wall_ms
-        _fill_interactions(s, self.logger, self.run_id)
-        s.reason = reason
-        self.logger.emit("run_end", run_id=self.run_id, solved=s.solved,
-                         reason=reason, wall_ms=wall_ms,
-                         target_interactions=s.target_interactions)
-        return s
-
-
-def _as_text(result: dict) -> str:
-    import json
-    return json.dumps(result, ensure_ascii=False, default=str)
-
-
-def _fill_interactions(s: RunSummary, logger: EventLogger, run_id: str) -> None:
-    """Relit le JSONL de CE run pour compter les requetes cible par canal."""
-    import json
-    from collections import Counter
-    chan: Counter[str] = Counter()
-    total = 0
-    tool_ms = 0.0
-    for line in logger.path.read_text(encoding="utf-8").splitlines():
-        if not line.strip():
-            continue
-        e = json.loads(line)
-        if e.get("run_id") != run_id:
-            continue
-        if e.get("type") == "target_interaction":
-            total += 1
-            chan[e.get("channel", "unknown")] += 1
-            tool_ms += e.get("latency_ms", 0.0)
-    s.target_interactions = total
-    s.interactions_by_channel = dict(chan)
-    s.tool_ms = tool_ms
-
-
-def new_run_id() -> str:
-    return uuid.uuid4().hex[:12]
+        wall = (time.perf_counter() - t0) * 1000.0
+        return {
+            "solved": self.solved,
+            "flag": self.flag,
+            "uart_calls": self.uart_calls,
+            "llm_calls": self.llm_calls,
+            "wall_s": wall / 1000.0,
+        }
