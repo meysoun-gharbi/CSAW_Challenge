@@ -24,7 +24,7 @@ def main():
     ap = argparse.ArgumentParser(description="CSAW ESC 2026 solver")
     ap.add_argument("--challenge", type=int, default=1, choices=[1, 2])
     ap.add_argument("--port", required=True, help="serial port")
-    ap.add_argument("--backend", default="ollama", choices=["ollama", "gemini"])
+    ap.add_argument("--backend", default="gemini", choices=["ollama", "gemini"])
     ap.add_argument("--model", default=None)
     ap.add_argument("--max-steps", type=int, default=200)
     ap.add_argument("--skip-oracle", action="store_true",
