@@ -162,14 +162,16 @@ class GeminiClient:
 
         if vertexai:
             project = project or os.environ.get("GOOGLE_CLOUD_PROJECT")
-            location = location or os.environ.get("GOOGLE_CLOUD_LOCATION", "us-central1")
+            # Newer Gemini models are served on the "global" endpoint; the
+            # regional ones (us-central1) don't carry them for this project.
+            location = location or os.environ.get("GOOGLE_CLOUD_LOCATION", "global")
             if not project:
                 raise RuntimeError(
                     "Vertex mode needs GOOGLE_CLOUD_PROJECT (and "
                     "`gcloud auth application-default login` for ADC).")
             self._client = genai.Client(vertexai=True, project=project, location=location)
             # Vertex needs a real publisher model id, not the AI Studio alias.
-            default_model = "gemini-2.5-pro"
+            default_model = "gemini-3.8-flash"
         else:
             key = api_key or os.environ.get("GEMINI_API_KEY")
             if not key:
