@@ -149,7 +149,7 @@ class GeminiClient:
         GOOGLE_CLOUD_PROJECT set, after `gcloud auth application-default login`.
     """
 
-    def __init__(self, model: str = "gemini-flash-latest", api_key: str | None = None,
+    def __init__(self, model: str | None = None, api_key: str | None = None,
                  vertexai: bool | None = None, project: str | None = None,
                  location: str | None = None):
         from google import genai
@@ -168,6 +168,8 @@ class GeminiClient:
                     "Vertex mode needs GOOGLE_CLOUD_PROJECT (and "
                     "`gcloud auth application-default login` for ADC).")
             self._client = genai.Client(vertexai=True, project=project, location=location)
+            # Vertex needs a real publisher model id, not the AI Studio alias.
+            default_model = "gemini-2.5-pro"
         else:
             key = api_key or os.environ.get("GEMINI_API_KEY")
             if not key:
@@ -175,8 +177,9 @@ class GeminiClient:
                     "Set GEMINI_API_KEY (AI Studio), or use Vertex mode: "
                     "GOOGLE_GENAI_USE_VERTEXAI=true + GOOGLE_CLOUD_PROJECT.")
             self._client = genai.Client(api_key=key)
+            default_model = "gemini-flash-latest"
 
-        self.model = model
+        self.model = model or default_model
         self._include_thoughts = True
         self._sig_by_id: dict[str, object] = {}
 
@@ -305,6 +308,6 @@ def build_client(backend: str = "ollama", model: str | None = None):
     if backend == "ollama":
         return OllamaClient(model=model or "qwen2.5:7b")
     elif backend == "gemini":
-        return GeminiClient(model=model or "gemini-flash-latest")
+        return GeminiClient(model=model)
     else:
         raise ValueError(f"Unknown backend: {backend}")
