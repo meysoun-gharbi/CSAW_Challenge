@@ -139,15 +139,43 @@ class OllamaClient:
 # ---------------------------------------------------------------------------
 
 class GeminiClient:
-    def __init__(self, model: str = "gemini-flash-latest", api_key: str | None = None):
+    """Gemini via google-genai SDK.
+
+    Two billing paths, same models:
+      - AI Studio key (default): genai.Client(api_key=...). Free tier, then
+        billed to card. Does NOT consume the $300 Google Cloud credit.
+      - Vertex AI (opt-in): ADC auth + project/location. Consumes the $300
+        credit. Enable with GOOGLE_GENAI_USE_VERTEXAI=true and
+        GOOGLE_CLOUD_PROJECT set, after `gcloud auth application-default login`.
+    """
+
+    def __init__(self, model: str = "gemini-flash-latest", api_key: str | None = None,
+                 vertexai: bool | None = None, project: str | None = None,
+                 location: str | None = None):
         from google import genai
         from google.genai import types
         self._genai = genai
         self._types = types
-        key = api_key or os.environ.get("GEMINI_API_KEY")
-        if not key:
-            raise RuntimeError("Set GEMINI_API_KEY environment variable")
-        self._client = genai.Client(api_key=key)
+
+        if vertexai is None:
+            vertexai = os.environ.get("GOOGLE_GENAI_USE_VERTEXAI", "").lower() in ("1", "true", "yes")
+
+        if vertexai:
+            project = project or os.environ.get("GOOGLE_CLOUD_PROJECT")
+            location = location or os.environ.get("GOOGLE_CLOUD_LOCATION", "us-central1")
+            if not project:
+                raise RuntimeError(
+                    "Vertex mode needs GOOGLE_CLOUD_PROJECT (and "
+                    "`gcloud auth application-default login` for ADC).")
+            self._client = genai.Client(vertexai=True, project=project, location=location)
+        else:
+            key = api_key or os.environ.get("GEMINI_API_KEY")
+            if not key:
+                raise RuntimeError(
+                    "Set GEMINI_API_KEY (AI Studio), or use Vertex mode: "
+                    "GOOGLE_GENAI_USE_VERTEXAI=true + GOOGLE_CLOUD_PROJECT.")
+            self._client = genai.Client(api_key=key)
+
         self.model = model
         self._include_thoughts = True
         self._sig_by_id: dict[str, object] = {}
