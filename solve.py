@@ -22,7 +22,7 @@ from esc_agent.oracle import OracleExplorer
 
 def main():
     ap = argparse.ArgumentParser(description="CSAW ESC 2026 solver")
-    ap.add_argument("--challenge", type=int, default=1, choices=[1, 2])
+    ap.add_argument("--challenge", type=int, default=1, choices=[1, 2, 5])
     ap.add_argument("--port", required=True, help="serial port")
     ap.add_argument("--backend", default="gemini", choices=["ollama", "gemini"])
     ap.add_argument("--model", default=None)
@@ -33,8 +33,10 @@ def main():
 
     if args.challenge == 1:
         from esc_agent.challenge1 import SYSTEM, GOAL, build_tools
-    else:
+    elif args.challenge == 2:
         from esc_agent.challenge2 import SYSTEM, GOAL, build_tools
+    else:
+        from esc_agent.challenge5 import SYSTEM, GOAL, build_tools
 
     llm = build_client(args.backend, args.model)
     print(f"=== CSAW ESC 2026 — Challenge {args.challenge} ===")

@@ -27,6 +27,10 @@ python3 solve.py --challenge 1 --port /dev/ttyUSB0
 # Challenge 2 — EEPROM Secrets
 python3 solve.py --challenge 2 --port /dev/ttyUSB0
 
+# Challenge 5 — Minions Lockout (password brute force over the official
+# 158-name wordlist, with free reboots on lockout — see esc_agent/lockout.py)
+python3 solve.py --challenge 5 --port /dev/ttyUSB0
+
 # Use a specific model
 python3 solve.py --challenge 1 --port /dev/ttyUSB0 --model gemini-2.5-pro
 ```
@@ -49,4 +53,8 @@ esc_agent/
   agent.py                # core agent loop
   challenge1.py           # Serial Gateway tools + prompts
   challenge2.py           # EEPROM Secrets tools + prompts
+  challenge5.py           # Minions Lockout tools + prompts
+  oracle.py               # automated prefix-oracle explorer (code, no LLM)
+  lockout.py              # automated minions-wordlist brute forcer (code, no LLM)
+  data/minions_wordlist.txt  # official 158-name wordlist (from the challenge repo)
 ```
