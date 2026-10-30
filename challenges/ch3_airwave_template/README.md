@@ -1,5 +1,7 @@
 # Challenge 3 — Airwave Template (SET 2, 200 pts)
 
+> **Ports & commandes** : remplace `<PORT>` par ton port série — **`COMx`** sous Windows, **`/dev/ttyUSBx`** (ou `/dev/ttyACMx`) sous Linux/macOS. Utilise **`python`** sous Windows, **`python3`** sous Linux/macOS. Les commandes ci-dessous sont valables pour les deux OS.
+
 **Flag : `esc_2026{ss7i_udp_pivot_cd75162250886fde}`** (token hexa par boot).
 
 Type : **radio (Wi-Fi/UDP)** — **SSTI** (Server-Side Template Injection) sur un
@@ -16,10 +18,7 @@ service de template UDP à ports mobiles (4210-4219), puis **pivot UART**. Réso
 Pilote USB. Python 3 + `pip install -r requirements.txt` (racine) + `pyserial`.
 Pour l'agent : clé LLM dans `.env`. Firmware : `firmware/3-udp_merged.bin`.
 ```bash
-# Windows
-python  -m esptool --port COM12 --baud 460800 write_flash 0x0 challenges\ch3_airwave_template\firmware\3-udp_merged.bin
-# Linux / macOS
-python3 -m esptool --port /dev/ttyUSB0 --baud 460800 write_flash 0x0 challenges/ch3_airwave_template/firmware/3-udp_merged.bin
+python -m esptool --port <PORT> --baud 460800 write_flash 0x0 challenges/ch3_airwave_template/firmware/3-udp_merged.bin
 ```
 Au boot : SoftAP `SmartHomeGW_xxxxxx`. **Associe-toi au SoftAP** (l'agent parle
 UDP à `192.168.4.1` ports 4210-4219) + garde le câble USB (UART).
@@ -30,16 +29,16 @@ UDP à `192.168.4.1` ports 4210-4219) + garde le câble USB (UART).
 ## 1. Résolution par l'agent (depuis la racine)
 ```bash
 # local (Ollama, hors-ligne)
-python run_challenge3.py --uart COM12 --backend local --model qwen2.5:7b-instruct
+python run_challenge3.py --uart <PORT> --backend local --model qwen2.5:7b-instruct
 # cloud (Gemini via Vertex, necessite internet)
-python run_challenge3.py --uart COM12 --backend gemini --model gemini-2.5-flash --vertex
+python run_challenge3.py --uart <PORT> --backend gemini --model gemini-2.5-flash --vertex
 ```
 L'agent découvre : télémétrie UDP → oracle de template (SSTI) → dump du contexte
 → commande secrète → pivot UART → flag.
 
 ## 2. Console web (démo)
 ```bash
-python ch3_web.py --uart COM12 --backend gemini --model gemini-2.5-flash --vertex
+python ch3_web.py --uart <PORT> --backend gemini --model gemini-2.5-flash --vertex
 # http://127.0.0.1:8010/
 ```
 

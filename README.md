@@ -167,31 +167,37 @@ marchent sans matériel ni API. Attendu : résolu en **1 requête UART**.
 
 ---
 
-## 6. Lancer le VRAI challenge 1 (Serial Gateway)
+## 6. Lancer les challenges « agent » (1 et 3) — **console web**
 
-Carte flashée (§1) et branchée. Remplace `<PORT>` par le tien (§4) et `<MODELE>`
-par le modèle voulu.
+Les deux challenges d'agent se lancent de la **même façon**, via leur **console
+web « mission control »** (visuel, idéal pour la démo). Carte flashée (§1) et
+branchée. Remplace `<PORT>` par ton port série (§4) ; utilise `python` sous
+Windows, `python3` sous Linux/macOS.
 
-**Windows :**
-```powershell
-python run_challenge1.py --port <PORT> --backend gemini --model <MODELE>
-# ex : --port COM5 --model gemini-flash-latest
-```
-
-**Linux :**
+### Challenge 1 — Serial Gateway
 ```bash
-python3 run_challenge1.py --port <PORT> --backend gemini --model <MODELE>
-# ex : --port /dev/ttyUSB0 --model gemini-flash-latest
+python ch1_web.py --port <PORT>
+# puis ouvrir http://127.0.0.1:8011/  et cliquer « Launch agent »
 ```
 
-Options utiles : `--backend {gemini,claude,mock}`, `--model <nom>`,
-`--max-steps 400` (plafond d'itérations), `--log runs/challenge1.jsonl`.
+### Challenge 3 — Airwave Template
+```bash
+python ch3_web.py --uart <PORT> --backend gemini --model gemini-2.5-flash --vertex
+# puis ouvrir http://127.0.0.1:8010/  et cliquer « Launch agent »
+```
 
-Pendant le run, le terminal affiche **en direct** :
-- `[pensee du modele] …` — le raisonnement de l'agent (résumés de pensée),
-- `[decision -> outil] {args}` — l'outil qu'il décide d'appeler,
-- `>>> '...'` / `<<< ...` — la commande envoyée à la carte et sa réponse,
-- puis un **résumé** (requêtes UART, appels LLM, tokens, temps, résolu/raison).
+> **API par défaut** (comme réglé pour la démo) : **Gemini `gemini-2.5-flash` via
+> Vertex AI**, clé lue depuis `.env`. Options : `--no-vertex` (API Developer),
+> `--backend {gemini,claude,mock}`, `--model <nom>`, `--max-steps`.
+
+La page affiche **en direct** le raisonnement de l'agent, ses décisions d'outil,
+les échanges avec la carte, un pipeline d'étapes et une bannière flag.
+
+### Alternative sans interface web (ligne de commande)
+```bash
+python run_challenge1.py --port <PORT> --backend gemini --model <MODELE>
+python run_challenge3.py --uart <PORT> --backend gemini --model gemini-2.5-flash --vertex
+```
 
 ---
 

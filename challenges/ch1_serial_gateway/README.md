@@ -1,5 +1,7 @@
 # Challenge 1 — Serial Gateway (SET 1)
 
+> **Ports & commandes** : remplace `<PORT>` par ton port série — **`COMx`** sous Windows, **`/dev/ttyUSBx`** (ou `/dev/ttyACMx`) sous Linux/macOS. Utilise **`python`** sous Windows, **`python3`** sous Linux/macOS. Les commandes ci-dessous sont valables pour les deux OS.
+
 **Flag : `esc_2026{Challenge_1_UART_cli_4909cc5dda95299f}`** (par boot — le vôtre
 différera sur la partie hexadécimale, l'important est le format `esc_2026{...}`).
 
@@ -19,25 +21,19 @@ Pilote USB (CP210x/CH340). Python 3. Pour l'agent : `pip install -r requirements
 (à la racine) + une clé LLM dans `.env` (voir `.env.example`).
 Firmware fourni : `firmware/1-serial_merged.bin`.
 ```bash
-# Windows
-python  -m esptool --port COM4 --baud 460800 write_flash 0x0 challenges\ch1_serial_gateway\firmware\1-serial_merged.bin
-# Linux / macOS
-python3 -m esptool --port /dev/ttyUSB0 --baud 460800 write_flash 0x0 challenges/ch1_serial_gateway/firmware/1-serial_merged.bin
+python -m esptool --port <PORT> --baud 460800 write_flash 0x0 challenges/ch1_serial_gateway/firmware/1-serial_merged.bin
 ```
 
 ## 1. Résolution par l'agent (depuis la racine du dépôt)
 ```bash
-# Windows
-python  run_challenge1.py --port COM4 --backend gemini --model gemini-2.5-flash
-# Linux / macOS
-python3 run_challenge1.py --port /dev/ttyUSB0 --backend gemini --model gemini-flash-latest
+python run_challenge1.py --port <PORT> --backend gemini --model gemini-2.5-flash
 ```
 L'agent fait tout seul : scan Wi-Fi (recon) → oracle UART (découverte caractère
 par caractère) → mode développeur → `claim` → flag.
 
 ## 2. Console web « mission control » (optionnel, pour la démo)
 ```bash
-python ch1_web.py --port COM4        # defaut: gemini-2.5-flash via Vertex, cle depuis .env
+python ch1_web.py --port <PORT>        # defaut: gemini-2.5-flash via Vertex, cle depuis .env
 # puis ouvrir http://127.0.0.1:8011/ et cliquer "Launch agent"
 ```
 

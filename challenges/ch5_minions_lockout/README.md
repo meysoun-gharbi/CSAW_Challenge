@@ -1,5 +1,7 @@
 # Challenge 5 — Minions Lockout (SET 2, 350 pts) · ⏸️ NON RÉSOLU (recon + plan)
 
+> **Ports & commandes** : remplace `<PORT>` par ton port série — **`COMx`** sous Windows, **`/dev/ttyUSBx`** (ou `/dev/ttyACMx`) sous Linux/macOS. Utilise **`python`** sous Windows, **`python3`** sous Linux/macOS. Les commandes ci-dessous sont valables pour les deux OS.
+
 Type : **filaire (UART) + attaque matérielle I2C**. Boîte noire.
 **En pause** : nécessite du matériel (2ᵉ carte + fils) non disponible au moment de
 la recon.
@@ -14,10 +16,7 @@ intrus → lockout, reset nécessaire, le mot de passe change. Ça peut sembler
 Firmware + wordlist fournis ici : `firmware/5-lockout_merged.bin`,
 `minions_wordlist.txt` (157 prénoms de Minions).
 ```bash
-# Windows
-python  -m esptool --port COM12 --baud 460800 write_flash 0x0 firmware\5-lockout_merged.bin
-# Linux / macOS
-python3 -m esptool --port /dev/ttyUSB0 --baud 460800 write_flash 0x0 firmware/5-lockout_merged.bin
+python -m esptool --port <PORT> --baud 460800 write_flash 0x0 firmware/5-lockout_merged.bin
 ```
 
 ## Ce qu'on a établi (recon live)

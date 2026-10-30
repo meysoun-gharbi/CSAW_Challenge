@@ -1,5 +1,7 @@
 # Challenge 4 — Hidden Portal (SET 2, 250 pts)
 
+> **Ports & commandes** : remplace `<PORT>` par ton port série — **`COMx`** sous Windows, **`/dev/ttyUSBx`** (ou `/dev/ttyACMx`) sous Linux/macOS. Utilise **`python`** sous Windows, **`python3`** sous Linux/macOS. Les commandes ci-dessous sont valables pour les deux OS.
+
 **Flag : `esc_2026{50_shades_of_grey_7685f0ebd0f4df28}`**
 
 Type : **web + stéganographie + Gray code → pivot UART**. Boîte noire (aucun
@@ -15,10 +17,7 @@ payload « encoded at rest » = **Gray code** → `diag_dump <token>` sur l'UART
 Pilote USB (CH340/CP210x). Python 3 + `pip install pyserial`.
 Firmware fourni : `firmware/4-web_merged.bin`.
 ```bash
-# Windows
-python  -m esptool --port COM12 --baud 460800 write_flash 0x0 firmware\4-web_merged.bin
-# Linux / macOS
-python3 -m esptool --port /dev/ttyUSB0 --baud 460800 write_flash 0x0 firmware/4-web_merged.bin
+python -m esptool --port <PORT> --baud 460800 write_flash 0x0 firmware/4-web_merged.bin
 ```
 Au boot : un **SoftAP** `SmartHomeGW_xxxxxx` apparaît (mot de passe affiché sur
 l'UART / dans le firmware). **Connecte ton Wi-Fi à ce SoftAP** (le dashboard est
@@ -26,7 +25,7 @@ sur `http://192.168.4.1`). Garde le câble USB branché (pour l'UART du pivot fi
 
 ## 1. Recon (optionnel, pédagogique)
 ```bash
-python solve/ch4_recon.py --out ch4_loot      # python3 sous Linux
+python solve/ch4_recon.py  --out ch4_loot
 ```
 Montre les endpoints + la **négociation de contenu** de `/api/admin`
 (`Accept:text/html` → page HTML cachée ; sinon → la **PNG stego**), et télécharge
@@ -34,9 +33,7 @@ la PNG.
 
 ## 2. Solveur complet (automatique)
 ```bash
-# Windows                              # Linux / macOS
-python  solve/ch4_solve.py --port COM12
-python3 solve/ch4_solve.py --port /dev/ttyUSB0
+python solve/ch4_solve.py --port <PORT>
 ```
 Le script enchaîne tout :
 1. `GET /api/admin` → PNG (épée dans la pierre).

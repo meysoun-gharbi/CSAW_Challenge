@@ -1,5 +1,7 @@
 # Challenge 7 — Smart Gateway Escape (SET 3, 400 pts)
 
+> **Ports & commandes** : remplace `<PORT>` par ton port série — **`COMx`** sous Windows, **`/dev/ttyUSBx`** (ou `/dev/ttyACMx`) sous Linux/macOS. Utilise **`python`** sous Windows, **`python3`** sous Linux/macOS. Les commandes ci-dessous sont valables pour les deux OS.
+
 **Flag : `esc_2026{Challenge_7_WiFi_MotionDetection_1d270313}`**
 
 Type : **BLE + crypto (AES) + analyse de signal Wi-Fi (CSI)**. Entièrement en
@@ -19,20 +21,16 @@ l'horloge de la carte sur cet instant, puis on tape `escape`.
 **Python 3** + librairies :
 ```bash
 # Windows (PowerShell/cmd)           # Linux / macOS
-python  -m pip install bleak cryptography numpy matplotlib pyserial
-python3 -m pip install bleak cryptography numpy matplotlib pyserial
+python -m pip install bleak cryptography numpy matplotlib pyserial
 ```
 - `bleak` : BLE ; `cryptography` : AES ; `numpy` : analyse CSI ; `pyserial` : UART.
 - **Bluetooth LE requis** (quasi tous les laptops). Linux : BlueZ ≥ 5.43.
 
 **Firmware** : `firmware/7-gateway-escape_merged.bin` (fourni ici).
 
-**Flash** (adapter le port : `COM12` Windows, `/dev/ttyUSB0` Linux) :
+**Flash** (adapter le port : `<PORT>` Windows, `<PORT>` Linux) :
 ```bash
-# Windows
-python  -m esptool --port COM12 --baud 460800 write_flash 0x0 firmware\7-gateway-escape_merged.bin
-# Linux / macOS
-python3 -m esptool --port /dev/ttyUSB0 --baud 460800 write_flash 0x0 firmware/7-gateway-escape_merged.bin
+python -m esptool --port <PORT> --baud 460800 write_flash 0x0 firmware/7-gateway-escape_merged.bin
 ```
 Au boot l'UART affiche `[GATEWAY LOCKED] Connect via BLE to begin`.
 
@@ -44,7 +42,7 @@ Au boot l'UART affiche `[GATEWAY LOCKED] Connect via BLE to begin`.
 
 ## 1. Lire les infos en BLE
 ```bash
-python solve/ch7_ble.py read        # (python3 sous Linux)
+python solve/ch7_ble.py read
 ```
 Affiche :
 - l'indice : *« Analyze the Wi-Fi subcarrier signal variance over time »*,
@@ -75,8 +73,7 @@ Sortie attendue : `MOMENT NON-GARDE : 2026-01-01 04:48:xx UTC`, `epoch ≈ 17672
 ## 4. S'évader
 ```bash
 # RESET la carte d'abord, puis :
-python solve/ch7_ble.py escape --epoch 1767242895 --port COM12     # Windows
-python3 solve/ch7_ble.py escape --epoch 1767242895 --port /dev/ttyUSB0
+python solve/ch7_ble.py escape --epoch 1767242895 --port <PORT>
 ```
 Le script : règle l'horloge (epoch **secondes**) → attend `GUARDED -> UNGUARDED`
 → envoie `escape` sur l'UART → `UNGUARDED -> UNLOCKED` →
