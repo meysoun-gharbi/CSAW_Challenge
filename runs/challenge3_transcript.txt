@@ -1,0 +1,297 @@
+[UDP] >>> '{{device_id}}'
+[UDP] <<< ''
+[UART] >>> 'status'
+[UART] <<< (UART indisponible: aucun port serie ouvert)
+[UDP-LISTEN]
+port 4219 <= {"event":"status_update","uptime_ms":100792,"device_id":"F06314","wifi_clients":1}
+port 4219 <= {"event":"status_update","uptime_ms":104071,"device_id":"F06314","wifi_clients":1}
+[UDP] >>> '{{device_id}}'
+[UDP] <<< 'F06314'
+[UDP] >>> '{{7*7}}'
+[UDP] <<< '49'
+[UDP] >>> '{{device_id}}'
+[UDP] <<< 'F06314'
+[UDP] >>> '{{.}}'
+[UDP] <<< 'error'
+[UDP] >>> '{{secret}}'
+[UDP] <<< 'error'
+[UDP] >>> '{{token}}'
+[UDP] <<< 'error'
+[UDP] >>> '{{flag}}'
+[UDP] <<< 'error'
+[UDP] >>> '{{admin}}'
+[UDP] <<< 'error'
+[UDP] >>> '{{.vars}}'
+[UDP] <<< 'error'
+[UDP] >>> '{{.error}}'
+[UDP] <<< 'error'
+[UDP] >>> '{{.secret}}'
+[UDP] <<< 'error'
+[UDP] >>> '{{.flag}}'
+[UDP] <<< 'error'
+[UDP] >>> '{{.admin}}'
+[UDP] <<< 'error'
+[UDP] >>> '{{.token}}'
+[UDP] <<< 'error'
+[UDP] >>> '{{.secret}}'
+[UDP] <<< 'error'
+[UDP] >>> '{{.flag}}'
+[UDP] <<< 'error'
+[UDP] >>> '{{.admin}}'
+[UDP] <<< 'error'
+[UDP] >>> '{{.token}}'
+[UDP] <<< 'error'
+[UDP] >>> '{{.secret}}'
+[UDP] <<< 'error'
+[UDP-LISTEN]
+port 4214 <= {"event":"status_update","uptime_ms":5604066,"device_id":"F06314","wifi_clients":1}
+port 4214 <= {"event":"status_update","uptime_ms":5607723,"device_id":"F06314","wifi_clients":1}
+[UDP] >>> '{{device_id}}'
+[UDP] <<< 'F06314'
+[UDP] >>> '{{7*7}}'
+[UDP] <<< '49'
+[UDP] >>> '{{device_id}}'
+[UDP] <<< 'F06314'
+[UDP] >>> '{{7*7}}'
+[UDP] <<< '49'
+[UDP] >>> '{{uptime_ms}}'
+[UDP] <<< 'error'
+[UDP] >>> '{{wifi_clients}}'
+[UDP] <<< 'error'
+[UDP] >>> '{{status}}'
+[UDP] <<< 'error'
+[UDP] >>> '{{settings}}'
+[UDP] <<< 'error'
+[UDP] >>> '{{.All}}'
+[UDP] <<< 'error'
+[UDP] >>> '{{token}}'
+[UDP] <<< 'error'
+[UDP] >>> '{{flag}}'
+[UDP] <<< 'error'
+[UDP] >>> '{{secret}}'
+[UDP] <<< 'error'
+[UDP] >>> '{{admin_token}}'
+[UDP] <<< 'error'
+[UDP] >>> '{{auth_token}}'
+[UDP] <<< 'error'
+[UDP] >>> '{{api_token}}'
+[UDP] <<< 'error'
+[UDP] >>> '{{admin_key}}'
+[UDP] <<< 'error'
+[UDP] >>> '{{secret_key}}'
+[UDP] <<< ''
+[UDP-LISTEN]
+port 4216 <= {"event":"status_update","uptime_ms":112910,"device_id":"F06314","wifi_clients":1}
+[UDP] >>> '{{device_id}}'
+[UDP] <<< 'F06314'
+[UDP] >>> '{{42*42}}'
+[UDP] <<< '1764'
+[UDP] >>> '{{device_id}}'
+[UDP] <<< 'F06314'
+[UDP] >>> '{{settings}}'
+[UDP] <<< 'error'
+[UDP] >>> '{{self}}'
+[UDP] <<< 'error'
+[UDP] >>> '{{_context}}'
+[UDP] <<< 'error'
+[UDP] >>> '{{settings}}'
+[UDP] <<< 'error'
+[UDP] >>> '{{$smarty.config}}'
+[UDP] <<< 'error'
+[UDP] >>> '{{flag}}'
+[UDP] <<< 'error'
+[UDP] >>> '{{token}}'
+[UDP] <<< 'error'
+[UDP] >>> '{{secret}}'
+[UDP] <<< 'error'
+[UDP-LISTEN]
+port 4213 <= {"event":"status_update","uptime_ms":1041166,"device_id":"F06314","wifi_clients":1}
+port 4213 <= {"event":"status_update","uptime_ms":1043527,"device_id":"F06314","wifi_clients":1}
+[UDP-LISTEN]
+port 4216 <= {"event":"status_update","uptime_ms":50374,"device_id":"F06314","wifi_clients":1}
+port 4216 <= {"event":"status_update","uptime_ms":54215,"device_id":"F06314","wifi_clients":1}
+[UDP] >>> '{{device_id}}'
+[UDP] <<< 'F06314'
+[UDP] >>> '{{7*7}}'
+[UDP] <<< '49'
+[UDP] >>> '{{device_id}}'
+[UDP] <<< 'F06314'
+[UDP] >>> '{{uptime_ms}}'
+[UDP] <<< 'error'
+[UDP] >>> '{{settings}}'
+[UDP] <<< 'error'
+[UDP] >>> '{{_context}}'
+[UDP] <<< 'error'
+[UDP] >>> '{{self}}'
+[UDP] <<< 'error'
+[UDP-LISTEN]
+port 4211 <= {"event":"status_update","uptime_ms":2013481,"device_id":"F06314","wifi_clients":1}
+port 4211 <= {"event":"status_update","uptime_ms":2016084,"device_id":"F06314","wifi_clients":1}
+[UART] >>> 'status'
+[UART] <<< {"event":"status_update","uptime_ms":2028999,"device_id":"F06314","wifi_clients":1}
+[UDP] >>> '{{device_id}}'
+[UDP] <<< 'F06314'
+[UDP] >>> '{{42*42}}'
+[UDP] <<< '1764'
+[UDP] >>> '{{self}}'
+[UDP] <<< 'error'
+[UDP] >>> '{{_context}}'
+[UDP] <<< 'error'
+[UDP] >>> '{{_ENV}}'
+[UDP] <<< 'error'
+[UDP] >>> '{{uptime_ms}}'
+[UDP] <<< 'error'
+[UDP] >>> '{{settings}}'
+[UDP] <<< 'error'
+[UDP] >>> '{{locals}}'
+[UDP] <<< 'error'
+[UDP] >>> '{{globals}}'
+[UDP] <<< 'error'
+[UDP] >>> '{{wifi_clients}}'
+[UDP] <<< 'error'
+[UDP] >>> '{{token}}'
+[UDP] <<< 'error'
+[UDP] >>> '{{secret}}'
+[UDP] <<< 'error'
+[UDP] >>> '{{flag}}'
+[UDP] <<< 'error'
+[UDP] >>> '{{_}}'
+[UDP] <<< 'error'
+[UDP] >>> '{{admin_key}}'
+[UDP] <<< 'error'
+[UDP] >>> '{{privileged_token}}'
+[UDP] <<< 'error'
+[UDP] >>> '{{privileged_command}}'
+[UDP] <<< 'error'
+[UDP] >>> '{{key}}'
+[UDP] <<< 'error'
+[UDP] >>> '{{secret_key}}'
+[UDP] <<< 'error'
+[UDP] >>> '{{device_secret}}'
+[UDP] <<< 'error'
+[UDP] >>> '{{device_token}}'
+[UDP] <<< 'error'
+[UDP] >>> '{{airwave_secret}}'
+[UDP] <<< 'error'
+[UDP] >>> '{{airwave_token}}'
+[UDP] <<< 'error'
+[UDP] >>> '{{secret_command}}'
+[UDP] <<< 'error'
+[UDP] >>> '{{auth_token}}'
+[UDP] <<< 'error'
+[UDP] >>> '{{admin_token}}'
+[UDP] <<< 'error'
+[UDP] >>> '{{secret_token}}'
+[UDP] <<< 'error'
+[UDP-LISTEN]
+port 4213 <= {"event":"status_update","uptime_ms":3161450,"device_id":"F06314","wifi_clients":1}
+port 4213 <= {"event":"status_update","uptime_ms":3163511,"device_id":"F06314","wifi_clients":1}
+[UART] >>> 'status'
+[UART] <<< {"event":"status_update","uptime_ms":3177238,"device_id":"F06314","wifi_clients":1}
+[UDP] >>> '{{7*7}}'
+[UDP] <<< '49'
+[UDP] >>> '{{device_id}}'
+[UDP] <<< 'F06314'
+[UDP] >>> '{{config}}'
+[UDP] <<< 'device_id,uptime,clients,secret_cmd'
+[UDP] >>> '{{secret_cmd}}'
+[UDP] <<< 'diag_dump er6yX9'
+[UART] >>> 'diag_dump er6yX9'
+[UART] <<< Diagnostic dump authorized. Flag: esc_2026{ss7i_udp_pivot_cd75162250886fde}
+[3190320] UART CLI: privileged diagnostic authorized (valid token)
+[UDP-LISTEN]
+port 4217 <= {"event":"status_update","uptime_ms":4393431,"device_id":"F06314","wifi_clients":1}
+[UART] >>> 'status'
+[UART] <<< {"event":"status_update","uptime_ms":4410398,"device_id":"F06314","wifi_clients":1}
+[UDP] >>> '{{7*7}}'
+[UDP] <<< '49'
+[UDP] >>> '{{device_id}}'
+[UDP] <<< 'F06314'
+[UDP] >>> '{{config}}'
+[UDP] <<< 'device_id,uptime,clients,secret_cmd'
+[UDP] >>> '{{secret_cmd}}'
+[UDP] <<< 'diag_dump er6yX9'
+[UART] >>> 'diag_dump er6yX9'
+[UART] <<< Diagnostic dump authorized. Flag: esc_2026{ss7i_udp_pivot_cd75162250886fde}
+[4517245] UART CLI: privileged diagnostic authorized (valid token)
+[UDP-LISTEN]
+port 4212 <= {"event":"status_update","uptime_ms":4957668,"device_id":"F06314","wifi_clients":1}
+[UART] >>> 'status'
+[UART] <<< {"event":"status_update","uptime_ms":4972386,"device_id":"F06314","wifi_clients":1}
+[UDP] >>> '{{device_id}}'
+[UDP] <<< 'F06314'
+[UDP] >>> '{{config}}'
+[UDP] <<< 'device_id,uptime,clients,secret_cmd'
+[UDP] >>> '{{secret_cmd}}'
+[UDP] <<< 'diag_dump er6yX9'
+[UART] >>> 'diag_dump er6yX9'
+[UART] <<< Diagnostic dump authorized. Flag: esc_2026{ss7i_udp_pivot_cd75162250886fde}
+[4987049] UART CLI: privileged diagnostic authorized (valid token)
+[UDP-LISTEN]
+port 4210 <= {"event":"status_update","uptime_ms":5729252,"device_id":"F06314","wifi_clients":1}
+[UART] >>> 'status'
+[UART] <<< {"event":"status_update","uptime_ms":5741726,"device_id":"F06314","wifi_clients":1}
+[UDP] >>> '{{ device_id }}'
+[UDP] <<< 'F06314'
+[UDP] >>> '{{ config }}'
+[UDP] <<< 'device_id,uptime,clients,secret_cmd'
+[UDP] >>> '{{ secret_cmd }}'
+[UDP] <<< 'diag_dump er6yX9'
+[UART] >>> 'diag_dump er6yX9'
+[UART] <<< Diagnostic dump authorized. Flag: esc_2026{ss7i_udp_pivot_cd75162250886fde}
+[5753728] UART CLI: privileged diagnostic authorized (valid token)
+[UDP-LISTEN]
+port 4215 <= {"event":"status_update","uptime_ms":6161534,"device_id":"F06314","wifi_clients":1}
+[UDP] >>> '{device_id}'
+[UDP] <<< 'unrecognised payload'
+[UDP] >>> "{device_id == 'F06314'}"
+[UDP] <<< 'unrecognised payload'
+[UDP] >>> '{device_id}'
+[UDP] <<< 'unrecognised payload'
+[UDP] >>> "{'test' == 'test'}"
+[UDP] <<< 'unrecognised payload'
+[UDP] >>> "{'test' == 'test'}"
+[UDP] <<< 'unrecognised payload'
+[UDP] >>> "{'test' == 'test'}"
+[UDP] <<< 'unrecognised payload'
+[UDP] >>> "{'test' == 'test'}"
+[UDP] <<< 'unrecognised payload'
+[UDP] >>> "{'test' == 'test'}"
+[UDP] <<< 'unrecognised payload'
+[UDP] >>> "{'test' == 'test'}"
+[UDP] <<< 'unrecognised payload'
+[UDP] >>> "{'test' == 'test'}"
+[UDP] <<< 'unrecognised payload'
+[UDP] >>> "{'test' == 'test'}"
+[UDP] <<< 'unrecognised payload'
+[UDP] >>> "{'test' == 'test'}"
+[UDP] <<< 'unrecognised payload'
+[UDP-LISTEN]
+port 4210 <= {"event":"status_update","uptime_ms":6494067,"device_id":"F06314","wifi_clients":1}
+port 4210 <= {"event":"status_update","uptime_ms":6496659,"device_id":"F06314","wifi_clients":1}
+[UDP] >>> '${1+1}'
+[UDP] <<< 'unrecognised payload'
+[UDP] >>> '${1+1==2}'
+[UDP] <<< 'unrecognised payload'
+[UDP] >>> "${'1+1'}"
+[UDP] <<< 'unrecognised payload'
+[UDP] >>> "${'1+1==2'}"
+[UDP] <<< 'unrecognised payload'
+[UDP] >>> "${'1+1'}"
+[UDP] <<< 'unrecognised payload'
+[UDP] >>> "${'1+1'}"
+[UDP] <<< 'unrecognised payload'
+[UDP-LISTEN]
+port 4214 <= {"event":"status_update","uptime_ms":6697254,"device_id":"F06314","wifi_clients":1}
+port 4214 <= {"event":"status_update","uptime_ms":6700508,"device_id":"F06314","wifi_clients":1}
+[UART] >>> 'status'
+[UART] <<< {"event":"status_update","uptime_ms":6740484,"device_id":"F06314","wifi_clients":1}
+[UDP] >>> '{{ device_id }}'
+[UDP] <<< 'F06314'
+[UDP] >>> '{{ config }}'
+[UDP] <<< 'device_id,uptime,clients,secret_cmd'
+[UDP] >>> '{{ secret_cmd }}'
+[UDP] <<< 'diag_dump er6yX9'
+[UART] >>> 'diag_dump er6yX9'
+[UART] <<< Diagnostic dump authorized. Flag: esc_2026{ss7i_udp_pivot_cd75162250886fde}
+[6773126] UART CLI: privileged diagnostic authorized (valid token)

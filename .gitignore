@@ -11,6 +11,8 @@ runs/*
 !runs/.gitkeep
 !runs/challenge1.jsonl
 !runs/challenge1_transcript.txt
+!runs/challenge3.jsonl
+!runs/challenge3_transcript.txt
 
 # Challenge data (gros fichiers regenerables - ne pas committer)
 ch7_fw/

@@ -11,11 +11,18 @@ google-genai>=1.0.0    # Teste: 2.28.0
 # --- Backend Claude (optionnel) ---
 anthropic>=0.40.0      # Teste: 1.11.0
 
-# --- Interfaces pour les challenges suivants (BLE / UI web) ---
-bleak>=0.22            # BLE/GATT (challenges a venir)
+# --- Flash du firmware ---
+esptool>=4.0           # flasher les .bin des challenges (python -m esptool ...)
+
+# --- Interfaces BLE / web (ch7, ch4) ---
+bleak>=0.22            # BLE/GATT (ch7 Gateway Escape)
 requests>=2.31         # UI web http://192.168.4.1
 
-# --- Analyse / figures pour le rapport (optionnel) ---
+# --- Crypto / analyse (ch7) ---
+cryptography>=42       # dechiffrement AES-256-CBC des logs (ch7)
+numpy>=1.24            # analyse de variance CSI (ch7)
+
+# --- Figures pour le rapport (optionnel) ---
 matplotlib>=3.8
 
 # Python 3.10+ recommande. Teste sous Python 3.14 (Windows) et 3.8 (Linux).
