@@ -79,6 +79,21 @@ Le script : règle l'horloge (epoch **secondes**) → attend `GUARDED -> UNGUARD
 → envoie `escape` sur l'UART → `UNGUARDED -> UNLOCKED` →
 `{"event":"escape","ok":true,"flag":"esc_2026{...}"}`.
 
+### Variante **sans Python/bleak** — nRF Connect (téléphone) + console série (PC)
+Méthode confirmée, pratique si le BLE du laptop pose problème :
+1. **PC** : ouvre un **moniteur série** sur la carte (115200). Laisse-le ouvert.
+2. **Téléphone (nRF Connect)** : **CONNECT** à `Gateway_Escape_7`, et **reste
+   connecté** (ça déverrouille le CLI UART : *« connect via BLE first »*).
+   - Lis les caractéristiques en **UTF-8** → `log_id` + `aes_key_hex` (déjà fait).
+   - Dans la write-char (`cba1d466…`), **Write** en format **Text** la valeur
+     **`1767242895`** (l'epoch en **secondes** du moment non-gardé).
+3. **PC (console série)** : tape **`escape`** → le **flag s'affiche** sur la console.
+   (La carte est en `UNGUARDED` tant que l'horloge est réglée sur l'instant vide ;
+   le téléphone doit rester connecté pendant l'envoi de `escape`.)
+
+> L'epoch `1767242895` est **calculé** par l'étape 3 (`ch7_analyze.py`) à partir du
+> log déchiffré — ce n'est pas une valeur magique.
+
 ---
 
 ## Chaîne complète (1 ligne)
