@@ -64,9 +64,9 @@ class Agent:
             # affichage en direct du raisonnement + des decisions d'outil
             if self.verbose:
                 if resp.text and resp.text.strip():
-                    print(f"\n[pensee du modele] {resp.text.strip()}", flush=True)
+                    print(f"\n[thought] {resp.text.strip()}", flush=True)
                 for tc in resp.tool_calls:
-                    print(f"[decision -> {tc.name}] {tc.arguments}", flush=True)
+                    print(f"[tool -> {tc.name}] {tc.arguments}", flush=True)
 
             if not resp.tool_calls:
                 no_tool_streak += 1
@@ -75,9 +75,8 @@ class Agent:
                     break
                 # nudge: on le pousse a agir plutot que d'abandonner tout de suite
                 history.append(Message(role="user", text=(
-                    "Tu n'as appele AUCUN outil. Pour progresser tu DOIS appeler un outil "
-                    "(static_analysis, uart_send, reboot ou submit_flag). N'explique pas, "
-                    "AGIS : appelle un outil maintenant.")))
+                    "You did not call ANY tool. To make progress you MUST call a tool. "
+                    "Do not explain, ACT: call a tool now.")))
                 continue
             no_tool_streak = 0
 

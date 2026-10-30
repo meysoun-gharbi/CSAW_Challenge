@@ -17,6 +17,25 @@ performance, livrables).
 
 ---
 
+## 📁 Organisation du dépôt — voir [`challenges/`](challenges/)
+
+Chaque challenge résolu a son **dossier dédié** (firmware + scripts + doc de
+reproduction Windows/Linux + références) : voir **[`challenges/README.md`](challenges/README.md)**.
+
+| # | Challenge | État | Dossier |
+|---|---|---|---|
+| 1 | Serial Gateway | ✅ | [`challenges/ch1_serial_gateway/`](challenges/ch1_serial_gateway/) |
+| 3 | Airwave Template | ✅ | [`challenges/ch3_airwave_template/`](challenges/ch3_airwave_template/) |
+| 4 | Hidden Portal | ✅ | [`challenges/ch4_hidden_portal/`](challenges/ch4_hidden_portal/) |
+| 5 | Minions Lockout | ⏸️ | [`challenges/ch5_minions_lockout/`](challenges/ch5_minions_lockout/) |
+| 7 | Gateway Escape | ✅ | [`challenges/ch7_gateway_escape/`](challenges/ch7_gateway_escape/) |
+
+Le **harnais d'agent LLM** (ci-dessous) reste à la racine et sert les challenges
+**1** et **3**. Les challenges **4** et **7** sont des solves **manuels autonomes**
+dans leur dossier.
+
+---
+
 ## 1. Étape 0 — Récupérer le firmware et flasher la carte
 
 À faire **une fois** par personne, avant tout le reste.

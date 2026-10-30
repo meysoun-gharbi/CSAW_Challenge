@@ -1,0 +1,127 @@
+% Diagramme de sequence : un "pas" de l'agent (appel d'outil complet)
+% Harnais ESC 2026 - Serial Gateway
+% Compilation (deux passes conseillees pour pgf-umlsd) :
+%   pdflatex diagramme_sequence.tex
+%   pdflatex diagramme_sequence.tex
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[a3paper,landscape,margin=1.2cm]{geometry}
+\usepackage{tikz}
+\usepackage{pgf-umlsd}
+\usepackage{helvet}
+\usepackage{enumitem}
+\renewcommand{\familydefault}{\sfdefault}
+
+% Numeros d'etape en pastille, pour relier diagramme <-> texte
+\newcommand{\step}[1]{\tikz[baseline=(c.base)]{\node[circle,fill=black,text=white,
+  inner sep=1.2pt,font=\scriptsize\bfseries](c){#1};}}
+
+\begin{document}
+\begin{center}
+  {\LARGE\bfseries Appel d'outil par l'agent --- diagramme de sequence}\\[2pt]
+  {\normalsize Harnais ESC 2026 / Serial Gateway --- un "pas" de la boucle}
+\end{center}
+\vspace{0.3cm}
+
+\begin{center}
+\scalebox{0.70}{%
+\begin{sequencediagram}
+  % --- Acteurs / objets (de gauche a droite) ---
+  \newthread{run}{\shortstack{Runner\\ \scriptsize run\_challenge1.py}}
+  \newinst[2.6]{agent}{\shortstack{Agent\\ \scriptsize agent.py}}
+  \newinst[2.6]{llm}{\shortstack{Backend LLM\\ \scriptsize llm/gemini|claude.py}}
+  \newinst[2.6]{api}{\shortstack{API LLM\\ \scriptsize (cloud)}}
+  \newinst[2.6]{reg}{\shortstack{ToolRegistry\\ \scriptsize tools/base.py}}
+  \newinst[2.6]{dev}{\shortstack{Carte ESP32\\ \scriptsize oracle UART}}
+
+  \begin{call}{run}{\step{1} run(SYSTEM, GOAL)}{agent}{\step{R} RunSummary (metriques)}
+
+    \begin{sdblock}{BOUCLE}{tant que : flag non trouve ET pas < max\_steps}
+
+      % --- Phase A : demander un pas au modele ---
+      \begin{call}{agent}{\step{2} step(system, history, tools)}{llm}{\step{5} LLMResponse}
+        \begin{call}{llm}{\step{3} requete : messages + outils (traduits)}{api}{\step{4} tool\_use / function\_call}
+        \end{call}
+      \end{call}
+      \begin{callself}{agent}{\step{6} journalise llm\_call (tokens, latence) ; append(assistant)}{}
+      \end{callself}
+
+      % --- Phase B : executer chaque outil demande ---
+      \begin{sdblock}{BOUCLE}{pour chaque ToolCall(id, name, arguments)}
+        \begin{call}{agent}{\step{7} execute(name, arguments)}{reg}{\step{10} dict resultat}
+          \begin{call}{reg}{\step{8} func(**arguments) ex: ecrit sur l'UART}{dev}{\step{9} reponse brute}
+          \end{call}
+          \begin{callself}{reg}{emit(target\_interaction) si canal != STATIC  [+1 requete cible]}{}
+          \end{callself}
+        \end{call}
+        \begin{callself}{agent}{\step{11} append Message(role=tool, texte=JSON) a l'historique}{}
+        \end{callself}
+      \end{sdblock}
+
+      % --- Phase C : condition d'arret ---
+      \begin{sdblock}{ALT}{si l'outil submit\_flag renvoie correct == true}
+        \begin{callself}{agent}{\step{12} solved=True ; reason=flag\_correct ; on sort de la boucle}{}
+        \end{callself}
+      \end{sdblock}
+
+    \end{sdblock}
+  \end{call}
+\end{sequencediagram}%
+}
+\end{center}
+
+\vspace{0.2cm}
+\noindent\rule{\linewidth}{0.4pt}
+\vspace{0.15cm}
+
+\begin{minipage}[t]{0.60\linewidth}
+\textbf{\large Explication etape par etape}
+\begin{description}[leftmargin=2.4em,style=nextline,itemsep=1pt,topsep=3pt]
+  \item[\step{1}] Le lanceur demarre un run : il passe les \emph{consignes} (SYSTEM) et
+    l'\emph{objectif} (GOAL) a l'agent, et ouvre le port serie vers la carte.
+  \item[\step{2}] A chaque tour de boucle, l'agent appelle \texttt{step(system, history, tools)}
+    sur le backend : il fournit tout l'historique et la liste des outils disponibles.
+  \item[\step{3}] Le backend \emph{traduit} l'historique et les outils dans le format de l'API
+    (Gemini / Claude) et envoie la requete.
+  \item[\step{4}] Le modele ne lance rien lui-meme : il \emph{repond} qu'il veut appeler un outil
+    (bloc \texttt{tool\_use} / \texttt{function\_call}) avec des arguments.
+  \item[\step{5}] Le backend \emph{normalise} cette reponse en \texttt{LLMResponse}
+    (\texttt{text}, liste de \texttt{ToolCall}, \texttt{usage} = tokens).
+  \item[\step{6}] L'agent journalise l'appel LLM (tokens, latence) et ajoute le tour "assistant"
+    a l'historique.
+  \item[\step{7}] Pour chaque \texttt{ToolCall}, l'agent appelle \texttt{ToolRegistry.execute(name, arguments)}.
+  \item[\step{8}--\step{9}] Le registre retrouve la fonction Python de l'outil et l'execute
+    (\texttt{func(**arguments)}) : par ex. \texttt{uart\_send} ecrit la commande sur l'UART et lit
+    la reponse brute de la carte.
+  \item[\step{10}] Le resultat (toujours un \texttt{dict}) revient a l'agent. Si le canal n'est pas
+    \texttt{STATIC}, l'appel est compte comme \emph{une requete cible} (metrique d'efficacite).
+  \item[\step{11}] L'agent serialise le resultat en \textbf{JSON} et l'ajoute comme message
+    \texttt{role=tool}. Au pas suivant, le backend le renverra au modele, \emph{reapparie} par
+    \texttt{id} (Claude) ou par \texttt{nom} (Gemini).
+  \item[\step{12}] Si \texttt{submit\_flag} valide le flag, le run s'arrete (succes) ; sinon la
+    boucle continue jusqu'au plafond \texttt{max\_steps}.
+  \item[\step{R}] L'agent renvoie un \texttt{RunSummary} (resolu ?, requetes cible, appels LLM,
+    tokens, temps) au lanceur, qui l'affiche.
+\end{description}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.36\linewidth}
+\textbf{\large Types echanges} (\texttt{llm/base.py})
+\begin{description}[leftmargin=0em,itemsep=1pt,topsep=3pt]
+  \item \texttt{ToolSpec} : nom + description + \emph{schema JSON} des arguments (ce que voit le modele).
+  \item \texttt{ToolCall} : \texttt{id}, \texttt{name}, \texttt{arguments} (ce que le modele \emph{demande}).
+  \item \texttt{Message} : un tour d'historique (\texttt{user} / \texttt{assistant} / \texttt{tool}).
+  \item \texttt{LLMResponse} : \texttt{text} + \texttt{tool\_calls} + \texttt{usage}.
+  \item \texttt{Usage} : tokens (input / output / cache / thinking).
+\end{description}
+
+\vspace{0.25cm}
+\textbf{\large Idee cle}
+\begin{description}[leftmargin=0em,itemsep=1pt,topsep=3pt]
+  \item \emph{Le LLM decide} (ToolCall), \emph{le registre agit} (fonction Python + mesure),
+    \emph{le resultat revient} au modele au pas suivant. La boucle \texttt{agent.py} orchestre
+    tout \textbf{sans connaitre} ni le fournisseur ni le challenge : on n'ajoute qu'un fichier
+    dans \texttt{llm/} (nouveau modele) ou \texttt{challenges/} (nouvelle cible).
+\end{description}
+\end{minipage}
+\end{document}

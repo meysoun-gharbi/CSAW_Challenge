@@ -120,17 +120,21 @@ class ClaudeClient(LLMClient):
                 extra_body = ({"temperature": self._temperature}
                               if self._temperature is not None and not self._no_temperature
                               else None)
-                # 'any' force un appel d'outil a chaque pas ; 'auto' laisse le modele decider
-                tool_choice = {"type": "any"} if self._force_tool else {"type": "auto"}
-                return self._client.messages.create(
+                kwargs = dict(
                     model=self.model,
                     max_tokens=self._max_tokens,
                     system=system,
-                    tools=tools,
-                    tool_choice=tool_choice,
                     messages=messages,
                     extra_body=extra_body,
                 )
+                # tool_choice n'est valide QUE si des outils sont fournis. Sans outils
+                # (ex. generation de vocabulaire pour le dico), on fait un appel texte.
+                if tools:
+                    # 'any' force un appel d'outil ; 'auto' laisse le modele decider
+                    kwargs["tools"] = tools
+                    kwargs["tool_choice"] = ({"type": "any"} if self._force_tool
+                                             else {"type": "auto"})
+                return self._client.messages.create(**kwargs)
             except Exception as exc:  # noqa: BLE001 - on inspecte le code HTTP
                 code = getattr(exc, "status_code", None) or getattr(exc, "code", None)
                 msg = str(exc).lower()

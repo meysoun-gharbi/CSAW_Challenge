@@ -25,7 +25,7 @@ from run import SYSTEM, build_llm
 def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("-n", "--runs", type=int, default=10)
-    ap.add_argument("--backend", default="mock", choices=["mock", "gemini", "claude"])
+    ap.add_argument("--backend", default="mock", choices=["mock", "gemini", "claude", "local"])
     ap.add_argument("--model", default="gemini-3-pro")
     ap.add_argument("--log", default="runs/bench.jsonl")
     ap.add_argument("--csv", default="runs/bench_summary.csv")

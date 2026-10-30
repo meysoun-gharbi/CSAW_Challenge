@@ -1730,3 +1730,417 @@ Supported characters: lowercase letters (a-z), spaces ( ), and special character
 >>> 'claim_flag_uart_s1'
 <<< esc_2026{Challenge_1_UART_cli_4909cc5dda95299f}
 [133165] FLAG CAPTURED by competitor
+>>> 'UNLOCK 1337'
+<<< {"event":"error","reason":"unknown_command","detail":"Type 'help' or 'menu' for list of commands"}
+>>> 'UNLOCK 1337'
+<<< {"event":"error","reason":"unknown_command","detail":"Type 'help' or 'menu' for list of commands"}
+>>> 'help'
+<<< one or more commands start with help
+This help menu is outdated. System commands have been reorganized.
+Supported characters: lowercase letters (a-z), spaces ( ), and special characters (!, @, -, _).
+>>> 'a'
+<<< no command starts with a
+[RATE-LIMIT] Failed attempt (1). Penalty delay: 10 ms.
+>>> 'b'
+<<< no command starts with b
+[RATE-LIMIT] Failed attempt (2). Penalty delay: 20 ms.
+>>> 'c'
+<<< no command starts with c
+[RATE-LIMIT] Failed attempt (3). Penalty delay: 40 ms.
+>>> 'd'
+<<< no command starts with d
+[RATE-LIMIT] Failed attempt (4). Penalty delay: 80 ms.
+>>> 'e'
+<<< no command starts with e
+[RATE-LIMIT] Failed attempt (5). Penalty delay: 160 ms.
+>>> 'f'
+<<< no command starts with f
+[RATE-LIMIT] Failed attempt (6). Penalty delay: 320 ms.
+--- reboot (penalite remise a zero) ---
+>>> 'g'
+<<< no command starts with g
+[RATE-LIMIT] Failed attempt (1). Penalty delay: 10 ms.
+>>> 'h'
+<<< one or more commands start with h
+>>> 'he'
+<<< one or more commands start with he
+>>> 'hel'
+<<< one or more commands start with hel
+>>> 'help'
+<<< one or more commands start with help
+This help menu is outdated. System commands have been reorganized.
+Supported characters: lowercase letters (a-z), spaces ( ), and special characters (!, @, -, _).
+>>> 'i'
+<<< no command starts with i
+[RATE-LIMIT] Failed attempt (2). Penalty delay: 20 ms.
+>>> 'j'
+<<< no command starts with j
+[RATE-LIMIT] Failed attempt (3). Penalty delay: 40 ms.
+>>> 'k'
+<<< no command starts with k
+[RATE-LIMIT] Failed attempt (4). Penalty delay: 80 ms.
+>>> 'l'
+<<< no command starts with l
+[RATE-LIMIT] Failed attempt (5). Penalty delay: 160 ms.
+>>> 'm'
+<<< one or more commands start with m
+>>> 'ma'
+<<< no command starts with ma
+[RATE-LIMIT] Failed attempt (6). Penalty delay: 320 ms.
+--- reboot (penalite remise a zero) ---
+>>> 'me'
+<<< no command starts with me
+[RATE-LIMIT] Failed attempt (1). Penalty delay: 10 ms.
+>>> 'mi'
+<<< no command starts with mi
+[RATE-LIMIT] Failed attempt (2). Penalty delay: 20 ms.
+>>> 'mo'
+<<< one or more commands start with mo
+>>> 'mod'
+<<< one or more commands start with mod
+>>> 'mode'
+<<< one or more commands start with mode
+>>> 'modes'
+<<< no command starts with modes
+[RATE-LIMIT] Failed attempt (3). Penalty delay: 40 ms.
+>>> 'model'
+<<< no command starts with model
+[RATE-LIMIT] Failed attempt (4). Penalty delay: 80 ms.
+>>> 'modem'
+<<< no command starts with modem
+[RATE-LIMIT] Failed attempt (5). Penalty delay: 160 ms.
+>>> 'mode '
+<<< one or more commands start with mode
+>>> 'mode a'
+<<< no command starts with mode a
+[RATE-LIMIT] Failed attempt (6). Penalty delay: 320 ms.
+--- reboot (penalite remise a zero) ---
+>>> 'mode b'
+<<< no command starts with mode b
+[RATE-LIMIT] Failed attempt (1). Penalty delay: 10 ms.
+>>> 'mode c'
+<<< no command starts with mode c
+[RATE-LIMIT] Failed attempt (2). Penalty delay: 20 ms.
+>>> 'mode d'
+<<< one or more commands start with mode d
+>>> 'mode de'
+<<< one or more commands start with mode de
+>>> 'mode dev'
+<<< one or more commands start with mode dev
+>>> 'mode dev '
+<<< no command starts with mode dev 
+[RATE-LIMIT] Failed attempt (3). Penalty delay: 40 ms.
+>>> 'mode dev'
+<<< one or more commands start with mode dev
+>>> 'mode deva'
+<<< no command starts with mode deva
+[RATE-LIMIT] Failed attempt (4). Penalty delay: 80 ms.
+>>> 'mode devb'
+<<< no command starts with mode devb
+[RATE-LIMIT] Failed attempt (5). Penalty delay: 160 ms.
+>>> 'mode devc'
+<<< no command starts with mode devc
+[RATE-LIMIT] Failed attempt (6). Penalty delay: 320 ms.
+--- reboot (penalite remise a zero) ---
+>>> 'mode devd'
+<<< no command starts with mode devd
+[RATE-LIMIT] Failed attempt (1). Penalty delay: 10 ms.
+>>> 'mode deve'
+<<< one or more commands start with mode deve
+>>> 'mode devel'
+<<< one or more commands start with mode devel
+>>> 'mode develop'
+<<< one or more commands start with mode develop
+>>> 'mode developer'
+<<< one or more commands start with mode developer
+>>> 'mode developer '
+<<< one or more commands start with mode developer
+>>> 'mode developer a'
+<<< no command starts with mode developer a
+[RATE-LIMIT] Failed attempt (2). Penalty delay: 20 ms.
+>>> 'mode developer b'
+<<< no command starts with mode developer b
+[RATE-LIMIT] Failed attempt (3). Penalty delay: 40 ms.
+>>> 'mode developer c'
+<<< no command starts with mode developer c
+[RATE-LIMIT] Failed attempt (4). Penalty delay: 80 ms.
+>>> 'mode developer d'
+<<< no command starts with mode developer d
+[RATE-LIMIT] Failed attempt (5). Penalty delay: 160 ms.
+>>> 'mode developer e'
+<<< no command starts with mode developer e
+[RATE-LIMIT] Failed attempt (6). Penalty delay: 320 ms.
+--- reboot (penalite remise a zero) ---
+>>> 'mode developer f'
+<<< no command starts with mode developer f
+[RATE-LIMIT] Failed attempt (1). Penalty delay: 10 ms.
+>>> 'mode developer g'
+<<< no command starts with mode developer g
+[RATE-LIMIT] Failed attempt (2). Penalty delay: 20 ms.
+>>> 'mode developer h'
+<<< no command starts with mode developer h
+[RATE-LIMIT] Failed attempt (3). Penalty delay: 40 ms.
+>>> 'mode developer i'
+<<< no command starts with mode developer i
+[RATE-LIMIT] Failed attempt (4). Penalty delay: 80 ms.
+>>> 'mode developer l'
+<<< no command starts with mode developer l
+[RATE-LIMIT] Failed attempt (5). Penalty delay: 160 ms.
+>>> 'mode developer o'
+<<< no command starts with mode developer o
+[RATE-LIMIT] Failed attempt (6). Penalty delay: 320 ms.
+--- reboot (penalite remise a zero) ---
+>>> 'mode developer p'
+<<< no command starts with mode developer p
+[RATE-LIMIT] Failed attempt (1). Penalty delay: 10 ms.
+>>> 'mode developer r'
+<<< no command starts with mode developer r
+[RATE-LIMIT] Failed attempt (2). Penalty delay: 20 ms.
+>>> 'mode developer s'
+<<< no command starts with mode developer s
+[RATE-LIMIT] Failed attempt (3). Penalty delay: 40 ms.
+>>> 'mode developer t'
+<<< no command starts with mode developer t
+[RATE-LIMIT] Failed attempt (4). Penalty delay: 80 ms.
+>>> 'mode developer u'
+<<< no command starts with mode developer u
+[RATE-LIMIT] Failed attempt (5). Penalty delay: 160 ms.
+>>> 'mode developer w'
+<<< no command starts with mode developer w
+[RATE-LIMIT] Failed attempt (6). Penalty delay: 320 ms.
+--- reboot (penalite remise a zero) ---
+>>> 'mode developer !'
+<<< no command starts with mode developer !
+[RATE-LIMIT] Failed attempt (1). Penalty delay: 10 ms.
+>>> 'mode developer @'
+<<< no command starts with mode developer @
+[RATE-LIMIT] Failed attempt (2). Penalty delay: 20 ms.
+>>> 'mode developer -'
+<<< one or more commands start with mode developer -
+>>> 'mode developer -a'
+<<< no command starts with mode developer -a
+[RATE-LIMIT] Failed attempt (3). Penalty delay: 40 ms.
+>>> 'mode developer -b'
+<<< no command starts with mode developer -b
+[RATE-LIMIT] Failed attempt (4). Penalty delay: 80 ms.
+>>> 'mode developer -c'
+<<< no command starts with mode developer -c
+[RATE-LIMIT] Failed attempt (5). Penalty delay: 160 ms.
+>>> 'mode developer -d'
+<<< no command starts with mode developer -d
+[RATE-LIMIT] Failed attempt (6). Penalty delay: 320 ms.
+--- reboot (penalite remise a zero) ---
+>>> 'mode developer -e'
+<<< no command starts with mode developer -e
+[RATE-LIMIT] Failed attempt (1). Penalty delay: 10 ms.
+>>> 'mode developer -f'
+<<< no command starts with mode developer -f
+[RATE-LIMIT] Failed attempt (2). Penalty delay: 20 ms.
+>>> 'mode developer -h'
+<<< no command starts with mode developer -h
+[RATE-LIMIT] Failed attempt (3). Penalty delay: 40 ms.
+>>> 'mode developer -i'
+<<< no command starts with mode developer -i
+[RATE-LIMIT] Failed attempt (4). Penalty delay: 80 ms.
+>>> 'mode developer -l'
+<<< no command starts with mode developer -l
+[RATE-LIMIT] Failed attempt (5). Penalty delay: 160 ms.
+>>> 'mode developer -_'
+<<< no command starts with mode developer -_
+[RATE-LIMIT] Failed attempt (6). Penalty delay: 320 ms.
+--- reboot (penalite remise a zero) ---
+>>> 'mode developer --'
+<<< one or more commands start with mode developer --
+>>> 'mode developer --help'
+<<< [AUTH REQUIRED] Developer mode requires device verification.
+Enter MAC suffix (6 hex digits, e.g. A4C138):
+>>> 'F06315'
+<<< [AUTH ERROR] Invalid MAC verification passkey.
+[RATE-LIMIT] Failed attempt (1). Penalty delay: 10 ms.
+>>> 'F06314'
+<<< no command starts with F06314
+[RATE-LIMIT] Failed attempt (2). Penalty delay: 20 ms.
+>>> 'mode developer --help'
+<<< [AUTH REQUIRED] Developer mode requires device verification.
+Enter MAC suffix (6 hex digits, e.g. A4C138):
+>>> 'F06314'
+<<< Developer mode unlocked successfully.
+Available log commands:
+  log1
+  log2
+  log3
+  log4
+  log5
+  log6
+  log7
+  log8
+  log9
+  log10
+  log11
+  log12
+  log13
+  log14
+  log15
+  log16
+  log17
+  log18
+  log19
+  log20
+  log21
+  log22
+  log23
+  log24
+  log25
+  log26
+  log27
+  log28
+  log29
+  log30
+  log31
+  log32
+  log33
+  log34
+  log35
+  log36
+  log37
+  log38
+  log39
+  log40
+  log41
+  log42
+  log43
+  log44
+  log45
+  log46
+  log47
+  log48
+  log49
+  log50
+  log51
+  log52
+  log53
+  log54
+  log55
+  log56
+  log57
+  log58
+  log59
+  log60
+  log61
+  log62
+  log63
+  log64
+  log65
+  log66
+  log67
+  log68
+  log69
+  log70
+  log71
+  log72
+  log73
+  log74
+  log75
+  log76
+  log77
+  log78
+  log79
+  log80
+  log81
+  log82
+  log83
+  log84
+  log85
+  log86
+  log87
+  log88
+  log89
+  log90
+  log91
+  log92
+  log93
+  log94
+  log95
+  log96
+  log97
+  log98
+  log99
+  log100
+[91900] Developer mode unlocked via UART oracle & MAC auth
+>>> 'log1'
+<<< System log 1: OK: Peripheral check passed. Uptime: 95860 ms.
+>>> 'log2'
+<<< System log 2: OK: Peripheral check passed. Uptime: 99420 ms.
+>>> 'log3'
+<<< System log 3: OK: Peripheral check passed. Uptime: 113540 ms.
+>>> 'log4'
+<<< System log 4: OK: Peripheral check passed. Uptime: 116640 ms.
+>>> 'log5'
+<<< System log 5: OK: Peripheral check passed. Uptime: 120140 ms.
+>>> 'log6'
+<<< System log 6: OK: Peripheral check passed. Uptime: 124020 ms.
+>>> 'log7'
+<<< System log 7: OK: Peripheral check passed. Uptime: 127440 ms.
+>>> 'log8'
+<<< System log 8: OK: Peripheral check passed. Uptime: 131200 ms.
+>>> 'log9'
+<<< System log 9: OK: Peripheral check passed. Uptime: 134820 ms.
+>>> 'log10'
+<<< System log 10: OK: Peripheral check passed. Uptime: 138340 ms.
+>>> 'log11'
+<<< System log 11: OK: Peripheral check passed. Uptime: 151220 ms.
+>>> 'log12'
+<<< System log 12: OK: Peripheral check passed. Uptime: 165020 ms.
+>>> 'log13'
+<<< System log 13: OK: Peripheral check passed. Uptime: 168600 ms.
+>>> 'log14'
+<<< System log 14: OK: Peripheral check passed. Uptime: 171580 ms.
+>>> 'log15'
+<<< System log 15: OK: Peripheral check passed. Uptime: 174920 ms.
+>>> 'log16'
+<<< System log 16: OK: Peripheral check passed. Uptime: 178580 ms.
+>>> 'log17'
+<<< System log 17: OK: Peripheral check passed. Uptime: 192000 ms.
+>>> 'log18'
+<<< System log 18: OK: Peripheral check passed. Uptime: 205980 ms.
+>>> 'log19'
+<<< System log 19: OK: Peripheral check passed. Uptime: 209300 ms.
+>>> 'log20'
+<<< System log 20: OK: Peripheral check passed. Uptime: 222560 ms.
+>>> 'log21'
+<<< System log 21: OK: Peripheral check passed. Uptime: 226000 ms.
+>>> 'log22'
+<<< System log 22: OK: Peripheral check passed. Uptime: 229600 ms.
+>>> 'log23'
+<<< System log 23: OK: Peripheral check passed. Uptime: 232700 ms.
+>>> 'log24'
+<<< System log 24: OK: Peripheral check passed. Uptime: 235720 ms.
+>>> 'log25'
+<<< System log 25: OK: Peripheral check passed. Uptime: 239820 ms.
+>>> 'log26'
+<<< System log 26: OK: Peripheral check passed. Uptime: 252980 ms.
+>>> 'log27'
+<<< System log 27: OK: Peripheral check passed. Uptime: 256580 ms.
+>>> 'log28'
+<<< System log 28: OK: Peripheral check passed. Uptime: 260000 ms.
+>>> 'log29'
+<<< System log 29: OK: Peripheral check passed. Uptime: 263700 ms.
+>>> 'log30'
+<<< System log 30: OK: Peripheral check passed. Uptime: 266880 ms.
+>>> 'log31'
+<<< System log 31: OK: Peripheral check passed. Uptime: 294660 ms.
+>>> 'log32'
+<<< System log 32: OK: Peripheral check passed. Uptime: 298080 ms.
+>>> 'log33'
+<<< System log 33: OK: Peripheral check passed. Uptime: 301360 ms.
+>>> 'log34'
+<<< System log 34: OK: Peripheral check passed. Uptime: 305100 ms.
+>>> 'log35'
+<<< System log 35: OK: Peripheral check passed. Uptime: 308380 ms.
+>>> 'log36'
+<<< System log 36: OK: Peripheral check passed. Uptime: 311560 ms.
+>>> 'log37'
+<<< System log 37: Info: Critical diagnostic mode activated. Run command 'claim_flag_uart_s1' to dump flag.
+>>> 'claim_flag_uart_s1'
+<<< esc_2026{Challenge_1_UART_cli_1f97a6463fb85711}
+[317960] FLAG CAPTURED by competitor

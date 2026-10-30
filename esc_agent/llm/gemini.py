@@ -30,12 +30,20 @@ class GeminiClient(LLMClient):
             raise RuntimeError("pip install google-genai") from exc
         self._genai = genai
         self._types = types
-        key = api_key or os.environ.get("GEMINI_API_KEY")
+        key = api_key or os.environ.get("GEMINI_API_KEY") or os.environ.get("GOOGLE_API_KEY")
         if not key:
             raise RuntimeError(
                 "Cle API absente: pose GEMINI_API_KEY (voir .env.example) avant de lancer."
             )
-        self._client = genai.Client(api_key=key)
+        # Mode Vertex AI (aiplatform.googleapis.com) si GOOGLE_GENAI_USE_VERTEXAI=true.
+        # Utile quand la cle est autorisee pour Vertex (express mode) mais PAS pour
+        # l'API Developer generativelanguage. Sinon: API Developer (defaut).
+        use_vertex = os.environ.get("GOOGLE_GENAI_USE_VERTEXAI", "").strip().lower() in (
+            "1", "true", "yes", "on")
+        if use_vertex:
+            self._client = genai.Client(vertexai=True, api_key=key)
+        else:
+            self._client = genai.Client(api_key=key)
         self.model = model
         self._temperature = temperature
         # Gemini 3 attache une "thought_signature" a chaque appel d'outil; il faut
