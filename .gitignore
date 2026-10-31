@@ -5,6 +5,10 @@ __pycache__/
 # Secrets / environnement
 .env
 
+# Environnements virtuels
+.venv/
+venv/
+
 # Sorties generees par run.py / bench.py (regenerables).
 # On garde le dossier (.gitkeep) et les artefacts du VRAI run du challenge 1 (preuves rapport).
 runs/*
