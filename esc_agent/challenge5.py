@@ -6,18 +6,14 @@ detected lockout mode starts. A reset will be necessary and the password
 changes. This challenge might sound brutal but if you clock out your
 feelings the solution prompts itself."
 
-Reading: a password gate drawn from the 157-name official wordlist
-(esc_agent/data/minions_wordlist.txt, provided by the organizers for this
-exact purpose). Wrong guesses eventually trip "lockout" (the alarm); reset
-(free, EN pin) clears it and the secret is re-picked. There is nothing to
-reverse-engineer here: the wordlist IS the sanctioned brute-force input, we
-just need to find the right console command to reach the prompt and then
-walk the list with free reboots on every lockout (esc_agent/lockout.py).
+Everything below is ESTABLISHED FACT from live probing of the real board
+(never from binary analysis -- that's forbidden by the ESC rules and was
+never done). See esc_agent/lockout.py's docstring for the full trail.
 """
 from __future__ import annotations
 
 from .llm import ToolSpec
-from .lockout import MinionsBruteForcer, load_wordlist
+from .lockout import MinionsPairBruteForcer, ICONIC
 from .serial import SerialBackend, FLAG_RE
 from .wifi import wifi_scan
 
@@ -30,30 +26,63 @@ SYSTEM = (
     "starts. A reset will be necessary and the password changes. This challenge\n"
     "might sound brutal but if you clock out your feelings the solution prompts\n"
     "itself.\n\n"
-    "WHAT THIS MEANS: a password gate picks a secret from a known list of 157\n"
-    "minion first names (the organizers' own wordlist — this is the sanctioned\n"
-    "brute-force target, not reverse engineering). Wrong guesses eventually trip\n"
-    "a 'lockout'/alarm state; a reboot (free, EN pin, doesn't count as a request)\n"
-    "clears it and the secret is re-picked. Your job:\n"
-    "  1. Find the exact console command/sequence that opens the password prompt\n"
-    "     (use uart_send to explore — it is likely similar to challenges 1/2's\n"
-    "     prefix-oracle console: try short words, read what the console says).\n"
-    "  2. Once you've identified that command, call brute_minions with it. This\n"
-    "     tool walks the whole 157-name list IN CODE (zero extra LLM calls),\n"
-    "     rebooting for free every time lockout trips, and stops the instant a\n"
-    "     name is accepted or the flag appears. Do NOT try to guess names\n"
-    "     yourself one uart_send at a time — that wastes requests AND LLM calls\n"
-    "     for something the tool already does deterministically and for free.\n"
-    "  3. If brute_minions returns a granted name without a flag, the device is\n"
-    "     probably now in an authenticated/interactive state — use uart_send to\n"
-    "     look around (e.g. 'help', 'status') before rebooting (rebooting would\n"
-    "     lose that authenticated session).\n\n"
+    "ESTABLISHED FACTS (from live UART/I2C probing of our own board — NOT from\n"
+    "any binary analysis, which is forbidden and was never done):\n"
+    "- Console commands: `help`, `status`, `hint` (undocumented but real),\n"
+    "  and `unlock_key minion1-minion2` (a PAIR of names, dash-separated,\n"
+    "  drawn from a 158-name official wordlist of real minion characters).\n"
+    "- `status` returns JSON incl. `storage`: either \"I2C_EEPROM\" (EEPROM\n"
+    "  wired — a genuine 1-strike lockout: ONE wrong guess persists and\n"
+    "  blocks further attempts until an EN reboot) or \"I2C_EEPROM_NAK\n"
+    "  (FAILOPEN)\" (EEPROM unreachable — the 1-strike counter never\n"
+    "  persists, so wrong guesses cost nothing; this is the state the\n"
+    "  `hint` command points you to: \"Clock out the bus if security feels\n"
+    "  locked!\"). This is a hardware-level toggle (connecting/disconnecting\n"
+    "  the physical I2C wire to the EEPROM module) — NOT something you can\n"
+    "  change over UART, so assume it is already in whichever state the\n"
+    "  human operator set it to before this run.\n"
+    "- EVEN in FAILOPEN mode, an independent hardware watchdog fires ~8.0s\n"
+    "  after boot regardless of attempt count, forcing BUS FAULT LOCKDOWN\n"
+    "  until the next reboot (free, EN pin). ~14-16 fast unlock_key attempts\n"
+    "  fit per 8s window.\n"
+    "- We already dumped the EEPROM's raw bytes directly over I2C (temporary\n"
+    "  MicroPython flash on our own board, then restored the official\n"
+    "  firmware) — it is EMPTY except for an internal counter byte. No\n"
+    "  plaintext key, no hash stored there. Don't suggest reading it again,\n"
+    "  it has nothing.\n"
+    "- `proc_ms` in unlock_key responses is a flat constant (10ms, zero\n"
+    "  variance across 36+ varied samples) and so is the real measured\n"
+    "  round-trip time (~601ms, stdev 0.2ms). CONFIRMED: no timing side\n"
+    "  channel exists. Don't suggest a timing attack, it was already ruled\n"
+    "  out rigorously.\n"
+    "- The compare is ATOMIC: testing all 158 names as slot1 against a\n"
+    "  fixed wrong slot2 never produced a response different from a fully\n"
+    "  wrong pair. There is no partial-match text oracle either.\n\n"
+    "WHAT THIS LEAVES: brute force over the (name1, name2) wordlist pairs is\n"
+    "the only known avenue, but it is UNPROVEN whether the secret pair stays\n"
+    "fixed across reboots while in FAILOPEN mode or rerolls every boot\n"
+    "(we could not verify this without already knowing the answer). If you\n"
+    "notice ANY new behavior, text, or pattern we haven't accounted for\n"
+    "above, flag it clearly — it may be the real way in that we missed.\n\n"
+    "YOUR JOB:\n"
+    "  1. Call uart_send('status') first to see the CURRENT storage state.\n"
+    "     If it's not FAILOPEN, say so clearly and stop calling brute_minions\n"
+    "     (it would risk a real persistent lockout) — report this back\n"
+    "     instead of guessing blindly.\n"
+    "  2. If FAILOPEN, call brute_minions (it walks the wordlist pairs in\n"
+    "     code, zero extra LLM calls, prioritizing canonical minion duos\n"
+    "     first, with its own safety check). Give it a reasonable max_pairs\n"
+    "     budget (e.g. 500-2000) rather than the full ~24800 at once, so you\n"
+    "     can check in and decide whether to continue.\n"
+    "  3. Use uart_send sparingly for exploration (e.g. re-check 'hint' or\n"
+    "     try something genuinely new) — NOT to guess names one at a time,\n"
+    "     that wastes requests for something the tool already does for free.\n\n"
     "RULES:\n"
     "- Flag format: esc_2026{...} or ESC{...}. Call submit_flag when found.\n"
-    "- Each uart_send counts as a target request — minimize these.\n"
-    "- brute_minions' internal UART sends also count (reported in its result),\n"
-    "  but its reboots are free, and it is far cheaper than any manual approach.\n"
-    "- Read ALL outputs carefully. The device tells you what to do next."
+    "- Each uart_send and brute_minions call counts as target requests —\n"
+    "  minimize these; brute_minions' reboots are free.\n"
+    "- Do NOT propose reverse engineering the firmware binary — forbidden\n"
+    "  by the competition rules and disqualifying."
 )
 
 GOAL = (
@@ -108,8 +137,8 @@ def build_tools(backend: SerialBackend) -> dict:
             description=(
                 "Send one line to the UART console and get the response. "
                 "EACH call counts as a target request (minimize these). "
-                "Use this to find the command that opens the password prompt, "
-                "NOT to guess minion names one by one — use brute_minions for that."
+                "Use for exploration (status/hint/help), NOT to guess "
+                "minion name pairs one by one — use brute_minions for that."
             ),
             parameters={"type": "object", "properties": {
                 "command": {"type": "string", "description": "the command to send"}
@@ -122,34 +151,31 @@ def build_tools(backend: SerialBackend) -> dict:
     tools["reboot"] = {
         "spec": ToolSpec(
             name="reboot",
-            description="Reset the board (EN pin). Clears lockout. Free.",
+            description="Reset the board (EN pin). Free.",
             parameters={"type": "object", "properties": {}},
         ),
         "fn": lambda: {"ok": True, "boot": backend.reboot()},
         "counted": False,
     }
 
-    def _brute_minions(enter_cmd: str = "") -> dict:
-        forcer = MinionsBruteForcer(backend, enter_cmd=enter_cmd or None)
-        result = forcer.run()
-        out = {
-            "calls": forcer.calls,
-            "attempts_tried": len(forcer.attempts),
-        }
+    def _brute_minions(max_pairs: int = 500) -> dict:
+        forcer = MinionsPairBruteForcer(backend)
+        result = forcer.run(max_pairs=max_pairs)
+        out = {"calls": forcer.calls, "attempts_tried": len(forcer.attempts)}
         if result is None:
             out["ok"] = False
-            out["note"] = (
-                "Exhausted the whole wordlist with no match. Either enter_cmd "
-                "is wrong (re-check with uart_send), or lockout detection "
-                "missed the real keyword (see last few attempts below)."
-            )
-            out["last_attempts"] = [
-                {"name": a.name, "outcome": a.outcome, "response": a.response[:200]}
-                for a in forcer.attempts[-5:]
-            ]
+            if not forcer.attempts and forcer.calls <= 1:
+                out["note"] = ("SAFETY ABORT: storage is not FAILOPEN right now. "
+                                "Do not retry blindly — report this to the user; "
+                                "a real guess here risks a persistent lockout.")
+            else:
+                out["note"] = (f"Tried {len(forcer.attempts)} pairs (capped at "
+                                f"max_pairs={max_pairs}), no match yet. Call again "
+                                "with a higher max_pairs to continue, or stop and "
+                                "report the uncertainty about password rotation.")
         else:
             out["ok"] = True
-            out["granted_name"] = forcer.granted_name
+            out["granted_pair"] = forcer.granted_pair
             out["response"] = result.response
             if forcer.flag:
                 out["flag_detected"] = forcer.flag
@@ -160,16 +186,16 @@ def build_tools(backend: SerialBackend) -> dict:
         "spec": ToolSpec(
             name="brute_minions",
             description=(
-                "Automated brute force of the password gate using the official "
-                "157-name minion wordlist (zero extra LLM calls, free reboots on "
-                "lockout). Call this ONCE you know the exact command that opens "
-                "the password prompt (pass it as enter_cmd), or with enter_cmd="
-                "'' if names can be sent directly without an entry command. "
-                "Stops at the first accepted name or the flag."
+                "Automated brute force over (name1, name2) pairs from the "
+                "official wordlist, prioritizing canonical minion duos "
+                f"({', '.join(ICONIC)}) first. REFUSES to run if storage "
+                "isn't FAILOPEN (safety check against a real persistent "
+                "lockout). Zero extra LLM calls, free reboots. Pass "
+                "max_pairs to bound a single call (default 500)."
             ),
             parameters={"type": "object", "properties": {
-                "enter_cmd": {"type": "string",
-                              "description": "command that opens the password prompt, or '' if none needed"}
+                "max_pairs": {"type": "integer",
+                              "description": "max pairs to try this call (default 500)"}
             }, "required": []},
         ),
         "fn": _brute_minions,

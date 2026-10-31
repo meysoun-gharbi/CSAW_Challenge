@@ -233,7 +233,6 @@ class GeminiClient:
             tools=self._build_tools(tools),
             tool_config=tool_config,
             temperature=0.0,
-            automatic_function_calling=t.AutomaticFunctionCallingConfig(disable=True),
         )
         if self._include_thoughts:
             try:

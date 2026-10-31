@@ -13,6 +13,27 @@ Usage:
 from __future__ import annotations
 
 import argparse
+import os
+
+
+def _load_dotenv(path: str = ".env") -> None:
+    """Minimal .env loader (no python-dotenv dependency). Values in .env
+    OVERRIDE any stale/conflicting shell-exported env var of the same name
+    -- this project's .env is the source of truth for its own keys."""
+    if not os.path.isfile(path):
+        return
+    with open(path, encoding="utf-8") as f:
+        for line in f:
+            line = line.strip()
+            if not line or line.startswith("#") or "=" not in line:
+                continue
+            key, _, val = line.partition("=")
+            key, val = key.strip(), val.strip().strip('"').strip("'")
+            if key and val:
+                os.environ[key] = val
+
+
+_load_dotenv()
 
 from esc_agent.llm import build_client
 from esc_agent.serial import SerialBackend
