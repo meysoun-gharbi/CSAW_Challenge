@@ -54,3 +54,14 @@ problème board que ch2. Hardware RFID prouvé OK (MicroPython lit VER=0x92 + UI
 
 ## Chaîne de solve (théorique)
 badge -> keystream -> déchiffrer my_keys -> (passkey BLE ?) -> bond BLE -> read 4bf0ff03 -> Architecte
+
+---
+
+## ✅ SOLVÉ — flag esc_2026{silicon_badge_35ab0259}
+
+Chaîne : enroll_master -> keystream (block8 XOR "00000000LEVEL999") -> my_keys XOR keystream
+-> passkey BLE 994096 -> bonding -> énigme (citation) -> auteur = Richard Clarke ("the Architect").
+DERNIÈRE ÉTAPE : taper le nom au prompt UART ("Richard Clarke", casse/espaces normalisés,
+mais pas le point) -> clarke_gate -> "QUOTE AUTHOR CONFIRMED — FLAG RELEASED" + flag (écran+UART).
+Coffre décodé : access 965333 / gym 9631 / ble 994096 / sim 5476 / laptop 38798524.
+Voir challenge6-silicon-badge-writeup.md pour le détail.
